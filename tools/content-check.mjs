@@ -268,6 +268,8 @@ C.chapters.forEach(c => {
   (c.needs || []).forEach(n => { wantAdd(n[0]); wantAdd(n[1]); });
   (c.story || []).forEach(prose);
   (c.handson || []).forEach(st => { wantAdd(st.h); (st.b || []).forEach(prose); });
+  /* the Check yourself quiz (Phase 3a) renders through T() too */
+  if (c.selfcheck) (c.selfcheck.items || []).forEach(it => { wantAdd(it.q); wantAdd(it.why); (it.opts || []).forEach(wantAdd); });
 });
 C.items.forEach(([id, , , type, stem, opts, ans, why]) => {
   if (englishOnlyItems.has(id)) {
@@ -472,6 +474,35 @@ const tumForm = Object.entries(hing)
 if (tumForm.length)
   fail(`${tumForm.length} Hinglish line(s) say "Socho" to the reader; the course uses "aap": Sochiye` +
        ` — first: "${tumForm[0]}"`);
+
+/* Check yourself (audit plan, Phase 3a). The basics chapters each carry a
+   short quiz: 5 to 8 questions, four options, one right answer, a reason,
+   and a pointer to the part of the chapter that teaches it. A pointer must
+   name a real heading or unit of that chapter, or the "read these parts"
+   advice sends the learner nowhere. The right answers must not all sit in
+   one position, or the quiz can be passed without reading it. */
+{
+  const BASICS = ['a1g', 'a4s', 'chpy', 'ch8f'];
+  const plain = s => String(s).replace(/<[^>]+>/g, '');
+  for (const id of BASICS) {
+    const c = C.chapters.find(x => x.id === id);
+    if (!c || !c.selfcheck) { fail(`${id}: a basics chapter needs a Check yourself quiz (selfcheck)`); continue; }
+  }
+  for (const c of C.chapters.filter(x => x.selfcheck)) {
+    const sc = c.selfcheck, items = sc.items || [];
+    if (sc.pass !== 0.8) fail(`${c.id}: the Check yourself pass mark must be 0.8, not ${sc.pass}`);
+    if (items.length < 5 || items.length > 8) fail(`${c.id}: the Check yourself quiz has ${items.length} questions; it needs 5 to 8`);
+    const secs = new Set();
+    (c.story || []).forEach(b => { if (Array.isArray(b) && b[0] === 'h') secs.add(plain(b[1])); if (Array.isArray(b) && b[0] === 'unit') secs.add(b[1]); });
+    items.forEach((it, i) => {
+      if (!it.q || !it.why || !Array.isArray(it.opts) || it.opts.length !== 4) fail(`${c.id} check ${i + 1}: needs a question, four options and a reason`);
+      if (!(Number.isInteger(it.a) && it.a >= 0 && it.a < (it.opts || []).length)) fail(`${c.id} check ${i + 1}: the answer index is out of range`);
+      if (new Set(it.opts || []).size !== (it.opts || []).length) fail(`${c.id} check ${i + 1}: two options are the same`);
+      if (it.see && !secs.has(it.see)) fail(`${c.id} check ${i + 1}: "${it.see}" is not a heading or unit of the chapter`);
+    });
+    if (items.length && new Set(items.map(it => it.a)).size < 3) fail(`${c.id}: the right answers sit in fewer than three positions`);
+  }
+}
 
 /* Fast-moving facts carry a date (audit plan, Phase 2). Each chapter that
    teaches a rule, a standard, a price or a serving number has a callout

@@ -1713,6 +1713,54 @@ console.log('\n— dated facts and the Delivery & Governance glossary —');
   await d.ctx.close();
 }
 
+/* Phase 3a of the audit plan (Nov 2026): Check yourself on the basics chapters. */
+console.log('\n— Check yourself: pass to mark a basics chapter known —');
+{
+  const d = await newDevice(false);
+  const answer = async (id, right) => {
+    await boot(d.page, '#/ch/' + id);
+    await d.page.locator('details.selfcheck > summary').click();
+    const items = await d.page.evaluate(i => window.CHAPTERS.find(c => c.id === i).selfcheck.items.map(x => x.a), id);
+    for (let i = 0; i < items.length; i++) {
+      const j = right(i) ? items[i] : (items[i] + 1) % 4;
+      await d.page.locator(`#sc-${id}-${i}-${j}`).check();
+    }
+    await d.page.locator('button.sccheck').click();
+    await d.page.waitForTimeout(150);
+    return items.length;
+  };
+  await boot(d.page, '#/ch/a1g');
+  for (const id of ['a1g', 'a4s', 'chpy', 'ch8f']) {
+    const n = await d.page.evaluate(i => { const c = window.CHAPTERS.find(x => x.id === i); return c && c.selfcheck ? c.selfcheck.items.length : 0; }, id);
+    ok(n >= 5 && n <= 8, `${id} has a Check yourself quiz of 5 to 8 questions`, String(n));
+  }
+  /* all right: pass, then mark known, which also marks the chapter done */
+  await answer('a1g', () => true);
+  ok(/You passed/.test(await mainText(d.page)), 'all answers right: the check says you passed');
+  await d.page.locator('button.scknown').click();
+  await d.page.waitForTimeout(200);
+  const st = await d.page.evaluate(() => ({ k: !!window.STORE.S.known.a1g, d: !!window.STORE.S.done.a1g }));
+  ok(st.k && st.d, 'marking it known also marks the chapter done, so progress counts it', JSON.stringify(st));
+  ok(/Known: you passed the check/.test(await mainText(d.page)), 'and the chapter says it is known');
+  /* two wrong out of seven is 71%: below the pass mark, with parts to read */
+  const n = await answer('chpy', i => i >= 2);
+  ok(!/You passed/.test(await mainText(d.page)) && /Not yet\. Read these parts/.test(await mainText(d.page)), `two wrong of ${n}: not passed`);
+  const see = await d.page.locator('ul.scsee button').allTextContents();
+  ok(see.includes('A name for a value') && see.includes('A list: several things in order'), 'and it names the sections behind the misses', see.join(' | '));
+  ok(await d.page.evaluate(() => !window.STORE.S.done.chpy && !(window.STORE.S.known || {}).chpy), 'a failed check marks nothing done');
+  ok(await d.page.locator('button.scknown').count() === 0, 'and offers no way to mark it known');
+  /* six of seven is 86%: a pass */
+  await d.page.locator('button.scagain').click();
+  await d.page.waitForTimeout(100);
+  await answer('a4s', i => i !== 3);
+  ok(/You passed/.test(await mainText(d.page)), 'six right of seven (86%) passes');
+  await d.page.evaluate(() => { window.STORE.S.lang = 'hi'; window.STORE.flush(); });
+  await boot(d.page, '#/ch/ch8f');
+  ok(/Pehle se aata hai\? Khud jaanchiye/.test(await mainText(d.page)), 'and the check reads in Hinglish');
+  await d.page.evaluate(() => { window.STORE.S.lang = null; window.STORE.flush(); });
+  await d.ctx.close();
+}
+
 await browser.close();
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');
 process.exit(fail ? 1 : 0);

@@ -1507,6 +1507,26 @@ aside.synth p{margin:.2rem 0 .4rem}
 /* the course identity, under the home heading */
 p.identity{margin:.4rem 0 1rem;font-size:.95rem;color:var(--muted)}
 
+/* Check yourself (Phase 3a): a short quiz at the top of a basics chapter. */
+.selfcheck{margin:1.2rem 0;padding:.8rem 1rem;background:var(--raised);border:1px solid var(--rule);
+  border-left:2px solid var(--verified);border-radius:var(--r)}
+.selfcheck>summary{display:flex;align-items:center;gap:.6rem;cursor:pointer;font-weight:600}
+.selfcheck .scbody{margin-top:.8rem}
+.selfcheck .scq{border:0;margin:0 0 1rem;padding:0}
+.selfcheck .scq legend{font-family:var(--serif);font-size:1rem;line-height:1.5;margin-bottom:.4rem;padding:0}
+.selfcheck .scopt{display:flex;gap:.45rem;align-items:flex-start;padding:.3rem .4rem;border-radius:var(--r);cursor:pointer;line-height:1.45}
+.selfcheck .scopt input{margin:.25rem 0 0;flex:0 0 auto;width:auto;min-width:0;height:auto;padding:0;border:0;background:none;box-shadow:none}
+.selfcheck .scopt>span{flex:1 1 auto;min-width:0}
+.selfcheck .scopt.right{outline:1px solid var(--verified)}
+.selfcheck .scopt.wrong{outline:1px solid var(--red)}
+.selfcheck .scwhy{font-size:.88rem;margin:.3rem 0 0 .4rem}
+.selfcheck .scact{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}
+.selfcheck .scres{display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;margin-top:.6rem}
+.selfcheck .scres.ok:has(.pill){flex-direction:row;align-items:center;flex-wrap:wrap}
+.selfcheck .scsee{margin:0;padding-left:1.2rem}
+.selfcheck .linkish{background:none;border:0;padding:0;color:var(--ink);text-decoration:underline;cursor:pointer;font:inherit}
+.selfcheck .scopt{font-family:var(--sans,inherit);text-transform:none;letter-spacing:normal;font-size:.95rem;color:var(--ink);font-weight:400}
+
 </style>
 <script>
 /* Track A — Product foundations.
@@ -1757,6 +1777,8 @@ window.PART6 = [
      only taught in Chapter 21, eighteen weeks later. This is the website-only
      version: no install, no command line, just enough for A1 to work. */
   id:'a1g', num:'A1.5', part:6, curriculumTier:'core', phase:0, prerequisites:['a1'], nextUnits:['a2'], minutes:20, labs:[],
+  /* Check yourself (audit plan, Phase 3a): pass 80% to mark the chapter known. */
+  selfcheck:{"pass": 0.8, "items": [{"q": "What does a repository keep that a folder on your laptop does not?", "opts": ["A faster copy of your files", "Only the newest version of each file", "Every earlier version of every file, with a note on each change", "A backup that deletes old files after a month"], "a": 2, "why": "A repository is a folder that remembers. Every saved change stays in its history.", "see": "A repository: a folder that remembers"}, {"q": "You are starting your course repository. Should it be public or private?", "opts": ["Public, so employers can see it at once", "It does not matter at all", "Private for now. Make it public later, when you publish your project.", "Public for the first week, then private"], "a": 2, "why": "Start private. Only you and the people you invite can read it. You can make it public when you publish.", "see": "A repository: a folder that remembers"}, {"q": "What is a commit?", "opts": ["One saved version of your files, with a short note on what changed", "A file that lists your passwords", "A copy of the repository on another website", "A message you send to another user"], "a": 0, "why": "Each commit is one page in the repository’s diary: a saved version, its date and a note.", "see": "A commit: one saved version, with a note"}, {"q": "Which commit message will help you most a month from now?", "opts": ["update", "asdf", "final final 2", "Start the decision log"], "a": 3, "why": "A good message says what changed. Then the history reads like a diary you can search.", "see": "A commit: one saved version, with a note"}, {"q": "On the GitHub website, how do you make a folder called research?", "opts": ["You cannot make folders on the website", "Name a new file research/notes.md. GitHub makes the folder for you.", "Ask GitHub support to make it", "Install Git on your laptop first"], "a": 1, "why": "Type the folder name and a slash before the file name. The folder appears with the file in it.", "see": "A commit: one saved version, with a note"}, {"q": "You commit a file with an API key in it, then delete the file. Is the key safe now?", "opts": ["Yes. Deleting the file removes it everywhere.", "No. It is still in the history, so treat the key as leaked and make a new one.", "Yes, because the repository is private.", "No, but only public repositories keep a history."], "a": 1, "why": "A repository remembers everything, even deleted files. Private does not make it safe.", "see": "What never goes in"}, {"q": "Where does your model’s API key belong?", "opts": ["In README.md, so you do not lose it", "In a private repository", "In a commit message", "On the Connect page of this course, never in a repository"], "a": 3, "why": "Keys, passwords and real people’s details never go into a repository, private or not.", "see": "What never goes in"}]},
   title:'GitHub basics: a home for your work',
   concept:'A1 asks you to keep everything you make in one place that others can open. This short chapter builds that place on GitHub, a website where people keep their work online. You use only the website. You make an account, a repository (an online folder that remembers every change), your first file and your first saved version. Nothing to install. No command line (the black box where people type commands).',
   takeaway:[
@@ -2118,6 +2140,8 @@ window.PART6 = [
      spreadsheet, and nothing taught the formulas they use. The sheet sits in
      the text, right where the steps use it. */
   id:'a4s', num:'A3.5', part:6, curriculumTier:'core', phase:0, prerequisites:['a3'], nextUnits:['a4'], minutes:20, labs:[],
+  /* Check yourself (audit plan, Phase 3a): pass 80% to mark the chapter known. */
+  selfcheck:{"pass": 0.8, "items": [{"q": "What does the cell address C5 mean?", "opts": ["Row C, column 5", "The fifth sheet in the file", "Column C, row 5", "Cell number 35"], "a": 2, "why": "Columns have letters and rows have numbers, like a seat number in a cinema.", "see": ""}, {"q": "B2 holds 300 and B3 holds 52. What does a cell with =B2*B3 show?", "opts": ["B2*B3", "352", "15600", "300"], "a": 2, "why": "A cell that starts with = shows the answer, not what you typed. 300 × 52 = 15600.", "see": "A formula starts with ="}, {"q": "What does =SUM(D2:D6) add up?", "opts": ["Every cell from D2 down to D6", "D2 and D6 only", "Columns D, E and F", "The first six rows of the sheet"], "a": 0, "why": "A colon makes a range: a block of cells from the first to the last.", "see": "Adding up: SUM and ranges"}, {"q": "How do you take 12% of the number in B4?", "opts": ["=B4+12", "=12%B4", "=B4/12", "=B4*12%"], "a": 3, "why": "12% is the same as 0.12, so multiply by it.", "see": "Percentages and rounding"}, {"q": "What does =ROUND(B4/7, 1) do?", "opts": ["Rounds B4 to the nearest 7", "Divides B4 by 7 and keeps one place after the decimal point", "Divides B4 by 1, seven times", "Shows the first seven digits of B4"], "a": 1, "why": "The first part is the sum. The second part says how many places to keep.", "see": "Percentages and rounding"}, {"q": "Why type each guess once, in its own cell, and make every total a formula?", "opts": ["It makes the sheet look neater", "So that changing one guess updates every total", "Formulas are quicker to type than numbers", "A sheet cannot store numbers inside a formula"], "a": 1, "why": "Estimates rest on guesses. A good sheet lets you change one and watch every total follow.", "see": ""}, {"q": "9,000 firms would each pay ₹1,20,000 a year, and you could win 2% of the market. What is your share?", "opts": ["₹108 crore", "₹21.6 lakh", "₹1.08 crore", "₹2.16 crore"], "a": 3, "why": "9,000 × ₹1,20,000 = ₹108 crore for the whole market. 2% of that is ₹2.16 crore.", "see": "A small estimate, the way A4 builds one"}]},
   title:'Spreadsheet basics: the formulas this course uses',
   concept:'A4 sizes a market, and Chapter 15 works out what a feature costs. Both are done in a spreadsheet. This short chapter teaches the few formulas they need. The sheet sits right here on this page. You learn cells, a formula, SUM, percentages and ROUND.',
   takeaway:[
@@ -2993,6 +3017,8 @@ window.PART1 = [
      first idea about models. This chapter takes the five shapes that make up
      almost every cell in the course, one at a time, with nothing to connect. */
   id:'chpy', num:0.8, part:1, curriculumTier:'core', phase:1, prerequisites:['ch05'], nextUnits:['ch1'], minutes:25, labs:[], noModel:true,
+  /* Check yourself (audit plan, Phase 3a): pass 80% to mark the chapter known. */
+  selfcheck:{"pass": 0.8, "items": [{"q": "What does the line city = \"Pune\" do?", "opts": ["Checks whether city is Pune", "Prints the word Pune", "Gives the value \"Pune\" the name city, so later lines can use it", "Makes a list of cities"], "a": 2, "why": "Read = as “is now”: city is now Pune.", "see": "A name for a value"}, {"q": "cities = [\"Pune\", \"Delhi\", \"Kochi\"]. What does cities[1] give?", "opts": ["Delhi", "Pune", "Kochi", "An error"], "a": 0, "why": "Python counts from 0, so [1] is the second item.", "see": "A list: several things in order"}, {"q": "message = {\"role\": \"user\", \"content\": \"Hi\"}. What does message[\"role\"] give?", "opts": ["Hi", "role", "An error", "user"], "a": 3, "why": "A dictionary is looked up by its label, like a phone book. The label role holds user.", "see": "A dictionary: labels and values"}, {"q": "In print(round(3.14159, ndigits=2)), what is ndigits=2?", "opts": ["A second number to multiply by", "A named setting: keep two places after the decimal point", "A name made in an earlier cell", "A note that Python skips"], "a": 1, "why": "A name=value inside the brackets is a named setting of the job.", "see": "Asking Python to do a job"}, {"q": "What does response.choices[0].message.content reach?", "opts": ["The name of the model", "The text of the first answer", "All the answers at once", "The cost of the call"], "a": 1, "why": "Each dot reaches inside: the first choice, then its message, then the message’s text.", "see": "Now read the real thing"}, {"q": "A cell shows a red box: name 'client' is not defined. What should you try first?", "opts": ["Reinstall Python", "Delete the cell", "Add spaces at the start of the line", "Run the cells above first, or check the spelling"], "a": 3, "why": "The name was used before a line gave it a value.", "see": "When a cell goes red"}, {"q": "Why do the spaces at the start of a line matter in Python?", "opts": ["They tell Python which lines belong to a for, an if or a def", "They make the code run faster", "They are only there to look neat", "They turn a line into a comment"], "a": 0, "why": "Lines pushed in under a for or an if belong to it, like a list under its heading.", "see": "Three shapes you will meet later"}]},
   title:'Reading Python: just enough for this course',
   concept:'From the next chapter on, the hands-on steps are short pieces of Python (a language for giving a computer instructions). They run right here in the page. You do not write code from scratch. You read it, change one thing and run it again, like tweaking a recipe. This chapter teaches the few shapes you will meet, one at a time. It needs no key (a secret password for the model) and no account.',
   needs:[
@@ -6781,6 +6807,8 @@ window.PART5 = [
 /* ---------------------------------------------------------------- 21 / bk 8 */
 {
   id:'ch8f', num:21, part:5, curriculumTier:'core', phase:2, prerequisites:['ch1','ch7'], nextUnits:['ch9m'], minutes:60, labs:[],
+  /* Check yourself (audit plan, Phase 3a): pass 80% to mark the chapter known. */
+  selfcheck:{"pass": 0.8, "items": [{"q": "An AI system is ordinary software with one part that guesses. What follows from that?", "opts": ["Ordinary bugs no longer matter", "Only the model can fail", "Every ordinary software failure can still happen, plus the failures of the guessing part", "Tests are of no use for AI"], "a": 2, "why": "The network, the code and the data around the model fail in all the usual ways.", "see": ""}, {"q": "Your call to the model returns 401. What is it, and will a retry help?", "opts": ["The key or sign-in is wrong. Fix it; trying again will not help.", "The server is busy. Retry at once.", "The page was not found. Retry later.", "A timeout. Retry three times."], "a": 0, "why": "401 means you are not allowed in. The same request will fail the same way.", "see": "8.2"}, {"q": "Which status usually means “wait a little, then try again”?", "opts": ["401: not signed in", "404: not found", "400: a bad request", "429: too many requests"], "a": 3, "why": "A 429 says you are going too fast. Wait, then retry, with a longer wait each time.", "see": "8.2"}, {"q": "Where should an API key live in your project?", "opts": ["In the first line of the script", "In an environment variable or a secret file listed in .gitignore, never in the code", "In README.md", "In a comment, so teammates can find it"], "a": 1, "why": "Keep secrets outside the source code, and print only a masked prefix.", "see": "8.3"}, {"q": "What makes an experiment something another person can run again?", "opts": ["A screenshot of the result", "A repository with a README, a requirements file and one command that runs it the same way", "A long message explaining what you did", "Keeping it on your own laptop"], "a": 1, "why": "If someone must ask you what you did by hand, it is not yet evidence.", "see": "8.3"}, {"q": "A small test suite for a model call should cover which three cases?", "opts": ["Only the expected answer", "Speed, colour and font", "Three different models", "An expected answer, missing input, and a malformed response"], "a": 3, "why": "You judge a system by what happens when things go wrong, not only when all goes well.", "see": "8.4"}, {"q": "Which details should every experiment record carry?", "opts": ["A request ID, a timestamp, the model and the status", "Only the answer text", "The user’s password", "Nothing: the screen output is enough"], "a": 0, "why": "With these four, you can follow any failure back to the request that caused it.", "see": "8.4"}, {"q": "What is the experiment harness for?", "opts": ["To make the model answer faster", "To replace evaluation", "To record inputs, outputs, settings, latency and errors the same way on every run", "To hide errors from users"], "a": 2, "why": "The harness is the bridge between “I tried it” and “I measured it”.", "see": "8.5"}]},
   title:'Software basics for AI work: Python, HTTP, Git and tests',
   concept:'An AI system is ordinary software with one part that nobody can predict (the model). In this chapter you learn the software around that part: Python, HTTP and JSON, secrets (private passwords), Git, logs (a diary of what happened) and tests. On the way you build an experiment harness, a small tool you will reuse for the rest of Part V.',
   plan:{
@@ -23685,6 +23713,386 @@ Object.assign(window.HING = window.HING || {}, {
     "OWASP",
   "Anthropic":
     "Anthropic",
+});
+
+/* Hinglish for the Check yourself quizzes (audit plan, Phase 3a) and their interface. Keyed on the English. */
+Object.assign(window.HING = window.HING || {}, {
+  "What does a repository keep that a folder on your laptop does not?":
+    "Ek repository aisa kya rakhti hai jo aapke laptop ka folder nahi rakhta?",
+  "A repository is a folder that remembers. Every saved change stays in its history.":
+    "Repository ek folder hai jo yaad rakhta hai. Har save kiya gaya badlaav uski history mein rehta hai.",
+  "A faster copy of your files":
+    "Aapki files ki ek tez copy",
+  "Only the newest version of each file":
+    "Har file ka sirf sabse naya version",
+  "Every earlier version of every file, with a note on each change":
+    "Har file ka har purana version, har badlaav par ek note ke saath",
+  "A backup that deletes old files after a month":
+    "Ek backup jo ek mahine baad purani files mita deta hai",
+  "You are starting your course repository. Should it be public or private?":
+    "Aap apni course repository shuru kar rahe hain. Kya woh public honi chahiye ya private?",
+  "Start private. Only you and the people you invite can read it. You can make it public when you publish.":
+    "Private se shuru kijiye. Sirf aap aur aapke bulaye log use padh sakte hain. Publish karte samay aap use public kar sakte hain.",
+  "Public, so employers can see it at once":
+    "Public, taaki employers turant dekh sakein",
+  "It does not matter at all":
+    "Isse koi farq nahi padta",
+  "Private for now. Make it public later, when you publish your project.":
+    "Abhi private. Jab aap apna project publish karein, tab public kijiye.",
+  "Public for the first week, then private":
+    "Pehle hafte public, phir private",
+  "What is a commit?":
+    "Commit kya hai?",
+  "Each commit is one page in the repository’s diary: a saved version, its date and a note.":
+    "Har commit repository ki diary ka ek page hai: ek save kiya gaya version, uski taareekh aur ek note.",
+  "One saved version of your files, with a short note on what changed":
+    "Aapki files ka ek save kiya gaya version, kya badla is par ek chhote note ke saath",
+  "A file that lists your passwords":
+    "Ek file jo aapke passwords ki list rakhti hai",
+  "A copy of the repository on another website":
+    "Kisi aur website par repository ki copy",
+  "A message you send to another user":
+    "Ek message jo aap kisi aur user ko bhejte hain",
+  "Which commit message will help you most a month from now?":
+    "Ek mahine baad kaunsa commit message aapki sabse zyada madad karega?",
+  "A good message says what changed. Then the history reads like a diary you can search.":
+    "Achha message batata hai ki kya badla. Tab history ek aisi diary ki tarah padhi jaati hai jismein aap dhoondh sakte hain.",
+  "update":
+    "update",
+  "asdf":
+    "asdf",
+  "final final 2":
+    "final final 2",
+  "Start the decision log":
+    "Start the decision log",
+  "On the GitHub website, how do you make a folder called research?":
+    "GitHub website par research naam ka folder kaise banayenge?",
+  "Type the folder name and a slash before the file name. The folder appears with the file in it.":
+    "File ke naam se pehle folder ka naam aur ek slash likhiye. Folder us file ke saath dikh jaata hai.",
+  "You cannot make folders on the website":
+    "Website par folder nahi ban sakte",
+  "Name a new file research/notes.md. GitHub makes the folder for you.":
+    "Ek nayi file ka naam research/notes.md rakhiye. GitHub aapke liye folder bana deta hai.",
+  "Ask GitHub support to make it":
+    "GitHub support se banwaiye",
+  "Install Git on your laptop first":
+    "Pehle apne laptop par Git install kijiye",
+  "You commit a file with an API key in it, then delete the file. Is the key safe now?":
+    "Aapne API key wali ek file commit ki, phir file mita di. Kya key ab surakshit hai?",
+  "A repository remembers everything, even deleted files. Private does not make it safe.":
+    "Repository sab kuch yaad rakhti hai, mitayi gayi files bhi. Private hone se woh surakshit nahi ho jaati.",
+  "Yes. Deleting the file removes it everywhere.":
+    "Haan. File mitane se woh har jagah se hat jaati hai.",
+  "No. It is still in the history, so treat the key as leaked and make a new one.":
+    "Nahi. Woh ab bhi history mein hai, isliye key ko leak hua maaniye aur nayi banaiye.",
+  "Yes, because the repository is private.":
+    "Haan, kyunki repository private hai.",
+  "No, but only public repositories keep a history.":
+    "Nahi, par sirf public repositories history rakhti hain.",
+  "Where does your model’s API key belong?":
+    "Aapke model ki API key kahan rehni chahiye?",
+  "Keys, passwords and real people’s details never go into a repository, private or not.":
+    "Keys, passwords aur asli logon ki details kabhi repository mein nahi jaatin, private ho ya nahi.",
+  "In README.md, so you do not lose it":
+    "README.md mein, taaki kho na jaaye",
+  "In a private repository":
+    "Ek private repository mein",
+  "In a commit message":
+    "Ek commit message mein",
+  "On the Connect page of this course, never in a repository":
+    "Is course ke Connect page par, kabhi bhi repository mein nahi",
+  "What does the cell address C5 mean?":
+    "Cell address C5 ka kya matlab hai?",
+  "Columns have letters and rows have numbers, like a seat number in a cinema.":
+    "Columns ke akshar hote hain aur rows ke number, jaise cinema mein seat number.",
+  "Row C, column 5":
+    "Row C, column 5",
+  "The fifth sheet in the file":
+    "File ki paanchvi sheet",
+  "Column C, row 5":
+    "Column C, row 5",
+  "Cell number 35":
+    "Cell number 35",
+  "B2 holds 300 and B3 holds 52. What does a cell with =B2*B3 show?":
+    "B2 mein 300 hai aur B3 mein 52. =B2*B3 wala cell kya dikhayega?",
+  "A cell that starts with = shows the answer, not what you typed. 300 × 52 = 15600.":
+    "= se shuru hone wala cell jawaab dikhata hai, jo aapne likha woh nahi. 300 × 52 = 15600.",
+  "B2*B3":
+    "B2*B3",
+  "352":
+    "352",
+  "15600":
+    "15600",
+  "300":
+    "300",
+  "What does =SUM(D2:D6) add up?":
+    "=SUM(D2:D6) kya jodta hai?",
+  "A colon makes a range: a block of cells from the first to the last.":
+    "Colon ek range banata hai: pehle se aakhri tak cells ka ek block.",
+  "Every cell from D2 down to D6":
+    "D2 se neeche D6 tak ka har cell",
+  "D2 and D6 only":
+    "Sirf D2 aur D6",
+  "Columns D, E and F":
+    "Columns D, E aur F",
+  "The first six rows of the sheet":
+    "Sheet ki pehli chhe rows",
+  "How do you take 12% of the number in B4?":
+    "B4 ke number ka 12% kaise nikaalenge?",
+  "12% is the same as 0.12, so multiply by it.":
+    "12% wahi hai jo 0.12, isliye usse guna kijiye.",
+  "=B4+12":
+    "=B4+12",
+  "=12%B4":
+    "=12%B4",
+  "=B4/12":
+    "=B4/12",
+  "=B4*12%":
+    "=B4*12%",
+  "What does =ROUND(B4/7, 1) do?":
+    "=ROUND(B4/7, 1) kya karta hai?",
+  "The first part is the sum. The second part says how many places to keep.":
+    "Pehla hissa hisaab hai. Doosra hissa batata hai ki kitne ank rakhne hain.",
+  "Rounds B4 to the nearest 7":
+    "B4 ko sabse paas ke 7 tak round karta hai",
+  "Divides B4 by 7 and keeps one place after the decimal point":
+    "B4 ko 7 se bhaag deta hai aur decimal ke baad ek ank rakhta hai",
+  "Divides B4 by 1, seven times":
+    "B4 ko 1 se saat baar bhaag deta hai",
+  "Shows the first seven digits of B4":
+    "B4 ke pehle saat ank dikhata hai",
+  "Why type each guess once, in its own cell, and make every total a formula?":
+    "Har andaaza ek baar, apne cell mein kyun likhein, aur har total formula kyun banaayein?",
+  "Estimates rest on guesses. A good sheet lets you change one and watch every total follow.":
+    "Andaaze anumaan par tike hote hain. Achhi sheet aapko ek badalne deti hai aur har total uske saath badalta hai.",
+  "It makes the sheet look neater":
+    "Isse sheet saaf dikhti hai",
+  "So that changing one guess updates every total":
+    "Taaki ek andaaza badalne se har total badal jaaye",
+  "Formulas are quicker to type than numbers":
+    "Formula likhna numbers se tez hai",
+  "A sheet cannot store numbers inside a formula":
+    "Sheet formula ke andar numbers nahi rakh sakti",
+  "9,000 firms would each pay ₹1,20,000 a year, and you could win 2% of the market. What is your share?":
+    "9,000 firms har saal ₹1,20,000 dengi, aur aap market ka 2% jeet sakte hain. Aapka hissa kitna hai?",
+  "9,000 × ₹1,20,000 = ₹108 crore for the whole market. 2% of that is ₹2.16 crore.":
+    "9,000 × ₹1,20,000 = poore market ke liye ₹108 crore. Uska 2% ₹2.16 crore hai.",
+  "₹108 crore":
+    "₹108 crore",
+  "₹21.6 lakh":
+    "₹21.6 lakh",
+  "₹1.08 crore":
+    "₹1.08 crore",
+  "₹2.16 crore":
+    "₹2.16 crore",
+  "What does the line city = \"Pune\" do?":
+    "city = \"Pune\" line kya karti hai?",
+  "Read = as “is now”: city is now Pune.":
+    "= ko “ab hai” padhiye: city ab Pune hai.",
+  "Checks whether city is Pune":
+    "Jaanchti hai ki city Pune hai ya nahi",
+  "Prints the word Pune":
+    "Pune shabd print karti hai",
+  "Gives the value \"Pune\" the name city, so later lines can use it":
+    "\"Pune\" value ko city naam deti hai, taaki baad ki lines use use kar sakein",
+  "Makes a list of cities":
+    "Shehron ki list banati hai",
+  "cities = [\"Pune\", \"Delhi\", \"Kochi\"]. What does cities[1] give?":
+    "cities = [\"Pune\", \"Delhi\", \"Kochi\"]. cities[1] kya deta hai?",
+  "Python counts from 0, so [1] is the second item.":
+    "Python 0 se ginta hai, isliye [1] doosra item hai.",
+  "Delhi":
+    "Delhi",
+  "Pune":
+    "Pune",
+  "Kochi":
+    "Kochi",
+  "An error":
+    "Ek error",
+  "message = {\"role\": \"user\", \"content\": \"Hi\"}. What does message[\"role\"] give?":
+    "message = {\"role\": \"user\", \"content\": \"Hi\"}. message[\"role\"] kya deta hai?",
+  "A dictionary is looked up by its label, like a phone book. The label role holds user.":
+    "Dictionary ko uske label se dekha jaata hai, jaise phone book. role label mein user hai.",
+  "Hi":
+    "Hi",
+  "role":
+    "role",
+  "user":
+    "user",
+  "In print(round(3.14159, ndigits=2)), what is ndigits=2?":
+    "print(round(3.14159, ndigits=2)) mein ndigits=2 kya hai?",
+  "A name=value inside the brackets is a named setting of the job.":
+    "Brackets ke andar name=value us kaam ki ek named setting hai.",
+  "A second number to multiply by":
+    "Guna karne ke liye ek doosra number",
+  "A named setting: keep two places after the decimal point":
+    "Ek named setting: decimal ke baad do ank rakhiye",
+  "A name made in an earlier cell":
+    "Pichhle cell mein bana ek naam",
+  "A note that Python skips":
+    "Ek note jise Python chhod deta hai",
+  "What does response.choices[0].message.content reach?":
+    "response.choices[0].message.content kahan tak pahunchta hai?",
+  "Each dot reaches inside: the first choice, then its message, then the message’s text.":
+    "Har dot andar pahunchta hai: pehla choice, phir uska message, phir message ka text.",
+  "The name of the model":
+    "Model ka naam",
+  "The text of the first answer":
+    "Pehle jawaab ka text",
+  "All the answers at once":
+    "Ek saath saare jawaab",
+  "The cost of the call":
+    "Call ka kharcha",
+  "A cell shows a red box: name 'client' is not defined. What should you try first?":
+    "Ek cell laal box dikhata hai: name 'client' is not defined. Aap pehle kya karenge?",
+  "The name was used before a line gave it a value.":
+    "Naam ko value milne se pehle hi use kar liya gaya.",
+  "Reinstall Python":
+    "Python dobara install kijiye",
+  "Delete the cell":
+    "Cell mita dijiye",
+  "Add spaces at the start of the line":
+    "Line ki shuruaat mein spaces jodiye",
+  "Run the cells above first, or check the spelling":
+    "Upar ke cells pehle chalaiye, ya spelling jaanchiye",
+  "Why do the spaces at the start of a line matter in Python?":
+    "Python mein line ki shuruaat ke spaces kyun maayne rakhte hain?",
+  "Lines pushed in under a for or an if belong to it, like a list under its heading.":
+    "for ya if ke neeche andar dhakeli gayi lines usi ki hoti hain, jaise heading ke neeche list.",
+  "They tell Python which lines belong to a for, an if or a def":
+    "Yeh Python ko batate hain ki kaunsi lines for, if ya def ki hain",
+  "They make the code run faster":
+    "Inse code tez chalta hai",
+  "They are only there to look neat":
+    "Yeh sirf saaf dikhne ke liye hain",
+  "They turn a line into a comment":
+    "Yeh line ko comment bana dete hain",
+  "An AI system is ordinary software with one part that guesses. What follows from that?":
+    "AI system ek saadharan software hai jiska ek hissa andaaza lagata hai. Isse kya nikalta hai?",
+  "The network, the code and the data around the model fail in all the usual ways.":
+    "Model ke aas-paas ka network, code aur data sab saadharan tareekon se fail hote hain.",
+  "Ordinary bugs no longer matter":
+    "Saadharan bugs ab maayne nahi rakhte",
+  "Only the model can fail":
+    "Sirf model fail ho sakta hai",
+  "Every ordinary software failure can still happen, plus the failures of the guessing part":
+    "Saadharan software ki har galti ab bhi ho sakti hai, aur andaaza lagane wale hisse ki galtiyan bhi",
+  "Tests are of no use for AI":
+    "AI ke liye tests kisi kaam ke nahi",
+  "Your call to the model returns 401. What is it, and will a retry help?":
+    "Model ko aapki call 401 lautati hai. Yeh kya hai, aur kya retry madad karega?",
+  "401 means you are not allowed in. The same request will fail the same way.":
+    "401 ka matlab hai aapko andar aane ki anumati nahi. Wahi request usi tarah fail hogi.",
+  "The key or sign-in is wrong. Fix it; trying again will not help.":
+    "Key ya sign-in galat hai. Use theek kijiye; dobara koshish se madad nahi milegi.",
+  "The server is busy. Retry at once.":
+    "Server vyast hai. Turant retry kijiye.",
+  "The page was not found. Retry later.":
+    "Page nahi mila. Baad mein retry kijiye.",
+  "A timeout. Retry three times.":
+    "Timeout hai. Teen baar retry kijiye.",
+  "Which status usually means “wait a little, then try again”?":
+    "Kaunsa status aam taur par “thoda rukiye, phir koshish kijiye” batata hai?",
+  "A 429 says you are going too fast. Wait, then retry, with a longer wait each time.":
+    "429 batata hai ki aap bahut tez ja rahe hain. Rukiye, phir retry kijiye, har baar thoda zyada rukte hue.",
+  "401: not signed in":
+    "401: sign in nahi",
+  "404: not found":
+    "404: nahi mila",
+  "400: a bad request":
+    "400: galat request",
+  "429: too many requests":
+    "429: bahut zyada requests",
+  "Where should an API key live in your project?":
+    "Aapke project mein API key kahan rehni chahiye?",
+  "Keep secrets outside the source code, and print only a masked prefix.":
+    "Secrets ko source code ke bahar rakhiye, aur sirf ek chhupa hua shuruaati hissa print kijiye.",
+  "In the first line of the script":
+    "Script ki pehli line mein",
+  "In an environment variable or a secret file listed in .gitignore, never in the code":
+    "Environment variable mein ya .gitignore mein listed secret file mein, code mein kabhi nahi",
+  "In README.md":
+    "README.md mein",
+  "In a comment, so teammates can find it":
+    "Ek comment mein, taaki saathi dhoondh sakein",
+  "What makes an experiment something another person can run again?":
+    "Kya cheez ek experiment ko kisi aur ke liye dobara chalane laayak banati hai?",
+  "If someone must ask you what you did by hand, it is not yet evidence.":
+    "Agar kisi ko aapse poochhna pade ki aapne haath se kya kiya, to woh abhi saboot nahi hai.",
+  "A screenshot of the result":
+    "Result ka screenshot",
+  "A repository with a README, a requirements file and one command that runs it the same way":
+    "README, requirements file aur use har baar ek hi tarah chalane wali ek command ke saath ek repository",
+  "A long message explaining what you did":
+    "Aapne kya kiya, uska lamba message",
+  "Keeping it on your own laptop":
+    "Ise apne laptop par hi rakhna",
+  "A small test suite for a model call should cover which three cases?":
+    "Model call ke ek chhote test suite mein kaunse teen cases hone chahiye?",
+  "You judge a system by what happens when things go wrong, not only when all goes well.":
+    "System ko is baat se aankiye ki cheezein bigadne par kya hota hai, sirf sab theek hone par nahi.",
+  "Only the expected answer":
+    "Sirf apekshit jawaab",
+  "Speed, colour and font":
+    "Speed, rang aur font",
+  "Three different models":
+    "Teen alag models",
+  "An expected answer, missing input, and a malformed response":
+    "Ek apekshit jawaab, gayab input, aur bigde roop wala response",
+  "Which details should every experiment record carry?":
+    "Har experiment record mein kaunsi details honi chahiye?",
+  "With these four, you can follow any failure back to the request that caused it.":
+    "In chaar ke saath aap kisi bhi galti ko us request tak wapas le ja sakte hain jisne use paida kiya.",
+  "A request ID, a timestamp, the model and the status":
+    "Request ID, timestamp, model aur status",
+  "Only the answer text":
+    "Sirf jawaab ka text",
+  "The user’s password":
+    "User ka password",
+  "Nothing: the screen output is enough":
+    "Kuch nahi: screen ka output kaafi hai",
+  "What is the experiment harness for?":
+    "Experiment harness kis liye hai?",
+  "The harness is the bridge between “I tried it” and “I measured it”.":
+    "Harness “maine try kiya” aur “maine naapa” ke beech ka pul hai.",
+  "To make the model answer faster":
+    "Model ko tez jawaab dilwane ke liye",
+  "To replace evaluation":
+    "Evaluation ki jagah lene ke liye",
+  "To record inputs, outputs, settings, latency and errors the same way on every run":
+    "Har run par inputs, outputs, settings, latency aur errors ek hi tarah record karne ke liye",
+  "To hide errors from users":
+    "Users se errors chhupane ke liye",
+  "Already know this? Check yourself":
+    "Pehle se aata hai? Khud jaanchiye",
+  "questions":
+    "sawaal",
+  "Pass mark 80%. If you pass, you can mark this chapter as known and move on. If not, the check names the parts to read.":
+    "Pass mark 80%. Pass hone par aap is chapter ko “aata hai” mark karke aage badh sakte hain. Nahi to jaanch batati hai ki kaunse hisse padhne hain.",
+  "Check my answers":
+    "Mere jawaab jaanchiye",
+  "Answer every question first.":
+    "Pehle har sawaal ka jawaab dijiye.",
+  "Your score":
+    "Aapka score",
+  "You passed. This chapter can count as done.":
+    "Aap pass ho gaye. Yeh chapter poora gina ja sakta hai.",
+  "Mark this chapter as known":
+    "Is chapter ko “aata hai” mark kijiye",
+  "Known: you passed the check":
+    "Aata hai: aapne jaanch pass ki",
+  "Unmark":
+    "Mark hataiye",
+  "Not yet. Read these parts, then try again:":
+    "Abhi nahi. Yeh hisse padhiye, phir dobara koshish kijiye:",
+  "The opening of the chapter":
+    "Chapter ki shuruaat",
+  "Unit":
+    "Unit",
+  "Try again":
+    "Dobara koshish kijiye",
+  "Why":
+    "Kyun",
 });
 
 /* Hinglish for Your learning system: role, evidence and a capstone problem (chapter:a1), in simple words.
@@ -47399,6 +47807,7 @@ const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{
      actually done the work on this lesson", set by the learner, not derived
      from quiz answers. */
   mastery:{},
+  known:{},    // chapters passed by their Check yourself quiz: id -> {at, score}
   smap:{},     // Appendix A study map: block index -> 1
   exit:{},     // final exit test: capability index -> 1
   railmore:false,   // the rest of the instruments, out of the way until wanted
@@ -47615,7 +48024,7 @@ function blocks(list){
     /* A section heading inside the story. Chapters were one unbroken stream of
        paragraphs; a reader who stops halfway finds their place by scanning
        headings, which is how every technical book is laid out. */
-    else if(k==='h')f.appendChild(h('h3',{class:'sh',html:T(r[0])}));
+    else if(k==='h')f.appendChild(h('h3',{class:'sh','data-sec':String(r[0]).replace(/<[^>]+>/g,''),html:T(r[0])}));
     else if(k==='key')f.appendChild(h('div',{class:'keyline',html:T(r[0])}));
     else if(k==='c')f.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:T(r[0])}),h('p',{html:T(r[1])})]));
     else if(k==='l')f.appendChild(h('ul',{class:'bul'},Tl(r[0]).map(i=>h('li',{html:i}))));
@@ -47691,7 +48100,7 @@ function blocks(list){
       const u=r[2]||{};
       const row=(lbl,val,cls)=>val?h('div',{class:'urow'+(cls?' '+cls:'')},[
         h('span',{class:'ulbl',text:T(lbl)}),h('div',{class:'uval',html:T(val)})]):null;
-      const sec=h('section',{class:'unit'},[
+      const sec=h('section',{class:'unit','data-sec':r[0]},[
         h('div',{class:'uhead'},[
           h('span',{class:'unum',text:r[0]}),
           h('h4',{html:T(r[1])})])]);
@@ -48100,6 +48509,80 @@ function chapterTrail(c){
     prev?h('a',{class:'tnav',href:'#/ch/'+prev.id,title:prev.num+'. '+T(prev.title),text:'\u2190 '+T('Previous')}):null,
     next?h('a',{class:'tnav',href:'#/ch/'+next.id,title:next.num+'. '+T(next.title),text:T('Next')+' \u2192'}):null]);
 }
+/* Check yourself (audit plan, Phase 3a). A learner who already knows a basics
+   chapter answers a short quiz instead of reading it. At the pass mark the
+   chapter can be marked known, which also marks it done, so every progress
+   count and the route treat it the same as a chapter read. Below the pass
+   mark, the quiz names the parts of the chapter behind each miss, and each
+   name scrolls to that part. Answers are kept, so the result survives a
+   reload; nothing here is scored into the question bank. */
+function selfCheck(c){
+  const sc=c.selfcheck, items=sc.items||[], key='self:'+c.id;
+  S.known=S.known||{};
+  const box=h('details',{class:'selfcheck'});
+  box.appendChild(h('summary',{},[h('span',{text:T('Already know this? Check yourself')}),
+    h('span',{class:'pill',style:'margin-left:auto',text:items.length+' '+T('questions')})]));
+  const body=h('div',{class:'scbody'});
+  box.appendChild(body);
+  const goSec=see=>{
+    const el=see?[...document.querySelectorAll('[data-sec]')].find(x=>x.getAttribute('data-sec')===see):document.querySelector('.chead');
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+  const seeName=see=>!see?T('The opening of the chapter'):/^\d+(\.\d+)*$/.test(see)?T('Unit')+' '+see:T(see);
+  function draw(){
+    body.innerHTML='';
+    const rec=S.cp[key];
+    if(S.known[c.id]){
+      body.appendChild(h('div',{class:'scres ok'},[
+        h('span',{class:'pill ok',text:T('Known: you passed the check')+' · '+S.known[c.id].score+'/'+items.length}),
+        h('button',{class:'sm',onclick:()=>{delete S.known[c.id];S.done[c.id]=false;save();updateProgress();draw();}},T('Unmark'))]));
+      return;
+    }
+    body.appendChild(h('p',{class:'dim',text:T('Pass mark 80%. If you pass, you can mark this chapter as known and move on. If not, the check names the parts to read.')}));
+    const picks=rec&&rec.ans?rec.ans.slice():items.map(()=>-1);
+    items.forEach((it,i)=>{
+      const q=h('fieldset',{class:'scq'},[h('legend',{html:(i+1)+'. '+T(it.q)})]);
+      it.opts.forEach((o,j)=>{
+        const id='sc-'+c.id+'-'+i+'-'+j;
+        const inp=h('input',{type:'radio',name:'sc-'+c.id+'-'+i,id,value:String(j)});
+        if(picks[i]===j) inp.checked=true;
+        if(rec&&rec.ans) inp.disabled=true;
+        inp.addEventListener('change',()=>{picks[i]=j;});
+        const lab=h('label',{for:id,class:'scopt'+(rec&&rec.ans?(j===it.a?' right':picks[i]===j?' wrong':''):'')},[inp,h('span',{html:' '+T(o)})]);
+        q.appendChild(lab);
+      });
+      if(rec&&rec.ans&&picks[i]!==it.a) q.appendChild(h('p',{class:'scwhy'},[h('b',{text:T('Why')+': '}),h('span',{html:T(it.why)})]));
+      body.appendChild(q);
+    });
+    if(!rec||!rec.ans){
+      const msg=h('p',{class:'dim scmsg'});
+      body.appendChild(h('div',{class:'scact'},[h('button',{class:'sm on sccheck',onclick:()=>{
+        if(picks.some(x=>x<0)){msg.textContent=T('Answer every question first.');return;}
+        const score=items.filter((it,i)=>picks[i]===it.a).length;
+        S.cp[key]={ans:picks.slice(),score,at:Date.now()};save();draw();}},T('Check my answers')),msg]));
+      return;
+    }
+    const pass=rec.score>=Math.ceil((sc.pass||0.8)*items.length-1e-9);
+    const res=h('div',{class:'scres '+(pass?'ok':'red')},[
+      h('p',{},[h('b',{text:T('Your score')+': '+rec.score+' / '+items.length})])]);
+    if(pass){
+      res.appendChild(h('p',{text:T('You passed. This chapter can count as done.')}));
+      res.appendChild(h('button',{class:'sm on scknown',onclick:()=>{
+        S.known[c.id]={at:Date.now(),score:rec.score};
+        if(!S.done[c.id]){S.done[c.id]=true;S.sittings.push({ch:c.id,at:Date.now()});}
+        save();updateProgress();draw();}},T('Mark this chapter as known')));
+    } else {
+      const seen=[...new Set(items.filter((it,i)=>rec.ans[i]!==it.a).map(it=>it.see||''))];
+      res.appendChild(h('p',{text:T('Not yet. Read these parts, then try again:')}));
+      res.appendChild(h('ul',{class:'scsee'},seen.map(see=>h('li',{},h('button',{type:'button',class:'linkish',onclick:()=>goSec(see),text:seeName(see)})))));
+    }
+    res.appendChild(h('button',{class:'sm scagain',onclick:()=>{delete S.cp[key];save();draw();}},T('Try again')));
+    body.appendChild(res);
+  }
+  draw();
+  return box;
+}
+
 function renderChapter(c){
   const w=h('div',{class:'wrap'});
   CTX={ch:c.id,i:0,bar:false,files:true,noModel:!!c.noModel};
@@ -48146,6 +48629,8 @@ function renderChapter(c){
     h('span',{class:'lbl',text:T('Your project')}),
     h('span',{class:'pt',text:T('Bharat Privacy Guard')+' · '+T('Stage')+' '+ps.n+'/'+ps.total+' — '+T(ps.title)}),
     h('span',{class:'go',text:T('See the whole project')+' →'})]));
+
+  if(c.selfcheck) w.appendChild(selfCheck(c));
 
   /* "Before this / You are here / Next": the v4.3 chapter graph, kept
      separate from the richer prose "Prerequisites" section below — this is
