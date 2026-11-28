@@ -1507,3 +1507,11 @@ p.identity{margin:.4rem 0 1rem;font-size:.95rem;color:var(--muted)}
 .selfcheck .scsum h4{margin:.2rem 0 .4rem;font-size:.95rem}
 .selfcheck .scsum ul{margin:0 0 .8rem;padding-left:1.2rem;line-height:1.55}
 .selfcheck .scsum .scai li::marker{color:var(--verified)}
+
+/* Which route fits you (Phase 3c) */
+.routepick{margin:1.6rem 0}
+.routepick .rpopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.7rem;margin:.6rem 0}
+.routepick .rpopt{padding:.7rem .9rem;border:1px solid var(--rule);border-radius:var(--r);background:var(--raised);display:flex;flex-direction:column;align-items:flex-start;gap:.5rem}
+.routepick .rpopt.on{border-color:var(--verified)}
+.routepick .rpline{margin:0;line-height:1.5}
+.routepick .stsuggest{font-weight:600}

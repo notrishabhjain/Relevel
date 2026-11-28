@@ -21,11 +21,14 @@ import p from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { loadBook } from '../book/build.mjs';
-import { WEEKS, STEPS, START } from '../src/data/route.mjs';
+import { WEEKS, STEPS, START, COUNTS, EXP_WEEKS } from '../src/data/route.mjs';
 import { TOPICS, TRY_TOPIC, BEFORE, UI } from './data.mjs';
 import { CSS as PLAN_CSS } from '../plan/build.mjs';
 
 const HERE = p.dirname(fileURLToPath(import.meta.url));
+/* Hours a week on each route (audit plan, 3.4), from the route's own minutes. */
+const hoursLine = L => L.hours.replace('{weeks}', WEEKS.length).replace('{avg}', COUNTS.routes.full.hours.avg)
+  .replace('{max}', COUNTS.routes.full.hours.max).replace('{xweeks}', EXP_WEEKS.length).replace('{xavg}', COUNTS.routes.experienced.hours.avg);
 const READING = (() => {
   const ctx = { window: {} }; vm.createContext(ctx);
   vm.runInContext(fs.readFileSync(p.join(HERE, '../src/data/reading.js'), 'utf8'), ctx);
@@ -281,6 +284,7 @@ function render(M, lang) {
 <main>
 <h1>${esc(L.title)}</h1>
 <p class="lead">${esc(L.lead)}</p>
+<p class="lead hours">${esc(hoursLine(L))}</p>
 <section id="overview" class="panel" aria-live="polite">
   <div id="ov-next" class="nextcard">${esc(L.loading)}</div>
   <div class="ov"><span class="pbar big"><i></i></span><span id="ov-steps"></span><span id="ov-can"></span></div>

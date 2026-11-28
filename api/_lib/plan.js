@@ -13,7 +13,7 @@
    it. Two devices that both edited different weeks keep both edits; for the same
    entry the later `u` wins. Nothing is ever refused for being out of date. */
 
-import { WEEKS as ROUTE_WEEKS, START as ROUTE_START, stepDone, nextStep, startOf } from '../../src/data/route.mjs';
+import { WEEKS as ROUTE_WEEKS, START as ROUTE_START, stepDone, nextStep, startOf, routeOf } from '../../src/data/route.mjs';
 
 export const START = Date.parse(ROUTE_START + 'T00:00:00Z');  // week 1 starts Mon 19 Oct 2026
 export const DAY = 86400000;
@@ -70,11 +70,11 @@ export function merge(a, b) {
 
 /* Week number for a moment: 0 before the plan starts, 1-28 during it, 29 after.
    Days are counted in India time, because that is when the person is awake. */
-export function weekAt(now, start = START) {
+export function weekAt(now, start = START, n = WEEKS) {
   const ist = new Date(now + 5.5 * 3600000);
   const today = Date.UTC(ist.getUTCFullYear(), ist.getUTCMonth(), ist.getUTCDate());
   const idx = Math.round((today - start) / DAY);
-  return { today, cur: idx < 0 ? 0 : Math.min(WEEKS + 1, Math.floor(idx / 7) + 1) };
+  return { today, cur: idx < 0 ? 0 : Math.min(n + 1, Math.floor(idx / 7) + 1) };
 }
 
 /* What a check-in needs to know, and nothing private: no links, no notes, no
@@ -83,20 +83,22 @@ export function weekAt(now, start = START) {
 export function status(data, progress, now = Date.now()) {
   const d = clean(data), P = progress && typeof progress === 'object' ? progress : {};
   /* the person may have restarted the calendar from a day of their own */
-  const { today, cur } = weekAt(now, Date.parse(startOf(P) + 'T00:00:00Z'));
+  /* the route the person is on: full, or Experienced (Phase 3c) */
+  const RW = routeOf(P).WEEKS, NW = RW.length;
+  const { today, cur } = weekAt(now, Date.parse(startOf(P) + 'T00:00:00Z'), NW);
   let complete = 0, stepsDone = 0, steps = 0, updated = 0;
   const completeWeeks = [], behindWeeks = [];
-  for (const w of ROUTE_WEEKS) {
+  for (const w of RW) {
     const done = w.steps.filter(x => stepDone(x, P)).length;
     steps += w.steps.length; stepsDone += done;
     if (done === w.steps.length) { complete++; completeWeeks.push(w.n); }
     else if (w.n < cur) behindWeeks.push(w.n);
     updated = Math.max(updated, (d.weeks[w.n] || {}).u || 0);
   }
-  const nx = nextStep(P), at = nx ? nx.week : WEEKS + 1;
-  const behind = cur >= 1 && cur <= WEEKS ? Math.max(0, cur - at) : 0;
-  const cw = ROUTE_WEEKS[Math.min(Math.max(at, 1), WEEKS) - 1];
-  return { today: new Date(today).toISOString().slice(0, 10), week: cur, of: WEEKS, onWeek: at > WEEKS ? null : at,
+  const nx = nextStep(P), at = nx ? nx.week : NW + 1;
+  const behind = cur >= 1 && cur <= NW ? Math.max(0, cur - at) : 0;
+  const cw = RW[Math.min(Math.max(at, 1), NW) - 1];
+  return { today: new Date(today).toISOString().slice(0, 10), week: cur, of: NW, onWeek: at > NW ? null : at,
     stepsDone, steps, complete, behind, level: Math.min(3, behind), completeWeeks, behindWeeks,
     thisWeek: { done: cw.steps.filter(x => stepDone(x, P)).length, of: cw.steps.length },
     next: nx ? { kind: nx.kind, title: nx.title, week: nx.week } : null,

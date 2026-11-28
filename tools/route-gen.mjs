@@ -73,6 +73,8 @@ const WHAT = {
   read: 'Read the chapter. The page ticks itself when you reach the end.',
   readPart1: n => 'Read sections ' + SPLIT[n][1] + ', then stop, even if you want to keep going.',
   readPart2: n => 'Read from section ' + SPLIT[n][2].split(' ')[0] + ' to the end of the chapter.',
+  refresher: 'Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again.',
+  check: 'Take the Check yourself quiz at the top of the chapter. If you pass, mark it known. If not, read the parts it names, then try again.',
   chapter: 'Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”.',
   firstPass: 'First pass: read the chapter and answer the boxes. Then press “Mark chapter complete”. The long “Build it” part is optional. Keep it for later.',
   review: 'Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log.',
@@ -268,14 +270,139 @@ const MONTHS = [
   return { ...m, dates: fmt(a) + (ya !== yb ? ' ' + ya : '') + ' – ' + fmt(b) + ' ' + yb };
 });
 
+/* The Experienced route (audit plan, Phase 3c): 16 weeks for someone who has
+   done product work before. Tracks A and B are taken as refreshers: a short quiz
+   at the top of each chapter, with the chapter on one page once it is passed.
+   The basics chapters are taken as Check yourself quizzes. Every core chapter
+   is kept whole, because that is the AI half nobody has done before. The book
+   stays open but is not on this route. Track C (Phase 4) is woven into these
+   same 16 weeks when it is built, so the route stays 16 weeks with it.
+   Items: 'rf:<id>' a refresher (or check) step, 'ch:<id>' a whole chapter,
+   'try:<id>' a task from TRY, 'review' the weekly look back.
+   [week title, ship line, items, why, job] */
+const XW = [
+  ['Start, and the product side in brief', 'The first two product chapters passed or read, and your problem picked.',
+    ['ch:ch0', 'rf:a1', 'rf:a1g', 'rf:a2', 'rf:a3', 'review'],
+    'You have done product work before, so this route starts with short quizzes, not long reading. Pass a quiz and you get the chapter on one page. Miss it and it shows you what to read.',
+    'Interviewers still ask which problem you chose, and why. You pick it in week 1, with the habits you already have.'],
+  ['The rest of the product side', 'Market, strategy, roadmap and spec refreshers passed, or read where you missed.',
+    ['rf:a4s', 'rf:a4', 'rf:a5', 'rf:a6', 'rf:a7', 'review'],
+    'Each quiz asks what changes when AI is involved. Those questions are the point: the old habits still work, but each one has a new catch.',
+    'A hiring manager expects your product habits to cover AI already. These quizzes show you where they do not yet.'],
+  ['Meet the machine', 'A model connected, and your first call with its cost written down.',
+    ['rf:a8', 'ch:ch05', 'try:setup', 'rf:chpy', 'ch:ch1', 'review'],
+    'Now the new half begins. You see tokens and cost on your own text, connect a model, and make your first call.',
+    'Technical rounds start with tokens and cost. You have both from your own run.'],
+  ['Instructions, and checking them', 'A system prompt, and your first answer key.',
+    ['ch:ch15b', 'ch:ch2', 'ch:ch21', 'ch:ch22', 'ch:ch23', 'review'],
+    'The model starts from zero each time. You learn to give it standing instructions, and to check whether they worked.',
+    'Owning the evaluation is the strongest sign in a product interview. You start your answer key this week.'],
+  ['Sorting, summaries, and finding by words', 'A sorter with a score, a summary test, and pattern rules scored by hand.',
+    ['ch:ch24', 'ch:ch25', 'ch:ch3', 'ch:ch4', 'try:post-key', 'review'],
+    'The answer key now scores the jobs a model does most. Then long documents are cut into pieces and found by their words.',
+    'Many roles ask when not to use a model. A pattern rule that beats one is your example.'],
+  ['Meaning, measuring, and your first system', 'A scoreboard of words against meaning, and a first system that answers from your documents.',
+    ['ch:ch5', 'ch:ch6', 'ch:ch7', 'ch:ch75', 'review'],
+    'Search by meaning finds what word search missed. You measure both, then join everything into one system.',
+    'Hiring managers ask how you decided to ship. Your scoreboard puts that decision on paper.'],
+  ['Dependable answers, and letting it act', 'An extractor that says “not sure”, and a model that calls one tool.',
+    ['ch:ch8', 'ch:ch85', 'ch:ch9', 'ch:ch10', 'review'],
+    'Answers in fixed boxes make two things possible: a model can trigger an action, and you can choose what it sees.',
+    'Agents and tool use are on most postings. This is the smallest honest case.'],
+  ['Thinking, the wait, better search, and attacks', 'A budget for thinking, a design for the wait, better search, and an attack on your own tool.',
+    ['ch:ch11', 'ch:ch115', 'ch:ch12', 'ch:ch13', 'try:post-attack', 'review'],
+    'You decide when thinking is worth paying for, design the wait, improve search one change at a time, and attack your own tool.',
+    'Interviewers ask about latency, cost per task and how you would attack your product. You have numbers for each.'],
+  ['Grading at scale, cost, documents and data', 'A checked judge, a cost model, a reader for scanned pages, and the rule for what you may send.',
+    ['ch:ch14', 'ch:ch145', 'ch:ch15', 'ch:ch16', 'ch:ch165', 'review'],
+    'You grade a thousand answers the way you graded ten, put a price on quality, handle paper, and decide what may leave your hands.',
+    'Consulting and public bodies ask for cost estimates and data rules. You make both.'],
+  ['The rules, the spec, and the hard calls', 'A system card, an AI spec, a build-or-buy call and a pilot design.',
+    ['ch:ch17', 'ch:ch18', 'ch:ch185', 'ch:ch19', 'ch:ch20', 'ch:ch205', 'review'],
+    'With quality, cost and data in hand, you write what the system must do, who answers when it is wrong, and how you will prove it helps.',
+    'Governance and build-or-buy are the first questions a ministry or a client asks.'],
+  ['Production depth: plumbing, model choice, context and retrieval', 'A test harness, your model choice with a back-up, and retrieval that holds up in a review.',
+    ['rf:ch8f', 'ch:ch9m', 'ch:ch10c', 'ch:ch11r', 'review'],
+    'Part V goes over the same ideas at the depth a real launch needs. If you already write software, the plumbing chapter is a quick check.',
+    'AI-native companies ask which model you chose and why, and what the model sees. You answer from your own cases.'],
+  ['Workflows, agents, the standard plug, pictures and voice', 'A workflow, a bounded agent, a tool access policy, and the numbers you posted.',
+    ['ch:ch12t', 'ch:ch13a', 'ch:ch14p', 'ch:ch15mm', 'try:post-agent', 'review'],
+    'You chain tools into workflows and agents with limits, connect them the standard way, and add more kinds of input.',
+    'Built agents are the proof the hardest door asks for. You publish the numbers.'],
+  ['Gates, traces, security and the spec', 'A release gate, a watch plan, a risk register, the full spec and a decision pack.',
+    ['ch:ch16e', 'ch:ch17o', 'ch:ch18s', 'ch:ch19pm', 'ch:ch20d', 'review'],
+    'You turn answer keys into a release gate, decide what to watch, assume the worst about the model, and write the spec the capstone is judged against.',
+    'Release gates and a risk register show you can run AI, not only specify it.'],
+  ['Capstone, part 1: build it and break it', 'The capstone plan, and a first version you have tried to break.',
+    ['try:capstone-plan', 'try:capstone-build', 'review'],
+    'Every chapter built one piece of Bharat Privacy Guard. This week you put the pieces together and try to break them.',
+    'A shipped product sets you apart from someone who has only read about AI.'],
+  ['Capstone, part 2, and the business side in brief', 'Bharat Privacy Guard shipped and defended, and the business refreshers passed.',
+    ['ch:ch21cap', 'rf:b1', 'rf:b2', 'rf:b3', 'rf:b4', 'rf:b5', 'rf:b6', 'review'],
+    'You measure, ship and defend the capstone. The business chapters come as refreshers, each with what changes when AI is involved.',
+    'Clients ask who pays and how you would measure success. You can answer both for your own project.'],
+  ['The job', 'A role matrix, a case study with real numbers, practice interviews, and a look back.',
+    ['rf:b7', 'try:role-matrix', 'try:case-study', 'try:interviews', 'try:retro', 'review'],
+    'The last week turns the project into proof for the job, and practises saying it aloud against a clock.',
+    'A recruiter reads one page. The matrix shows you know the role; the case study shows a number you moved.'],
+];
+const RF_MINS = 15;
+const xweeks = XW.map(([title, ship, items, why, job], i) => {
+  const a = START + i * 7 * 864e5, b = a + 6 * 864e5;
+  const dates = fmt(a) + ' – ' + fmt(b, new Date(a).getUTCFullYear() !== new Date(b).getUTCFullYear());
+  const steps = items.map(it => {
+    const [k, ref] = it.split(':');
+    if (k === 'rf') {
+      const c = ch(ref);
+      if (!c.selfcheck) throw new Error('experienced route: ' + ref + ' has no quiz');
+      return { id: 'c:' + ref, kind: 'chapter', ch: ref, num: String(c.num), title: c.title, mins: RF_MINS, refresher: true,
+        what: c.selfcheck.kind === 'refresher' ? WHAT.refresher : WHAT.check };
+    }
+    if (k === 'ch') {
+      const c = ch(ref);
+      return { id: 'c:' + ref, kind: 'chapter', ch: ref, num: String(c.num), title: c.title,
+        mins: ref === 'ch21cap' ? 240 : c.minutes + (c.capstone ? TASK : 0),
+        what: ref === 'ch21cap' ? weeks.flatMap(w => w.steps).find(s => s.ch === 'ch21cap').what : WHAT.chapter };
+    }
+    if (k === 'try') return { id: 't:' + ref, kind: 'try', ...TRY[ref], ...(TRY[ref].app ? { app: TRY[ref].app } : {}) };
+    if (it === 'review') return { id: 't:xreview-' + (i + 1), kind: 'look', title: 'Look back', mins: 5, what: WHAT.review };
+    throw new Error('bad item ' + it);
+  });
+  return { n: i + 1, start: new Date(a).toISOString().slice(0, 10), dates, title, ship, how: [], light: false, why, job,
+    mins: steps.reduce((s, x) => s + x.mins, 0), steps };
+});
+{
+  const xchs = xweeks.flatMap(w => w.steps.filter(s => s.kind === 'chapter').map(s => s.ch));
+  const xmiss = C.chapters.map(c => c.id).filter(id => !xchs.includes(id));
+  const xdup = xchs.filter((x, i) => xchs.indexOf(x) !== i);
+  if (xmiss.length || xdup.length) throw new Error('experienced coverage: missing ' + xmiss + ' dup ' + xdup);
+  if (xweeks.length !== 16) throw new Error('the experienced route must be 16 weeks, not ' + xweeks.length);
+}
+const XMONTHS = [
+  { n: 1, name: 'Block 1: The product side in brief, and meeting the machine', from: 1, to: 4 },
+  { n: 2, name: 'Block 2: Finding, measuring and acting', from: 5, to: 8 },
+  { n: 3, name: 'Block 3: Real systems, at production depth', from: 9, to: 12 },
+  { n: 4, name: 'Block 4: Ship it, and get the job', from: 13, to: 16 },
+].map(m => {
+  const a = Date.parse(xweeks[m.from - 1].start), b = Date.parse(xweeks[m.to - 1].start) + 6 * 864e5;
+  const ya = new Date(a).getUTCFullYear(), yb = new Date(b).getUTCFullYear();
+  return { ...m, goal: '', dates: fmt(a) + (ya !== yb ? ' ' + ya : '') + ' – ' + fmt(b) + ' ' + yb };
+});
+/* Hours a week, from the route's own minutes (Phase 3.4): the average, and the
+   busiest week, rounded to the half hour. */
+const hoursOf = ws => {
+  const h = x => Math.round(x / 30) / 2;
+  return { avg: h(ws.reduce((a, w) => a + w.mins, 0) / ws.length), max: h(Math.max(...ws.map(w => w.mins))) };
+};
+
 const COUNTS = {
   weeks: weeks.length,
   steps: weeks.reduce((a, w) => a + w.steps.length, 0),
   appChapters: C.chapters.length,
   bookChapters: B.chapters.length,
   routes: {
-    full: { coreWeeks: weeks.length, withTrackCWeeks: null },
-    experienced: { weeks: null, includesTrackC: true }
+    full: { coreWeeks: weeks.length, withTrackCWeeks: null, hours: hoursOf(weeks) },
+    experienced: { weeks: xweeks.length, includesTrackC: true, hours: hoursOf(xweeks) }
   }
 };
 const src = `/* The route: one ordered list of steps that the playbook, the book, the plan
@@ -299,6 +426,11 @@ export const START = '2026-10-19';
 export const COUNTS = ${JSON.stringify(COUNTS, null, 1)};
 export const WEEKS = ${JSON.stringify(weeks, null, 1)};
 export const MONTHS = ${JSON.stringify(MONTHS, null, 1)};
+/* The Experienced route (16 weeks): the same steps where they are the same
+   thing, so a chapter, a task or a book page ticked on one route is ticked on
+   the other. A learner picks a route on the home page (S.route). */
+export const EXP_WEEKS = ${JSON.stringify(xweeks, null, 1)};
+export const EXP_MONTHS = ${JSON.stringify(XMONTHS, null, 1)};
 
 /* Has this step been done, given a progress record (the playbook's saved state)? */
 export function stepDone(step, S) {
@@ -308,8 +440,17 @@ export function stepDone(step, S) {
   return !!(S.steps && S.steps[step.id]);
 }
 export const STEPS = WEEKS.flatMap(w => w.steps.map(s => Object.assign({ week: w.n }, s)));
+export const EXP_STEPS = EXP_WEEKS.flatMap(w => w.steps.map(s => Object.assign({ week: w.n }, s)));
+/* The route a progress record is on: the full route unless the learner chose
+   the Experienced one. Switching changes only which list is shown; every tick
+   stays where it is. */
+export function routeOf(S) {
+  return S && S.route === 'experienced'
+    ? { name: 'experienced', WEEKS: EXP_WEEKS, STEPS: EXP_STEPS, MONTHS: EXP_MONTHS }
+    : { name: 'full', WEEKS, STEPS, MONTHS };
+}
 /* The first step not yet done, in route order, or null when all are done. */
-export function nextStep(S) { return STEPS.find(s => !stepDone(s, S)) || null; }
+export function nextStep(S) { return routeOf(S).STEPS.find(s => !stepDone(s, S)) || null; }
 /* Where a step opens. Book pages are absolute so they work from any page. */
 export function stepHref(step, hi) {
   if (step.kind === 'chapter') return '/app/#/ch/' + step.ch;
@@ -342,10 +483,11 @@ export function isFresh(S) {
     return true;
   });
 }
-/* Week number (1-N) for an India-time date string, 0 before the start, 29 after. */
-export function weekOf(date, start) {
+/* Week number (1-N) for an India-time date string, 0 before the start, N+1
+   after. n is the route's length (the full route's unless given). */
+export function weekOf(date, start, n) {
   const d = Math.floor((Date.parse(date + 'T00:00:00Z') - Date.parse((start || START) + 'T00:00:00Z')) / 864e5);
-  return d < 0 ? 0 : Math.min(WEEKS.length + 1, Math.floor(d / 7) + 1);
+  return d < 0 ? 0 : Math.min((n || WEEKS.length) + 1, Math.floor(d / 7) + 1);
 }
 /* The dates of weeks a..b counted from a start: "4 Nov – 10 Nov" for one week,
    "4 Nov – 1 Dec 2026" for a month (withYear), the way the route prints them. */
@@ -360,3 +502,5 @@ export function datesOf(a, b, start, withYear) {
 fs.writeFileSync(R + '/src/data/route.mjs', src.replace(/\{weeks\}/g, String(weeks.length)));
 console.log(weeks.map(w => 'W' + w.n + ' ' + w.dates + ' ' + w.mins + 'min ' + w.steps.length + ' steps · ' + w.title).join('\n'));
 console.log(MONTHS.map(m => m.name + ' | ' + m.dates).join('\n'));
+console.log('Experienced:\n' + xweeks.map(w => 'X' + w.n + ' ' + (w.mins / 60).toFixed(1) + 'h · ' + w.title).join('\n'));
+console.log('hours', JSON.stringify(COUNTS.routes));

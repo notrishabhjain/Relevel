@@ -24,11 +24,19 @@ export const COUNTS = {
  "routes": {
   "full": {
    "coreWeeks": 28,
-   "withTrackCWeeks": null
+   "withTrackCWeeks": null,
+   "hours": {
+    "avg": 3,
+    "max": 5
+   }
   },
   "experienced": {
-   "weeks": null,
-   "includesTrackC": true
+   "weeks": 16,
+   "includesTrackC": true,
+   "hours": {
+    "avg": 4,
+    "max": 6
+   }
   }
  }
 };
@@ -930,7 +938,7 @@ export const WEEKS = [
   "light": false,
   "why": "Some models think on rough paper before they answer. That costs time and money. You decide when it is worth it. Then you make the search from Weeks 9 to 11 better, with your scoreboard as the judge.",
   "job": "AI-native postings name latency and cost per task. This week you set a budget and design for the wait.",
-  "mins": 185,
+  "mins": 187,
   "steps": [
    {
     "id": "b:22-machines-that-think-first.html",
@@ -939,7 +947,7 @@ export const WEEKS = [
     "n": 22,
     "title": "Machines That Think First",
     "titleHi": "Pehle Sochne Wali Machines",
-    "mins": 7,
+    "mins": 9,
     "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
@@ -1001,7 +1009,7 @@ export const WEEKS = [
   "light": false,
   "why": "Your system reads documents, and a document can carry hidden instructions, like a note in the homework that says “ignore your teacher”. You attack your own tool first. Then you grade a thousand answers the same way you graded ten.",
   "job": "Interviewers ask how you would attack your own product. After this week you have done it, and you have a number.",
-  "mins": 236,
+  "mins": 237,
   "steps": [
    {
     "id": "b:24-when-the-page-gives-orders.html",
@@ -1029,7 +1037,7 @@ export const WEEKS = [
     "n": 25,
     "title": "Grading a Thousand Answers",
     "titleHi": "Hazaar Jawaabon Ko Marks Dena",
-    "mins": 8,
+    "mins": 9,
     "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
@@ -1078,7 +1086,7 @@ export const WEEKS = [
   "light": false,
   "why": "You can now measure quality at scale. This week you put a price on it. You handle paper and photos. And you decide which data may leave your hands at all.",
   "job": "A consulting firm or a public body is asked for cost estimates. This week’s cost model is how you would make one.",
-  "mins": 191,
+  "mins": 193,
   "steps": [
    {
     "id": "b:26-what-it-really-costs.html",
@@ -1087,7 +1095,7 @@ export const WEEKS = [
     "n": 26,
     "title": "What It Really Costs",
     "titleHi": "Asal Mein Kitna Kharch Hota Hai",
-    "mins": 9,
+    "mins": 10,
     "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
@@ -1125,7 +1133,7 @@ export const WEEKS = [
     "n": 28,
     "title": "What You May Send",
     "titleHi": "Aap Kya Bhej Sakte Hain",
-    "mins": 9,
+    "mins": 10,
     "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
@@ -1166,7 +1174,7 @@ export const WEEKS = [
   "light": false,
   "why": "You now have quality, cost and data rules in hand. So you can write down what the system must do. You also write who is responsible when it is wrong. The spec in A7 gets its AI version.",
   "job": "Governance is on every consulting posting. The system card is what you would hand a ministry’s review committee.",
-  "mins": 130,
+  "mins": 131,
   "steps": [
    {
     "id": "b:29-rules-risk-and-responsibility.html",
@@ -1175,7 +1183,7 @@ export const WEEKS = [
     "n": 29,
     "title": "Rules, Risk and Responsibility",
     "titleHi": "Rules, Risk Aur Zimmedaari",
-    "mins": 11,
+    "mins": 12,
     "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
@@ -1485,7 +1493,7 @@ export const WEEKS = [
   "light": false,
   "why": "Last week’s agents need a standard way to reach tools. So this week starts with that plug. More kinds of input mean more ways to fail. So you also turn your answer keys into a release gate, and decide what to watch after launch.",
   "job": "Release gates and standard tool connections show you can run AI, not only specify it. Both are in this week.",
-  "mins": 293,
+  "mins": 294,
   "steps": [
    {
     "id": "c:ch14p",
@@ -1522,7 +1530,7 @@ export const WEEKS = [
     "n": 38,
     "title": "Gates, Traces and Rollbacks",
     "titleHi": "Gates, Traces Aur Rollbacks",
-    "mins": 10,
+    "mins": 11,
     "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
@@ -1565,7 +1573,7 @@ export const WEEKS = [
   "light": false,
   "why": "You assume the worst about the model. Then you write the spec, and the decision pack that the capstone will be judged against.",
   "job": "The case or PRD round gives you a prompt and a clock. The risk register, the spec and the decision pack are your practice.",
-  "mins": 296,
+  "mins": 297,
   "steps": [
    {
     "id": "b:39-assuming-the-worst.html",
@@ -1574,7 +1582,7 @@ export const WEEKS = [
     "n": 39,
     "title": "Assuming the Worst",
     "titleHi": "Sabse Bure Ko Maan Kar Chalna",
-    "mins": 10,
+    "mins": 11,
     "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
@@ -2019,6 +2027,1078 @@ export const MONTHS = [
   "dates": "29 Mar – 2 May 2027"
  }
 ];
+/* The Experienced route (16 weeks): the same steps where they are the same
+   thing, so a chapter, a task or a book page ticked on one route is ticked on
+   the other. A learner picks a route on the home page (S.route). */
+export const EXP_WEEKS = [
+ {
+  "n": 1,
+  "start": "2026-10-19",
+  "dates": "19 Oct – 25 Oct",
+  "title": "Start, and the product side in brief",
+  "ship": "The first two product chapters passed or read, and your problem picked.",
+  "how": [],
+  "light": false,
+  "why": "You have done product work before, so this route starts with short quizzes, not long reading. Pass a quiz and you get the chapter on one page. Miss it and it shows you what to read.",
+  "job": "Interviewers still ask which problem you chose, and why. You pick it in week 1, with the habits you already have.",
+  "mins": 75,
+  "steps": [
+   {
+    "id": "c:ch0",
+    "kind": "chapter",
+    "ch": "ch0",
+    "num": "0",
+    "title": "Start here: how this course works",
+    "mins": 10,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:a1",
+    "kind": "chapter",
+    "ch": "a1",
+    "num": "A1",
+    "title": "Your learning system: role, evidence and a capstone problem",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:a1g",
+    "kind": "chapter",
+    "ch": "a1g",
+    "num": "A1.5",
+    "title": "GitHub basics: a home for your work",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the Check yourself quiz at the top of the chapter. If you pass, mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:a2",
+    "kind": "chapter",
+    "ch": "a2",
+    "num": "A2",
+    "title": "Product sense: how products win and lose",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:a3",
+    "kind": "chapter",
+    "ch": "a3",
+    "num": "A3",
+    "title": "User discovery: interviews, jobs and problem statements",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "t:xreview-1",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 2,
+  "start": "2026-10-26",
+  "dates": "26 Oct – 1 Nov",
+  "title": "The rest of the product side",
+  "ship": "Market, strategy, roadmap and spec refreshers passed, or read where you missed.",
+  "how": [],
+  "light": false,
+  "why": "Each quiz asks what changes when AI is involved. Those questions are the point: the old habits still work, but each one has a new catch.",
+  "job": "A hiring manager expects your product habits to cover AI already. These quizzes show you where they do not yet.",
+  "mins": 80,
+  "steps": [
+   {
+    "id": "c:a4s",
+    "kind": "chapter",
+    "ch": "a4s",
+    "num": "A3.5",
+    "title": "Spreadsheet basics: the formulas this course uses",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the Check yourself quiz at the top of the chapter. If you pass, mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:a4",
+    "kind": "chapter",
+    "ch": "a4",
+    "num": "A4",
+    "title": "Market research: sizing, competitors and opportunities",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:a5",
+    "kind": "chapter",
+    "ch": "a5",
+    "num": "A5",
+    "title": "Strategy and prioritisation: choosing what not to do",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:a6",
+    "kind": "chapter",
+    "ch": "a6",
+    "num": "A6",
+    "title": "Roadmaps, OKRs and getting stakeholders on board",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:a7",
+    "kind": "chapter",
+    "ch": "a7",
+    "num": "A7",
+    "title": "Specs, stories and prototypes: from decision to delivery",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "t:xreview-2",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 3,
+  "start": "2026-11-02",
+  "dates": "2 Nov – 8 Nov",
+  "title": "Meet the machine",
+  "ship": "A model connected, and your first call with its cost written down.",
+  "how": [],
+  "light": false,
+  "why": "Now the new half begins. You see tokens and cost on your own text, connect a model, and make your first call.",
+  "job": "Technical rounds start with tokens and cost. You have both from your own run.",
+  "mins": 143,
+  "steps": [
+   {
+    "id": "c:a8",
+    "kind": "chapter",
+    "ch": "a8",
+    "num": "A8",
+    "title": "Generative AI foundations: how the models work",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:ch05",
+    "kind": "chapter",
+    "ch": "ch05",
+    "num": "0.5",
+    "title": "Try it in the browser: tokens, cost and temperature",
+    "mins": 33,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "t:setup",
+    "kind": "try",
+    "title": "Connect a model, once",
+    "mins": 15,
+    "app": "#/setup",
+    "what": "Do the Connect page, one section at a time. Get a free key, paste it in, and run the test call. A key is a secret password for the model. You saw tokens and cost in Chapter 0.5, so you know what the key pays for. If a step fails, the page says why. Copy the exact error into your notes."
+   },
+   {
+    "id": "c:chpy",
+    "kind": "chapter",
+    "ch": "chpy",
+    "num": "0.8",
+    "title": "Reading Python: just enough for this course",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the Check yourself quiz at the top of the chapter. If you pass, mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:ch1",
+    "kind": "chapter",
+    "ch": "ch1",
+    "num": "1",
+    "title": "Your first API call: how a model answers",
+    "mins": 60,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "t:xreview-3",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 4,
+  "start": "2026-11-09",
+  "dates": "9 Nov – 15 Nov",
+  "title": "Instructions, and checking them",
+  "ship": "A system prompt, and your first answer key.",
+  "how": [],
+  "light": false,
+  "why": "The model starts from zero each time. You learn to give it standing instructions, and to check whether they worked.",
+  "job": "Owning the evaluation is the strongest sign in a product interview. You start your answer key this week.",
+  "mins": 215,
+  "steps": [
+   {
+    "id": "c:ch15b",
+    "kind": "chapter",
+    "ch": "ch15b",
+    "num": "1.5",
+    "title": "Context windows and statelessness: why models forget",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch2",
+    "kind": "chapter",
+    "ch": "ch2",
+    "num": "2",
+    "title": "System prompts, temperature and hallucination",
+    "mins": 50,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch21",
+    "kind": "chapter",
+    "ch": "ch21",
+    "num": "2.1",
+    "title": "Writing prompts: four techniques that work",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch22",
+    "kind": "chapter",
+    "ch": "ch22",
+    "num": "2.2",
+    "title": "Testing prompts: build a small test set",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch23",
+    "kind": "chapter",
+    "ch": "ch23",
+    "num": "2.3",
+    "title": "The five task types: classify, extract, summarise, rewrite, generate",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "t:xreview-4",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 5,
+  "start": "2026-11-16",
+  "dates": "16 Nov – 22 Nov",
+  "title": "Sorting, summaries, and finding by words",
+  "ship": "A sorter with a score, a summary test, and pattern rules scored by hand.",
+  "how": [],
+  "light": false,
+  "why": "The answer key now scores the jobs a model does most. Then long documents are cut into pieces and found by their words.",
+  "job": "Many roles ask when not to use a model. A pattern rule that beats one is your example.",
+  "mins": 210,
+  "steps": [
+   {
+    "id": "c:ch24",
+    "kind": "chapter",
+    "ch": "ch24",
+    "num": "2.4",
+    "title": "Classification: sorting inputs into categories",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch25",
+    "kind": "chapter",
+    "ch": "ch25",
+    "num": "2.5",
+    "title": "Summarisation: testing what a summary keeps",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch3",
+    "kind": "chapter",
+    "ch": "ch3",
+    "num": "3",
+    "title": "Chunking: splitting documents into pieces",
+    "mins": 55,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch4",
+    "kind": "chapter",
+    "ch": "ch4",
+    "num": "4",
+    "title": "Keyword search: matching words, and where it fails",
+    "mins": 50,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "t:post-key",
+    "kind": "try",
+    "title": "Your first small public post",
+    "mins": 20,
+    "what": "Follow the small publish recipe on the plan. Write three sentences. First, your sorter’s score as a number. Second, one thing that surprised you. Third, a link. Use made-up data only. If you like, add the Hindi and English token counts from Week 2."
+   },
+   {
+    "id": "t:xreview-5",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 6,
+  "start": "2026-11-23",
+  "dates": "23 Nov – 29 Nov",
+  "title": "Meaning, measuring, and your first system",
+  "ship": "A scoreboard of words against meaning, and a first system that answers from your documents.",
+  "how": [],
+  "light": false,
+  "why": "Search by meaning finds what word search missed. You measure both, then join everything into one system.",
+  "job": "Hiring managers ask how you decided to ship. Your scoreboard puts that decision on paper.",
+  "mins": 180,
+  "steps": [
+   {
+    "id": "c:ch5",
+    "kind": "chapter",
+    "ch": "ch5",
+    "num": "5",
+    "title": "Embeddings: searching by meaning",
+    "mins": 60,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch6",
+    "kind": "chapter",
+    "ch": "ch6",
+    "num": "6",
+    "title": "Evaluation: measuring whether search works",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch7",
+    "kind": "chapter",
+    "ch": "ch7",
+    "num": "7",
+    "title": "Putting it together: retrieval-augmented generation (RAG)",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch75",
+    "kind": "chapter",
+    "ch": "ch75",
+    "num": "7.5",
+    "title": "Review: what your RAG system cannot do yet",
+    "mins": 35,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "t:xreview-6",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 7,
+  "start": "2026-11-30",
+  "dates": "30 Nov – 6 Dec",
+  "title": "Dependable answers, and letting it act",
+  "ship": "An extractor that says “not sure”, and a model that calls one tool.",
+  "how": [],
+  "light": false,
+  "why": "Answers in fixed boxes make two things possible: a model can trigger an action, and you can choose what it sees.",
+  "job": "Agents and tool use are on most postings. This is the smallest honest case.",
+  "mins": 215,
+  "steps": [
+   {
+    "id": "c:ch8",
+    "kind": "chapter",
+    "ch": "ch8",
+    "num": "8",
+    "title": "Structured output: getting JSON you can trust",
+    "mins": 60,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch85",
+    "kind": "chapter",
+    "ch": "ch85",
+    "num": "8.5",
+    "title": "Schema design: fields that do not force a guess",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch9",
+    "kind": "chapter",
+    "ch": "ch9",
+    "num": "9",
+    "title": "Tool calling and agents: letting the model take actions",
+    "mins": 60,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch10",
+    "kind": "chapter",
+    "ch": "ch10",
+    "num": "10",
+    "title": "Long context windows and context engineering",
+    "mins": 50,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "t:xreview-7",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 8,
+  "start": "2026-12-07",
+  "dates": "7 Dec – 13 Dec",
+  "title": "Thinking, the wait, better search, and attacks",
+  "ship": "A budget for thinking, a design for the wait, better search, and an attack on your own tool.",
+  "how": [],
+  "light": false,
+  "why": "You decide when thinking is worth paying for, design the wait, improve search one change at a time, and attack your own tool.",
+  "job": "Interviewers ask about latency, cost per task and how you would attack your product. You have numbers for each.",
+  "mins": 245,
+  "steps": [
+   {
+    "id": "c:ch11",
+    "kind": "chapter",
+    "ch": "ch11",
+    "num": "11",
+    "title": "Reasoning models: when paying for thinking helps",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch115",
+    "kind": "chapter",
+    "ch": "ch115",
+    "num": "11.5",
+    "title": "Latency: designing for the wait",
+    "mins": 35,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch12",
+    "kind": "chapter",
+    "ch": "ch12",
+    "num": "12",
+    "title": "Better retrieval: hybrid search, reranking, context and filters",
+    "mins": 90,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch13",
+    "kind": "chapter",
+    "ch": "ch13",
+    "num": "13",
+    "title": "Prompt injection: when your documents give the orders",
+    "mins": 55,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "t:post-attack",
+    "kind": "try",
+    "title": "Post: I attacked my own tool",
+    "mins": 20,
+    "what": "Follow the small publish recipe. Write three sentences. First, what happened when you attacked your own tool. Second, the agreement figure for your judge. Third, a link. Say what you changed. Use made-up data only."
+   },
+   {
+    "id": "t:xreview-8",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 9,
+  "start": "2026-12-14",
+  "dates": "14 Dec – 20 Dec",
+  "title": "Grading at scale, cost, documents and data",
+  "ship": "A checked judge, a cost model, a reader for scanned pages, and the rule for what you may send.",
+  "how": [],
+  "light": false,
+  "why": "You grade a thousand answers the way you graded ten, put a price on quality, handle paper, and decide what may leave your hands.",
+  "job": "Consulting and public bodies ask for cost estimates and data rules. You make both.",
+  "mins": 275,
+  "steps": [
+   {
+    "id": "c:ch14",
+    "kind": "chapter",
+    "ch": "ch14",
+    "num": "14",
+    "title": "Evaluation at scale: code checks and LLM judges",
+    "mins": 65,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch145",
+    "kind": "chapter",
+    "ch": "ch145",
+    "num": "14.5",
+    "title": "Error analysis: reading failures by hand",
+    "mins": 75,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch15",
+    "kind": "chapter",
+    "ch": "ch15",
+    "num": "15",
+    "title": "Cost modelling: what an AI feature really costs",
+    "mins": 45,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch16",
+    "kind": "chapter",
+    "ch": "ch16",
+    "num": "16",
+    "title": "Document extraction: tables, scans and images",
+    "mins": 45,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch165",
+    "kind": "chapter",
+    "ch": "ch165",
+    "num": "16.5",
+    "title": "Data handling: what you are allowed to send",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "t:xreview-9",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 10,
+  "start": "2026-12-21",
+  "dates": "21 Dec – 27 Dec",
+  "title": "The rules, the spec, and the hard calls",
+  "ship": "A system card, an AI spec, a build-or-buy call and a pilot design.",
+  "how": [],
+  "light": false,
+  "why": "With quality, cost and data in hand, you write what the system must do, who answers when it is wrong, and how you will prove it helps.",
+  "job": "Governance and build-or-buy are the first questions a ministry or a client asks.",
+  "mins": 280,
+  "steps": [
+   {
+    "id": "c:ch17",
+    "kind": "chapter",
+    "ch": "ch17",
+    "num": "17",
+    "title": "AI governance: risk tiers, system cards and oversight",
+    "mins": 45,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch18",
+    "kind": "chapter",
+    "ch": "ch18",
+    "num": "18",
+    "title": "The AI PRD: specs, migrations and kill switches",
+    "mins": 60,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch185",
+    "kind": "chapter",
+    "ch": "ch185",
+    "num": "18.5",
+    "title": "Build or buy: comparing a vendor with your own build",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch19",
+    "kind": "chapter",
+    "ch": "ch19",
+    "num": "19",
+    "title": "Fine-tuning or not: choosing what to change",
+    "mins": 45,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch20",
+    "kind": "chapter",
+    "ch": "ch20",
+    "num": "20",
+    "title": "Designing for wrong answers: evidence, confidence and refusals",
+    "mins": 45,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch205",
+    "kind": "chapter",
+    "ch": "ch205",
+    "num": "20.5",
+    "title": "Measuring business impact: designing a pilot",
+    "mins": 40,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "t:xreview-10",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 11,
+  "start": "2026-12-28",
+  "dates": "28 Dec – 3 Jan 2027",
+  "title": "Production depth: plumbing, model choice, context and retrieval",
+  "ship": "A test harness, your model choice with a back-up, and retrieval that holds up in a review.",
+  "how": [],
+  "light": false,
+  "why": "Part V goes over the same ideas at the depth a real launch needs. If you already write software, the plumbing chapter is a quick check.",
+  "job": "AI-native companies ask which model you chose and why, and what the model sees. You answer from your own cases.",
+  "mins": 235,
+  "steps": [
+   {
+    "id": "c:ch8f",
+    "kind": "chapter",
+    "ch": "ch8f",
+    "num": "21",
+    "title": "Software basics for AI work: Python, HTTP, Git and tests",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the Check yourself quiz at the top of the chapter. If you pass, mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:ch9m",
+    "kind": "chapter",
+    "ch": "ch9m",
+    "num": "22",
+    "title": "Choosing a model: benchmark on your own cases",
+    "mins": 70,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch10c",
+    "kind": "chapter",
+    "ch": "ch10c",
+    "num": "23",
+    "title": "Context engineering: deciding what the model sees",
+    "mins": 70,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch11r",
+    "kind": "chapter",
+    "ch": "ch11r",
+    "num": "24",
+    "title": "Production RAG: ingestion, access control and freshness",
+    "mins": 75,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "t:xreview-11",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 12,
+  "start": "2027-01-04",
+  "dates": "4 Jan – 10 Jan",
+  "title": "Workflows, agents, the standard plug, pictures and voice",
+  "ship": "A workflow, a bounded agent, a tool access policy, and the numbers you posted.",
+  "how": [],
+  "light": false,
+  "why": "You chain tools into workflows and agents with limits, connect them the standard way, and add more kinds of input.",
+  "job": "Built agents are the proof the hardest door asks for. You publish the numbers.",
+  "mins": 295,
+  "steps": [
+   {
+    "id": "c:ch12t",
+    "kind": "chapter",
+    "ch": "ch12t",
+    "num": "25",
+    "title": "Tool calling and workflows: contracts before agents",
+    "mins": 65,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch13a",
+    "kind": "chapter",
+    "ch": "ch13a",
+    "num": "26",
+    "title": "Agents: loops, stopping conditions and control",
+    "mins": 75,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch14p",
+    "kind": "chapter",
+    "ch": "ch14p",
+    "num": "27",
+    "title": "MCP and interoperability: standard connections to tools",
+    "mins": 60,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch15mm",
+    "kind": "chapter",
+    "ch": "ch15mm",
+    "num": "28",
+    "title": "Multimodal AI: documents, images and voice",
+    "mins": 65,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "t:post-agent",
+    "kind": "try",
+    "title": "Post: workflow against agent",
+    "mins": 25,
+    "what": "Follow the small publish recipe. Post the four numbers from your workflow-against-agent test. Say which one you would ship, and why. Write three sentences, with a link. Use made-up data only."
+   },
+   {
+    "id": "t:xreview-12",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 13,
+  "start": "2027-01-11",
+  "dates": "11 Jan – 17 Jan",
+  "title": "Gates, traces, security and the spec",
+  "ship": "A release gate, a watch plan, a risk register, the full spec and a decision pack.",
+  "how": [],
+  "light": false,
+  "why": "You turn answer keys into a release gate, decide what to watch, assume the worst about the model, and write the spec the capstone is judged against.",
+  "job": "Release gates and a risk register show you can run AI, not only specify it.",
+  "mins": 360,
+  "steps": [
+   {
+    "id": "c:ch16e",
+    "kind": "chapter",
+    "ch": "ch16e",
+    "num": "29",
+    "title": "Evaluation engineering: test sets and release gates",
+    "mins": 75,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch17o",
+    "kind": "chapter",
+    "ch": "ch17o",
+    "num": "30",
+    "title": "Observability and LLMOps: traces, cost and rollback",
+    "mins": 70,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch18s",
+    "kind": "chapter",
+    "ch": "ch18s",
+    "num": "31",
+    "title": "Security and governance: controls around an untrusted model",
+    "mins": 70,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch19pm",
+    "kind": "chapter",
+    "ch": "ch19pm",
+    "num": "32",
+    "title": "AI product management: specs for a probabilistic system",
+    "mins": 70,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:ch20d",
+    "kind": "chapter",
+    "ch": "ch20d",
+    "num": "33",
+    "title": "Production architecture, delivery and vendor strategy",
+    "mins": 70,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "t:xreview-13",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 14,
+  "start": "2027-01-18",
+  "dates": "18 Jan – 24 Jan",
+  "title": "Capstone, part 1: build it and break it",
+  "ship": "The capstone plan, and a first version you have tried to break.",
+  "how": [],
+  "light": false,
+  "why": "Every chapter built one piece of Bharat Privacy Guard. This week you put the pieces together and try to break them.",
+  "job": "A shipped product sets you apart from someone who has only read about AI.",
+  "mins": 260,
+  "steps": [
+   {
+    "id": "t:capstone-plan",
+    "kind": "try",
+    "title": "Plan your capstone",
+    "mins": 15,
+    "what": "Read the capstone chapter’s brief. On one page, write the smallest version you can ship in about eight hours over two weeks. Put everything else on a “later” list."
+   },
+   {
+    "id": "t:capstone-build",
+    "kind": "try",
+    "title": "Capstone, first half: build and break it",
+    "mins": 240,
+    "app": "#/ch/ch21cap",
+    "what": "Work through the capstone chapter up to its measuring step. Put together the pieces you built in earlier chapters. Then try to break them. Stop at about four hours, even if you want to keep going. Next week you measure it, ship it and defend it."
+   },
+   {
+    "id": "t:xreview-14",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 15,
+  "start": "2027-01-25",
+  "dates": "25 Jan – 31 Jan",
+  "title": "Capstone, part 2, and the business side in brief",
+  "ship": "Bharat Privacy Guard shipped and defended, and the business refreshers passed.",
+  "how": [],
+  "light": false,
+  "why": "You measure, ship and defend the capstone. The business chapters come as refreshers, each with what changes when AI is involved.",
+  "job": "Clients ask who pays and how you would measure success. You can answer both for your own project.",
+  "mins": 335,
+  "steps": [
+   {
+    "id": "c:ch21cap",
+    "kind": "chapter",
+    "ch": "ch21cap",
+    "num": "34",
+    "title": "Capstone: discover, build, break, measure, ship and defend a system",
+    "mins": 240,
+    "what": "This is the second half of the capstone. Measure the version you built last week. Then ship it and defend it. The chapter allows about thirty hours. The smallest version that works is enough here. Press “Mark chapter complete” when it is shipped."
+   },
+   {
+    "id": "c:b1",
+    "kind": "chapter",
+    "ch": "b1",
+    "num": "B1",
+    "title": "Business models, pricing and unit economics",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:b2",
+    "kind": "chapter",
+    "ch": "b2",
+    "num": "B2",
+    "title": "Growth, onboarding and product marketing",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:b3",
+    "kind": "chapter",
+    "ch": "b3",
+    "num": "B3",
+    "title": "Product analytics and experiments",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:b4",
+    "kind": "chapter",
+    "ch": "b4",
+    "num": "B4",
+    "title": "Choosing tools for an AI product workflow",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:b5",
+    "kind": "chapter",
+    "ch": "b5",
+    "num": "B5",
+    "title": "Harness engineering: the system around the model",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "c:b6",
+    "kind": "chapter",
+    "ch": "b6",
+    "num": "B6",
+    "title": "Ship to real users and run the learning loop",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "t:xreview-15",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 16,
+  "start": "2027-02-01",
+  "dates": "1 Feb – 7 Feb",
+  "title": "The job",
+  "ship": "A role matrix, a case study with real numbers, practice interviews, and a look back.",
+  "how": [],
+  "light": false,
+  "why": "The last week turns the project into proof for the job, and practises saying it aloud against a clock.",
+  "job": "A recruiter reads one page. The matrix shows you know the role; the case study shows a number you moved.",
+  "mins": 365,
+  "steps": [
+   {
+    "id": "c:b7",
+    "kind": "chapter",
+    "ch": "b7",
+    "num": "B7",
+    "title": "Getting the job: career readiness for AI PM roles",
+    "mins": 15,
+    "refresher": true,
+    "what": "Take the refresher quiz at the top of the chapter. If you pass, read the chapter on one page and mark it known. If not, read the parts it names, then try again."
+   },
+   {
+    "id": "t:role-matrix",
+    "kind": "try",
+    "title": "A role matrix from ten postings",
+    "mins": 45,
+    "app": "#/ch/b7",
+    "what": "Build the role matrix that Chapter B7 describes. Take ten real postings and list the skills they ask for. Mark each skill as proven, partly proven or missing. Pick the three gaps that matter most for your first door. Write what you will do about each."
+   },
+   {
+    "id": "t:case-study",
+    "kind": "try",
+    "title": "The Bharat Privacy Guard case study",
+    "mins": 75,
+    "app": "#/ch/b7",
+    "what": "Write the case study in the form Chapter B7 shows. Use one or two pages. Write the problem, your decisions, the numbers from your findings page, one honest failure, and what you would do next. Use real numbers from your own runs only. Save it in your repository as docs/case-study.md."
+   },
+   {
+    "id": "t:interviews",
+    "kind": "try",
+    "title": "Practice interviews and a timed build",
+    "mins": 135,
+    "app": "#/ch/b7#record",
+    "what": "Use the interview practice in Chapter B7 and the nineteen practice questions on the Curriculum tab. Answer two questions aloud and record them. Ask a model to score each one against the rubric, and repeat your worst answer. Then build a paste-and-clean screen for Bharat Privacy Guard in a free prototyping tool. Give yourself 45 minutes, talk aloud while you build, and record it."
+   },
+   {
+    "id": "t:retro",
+    "kind": "try",
+    "title": "Review the 28 weeks and set the next loop",
+    "mins": 90,
+    "what": "Do the retro recipe on the plan. It takes about 90 minutes. Count what shipped, what slipped and what you cut. Write what you would change. Set the weekly loop for after the route."
+   },
+   {
+    "id": "t:xreview-16",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Write three lines in your notepad: what made sense, what did not, and one question. Take a photo if you keep a log."
+   }
+  ]
+ }
+];
+export const EXP_MONTHS = [
+ {
+  "n": 1,
+  "name": "Block 1: The product side in brief, and meeting the machine",
+  "from": 1,
+  "to": 4,
+  "goal": "",
+  "dates": "19 Oct – 15 Nov 2026"
+ },
+ {
+  "n": 2,
+  "name": "Block 2: Finding, measuring and acting",
+  "from": 5,
+  "to": 8,
+  "goal": "",
+  "dates": "16 Nov – 13 Dec 2026"
+ },
+ {
+  "n": 3,
+  "name": "Block 3: Real systems, at production depth",
+  "from": 9,
+  "to": 12,
+  "goal": "",
+  "dates": "14 Dec 2026 – 10 Jan 2027"
+ },
+ {
+  "n": 4,
+  "name": "Block 4: Ship it, and get the job",
+  "from": 13,
+  "to": 16,
+  "goal": "",
+  "dates": "11 Jan – 7 Feb 2027"
+ }
+];
 
 /* Has this step been done, given a progress record (the playbook's saved state)? */
 export function stepDone(step, S) {
@@ -2028,8 +3108,17 @@ export function stepDone(step, S) {
   return !!(S.steps && S.steps[step.id]);
 }
 export const STEPS = WEEKS.flatMap(w => w.steps.map(s => Object.assign({ week: w.n }, s)));
+export const EXP_STEPS = EXP_WEEKS.flatMap(w => w.steps.map(s => Object.assign({ week: w.n }, s)));
+/* The route a progress record is on: the full route unless the learner chose
+   the Experienced one. Switching changes only which list is shown; every tick
+   stays where it is. */
+export function routeOf(S) {
+  return S && S.route === 'experienced'
+    ? { name: 'experienced', WEEKS: EXP_WEEKS, STEPS: EXP_STEPS, MONTHS: EXP_MONTHS }
+    : { name: 'full', WEEKS, STEPS, MONTHS };
+}
 /* The first step not yet done, in route order, or null when all are done. */
-export function nextStep(S) { return STEPS.find(s => !stepDone(s, S)) || null; }
+export function nextStep(S) { return routeOf(S).STEPS.find(s => !stepDone(s, S)) || null; }
 /* Where a step opens. Book pages are absolute so they work from any page. */
 export function stepHref(step, hi) {
   if (step.kind === 'chapter') return '/app/#/ch/' + step.ch;
@@ -2062,10 +3151,11 @@ export function isFresh(S) {
     return true;
   });
 }
-/* Week number (1-N) for an India-time date string, 0 before the start, 29 after. */
-export function weekOf(date, start) {
+/* Week number (1-N) for an India-time date string, 0 before the start, N+1
+   after. n is the route's length (the full route's unless given). */
+export function weekOf(date, start, n) {
   const d = Math.floor((Date.parse(date + 'T00:00:00Z') - Date.parse((start || START) + 'T00:00:00Z')) / 864e5);
-  return d < 0 ? 0 : Math.min(WEEKS.length + 1, Math.floor(d / 7) + 1);
+  return d < 0 ? 0 : Math.min((n || WEEKS.length) + 1, Math.floor(d / 7) + 1);
 }
 /* The dates of weeks a..b counted from a start: "4 Nov – 10 Nov" for one week,
    "4 Nov – 1 Dec 2026" for a month (withYear), the way the route prints them. */

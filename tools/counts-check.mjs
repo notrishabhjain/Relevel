@@ -19,7 +19,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { COUNTS, WEEKS, STEPS } from '../src/data/route.mjs';
+import { COUNTS, WEEKS, STEPS, EXP_WEEKS } from '../src/data/route.mjs';
 import { loadBook } from '../book/build.mjs';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -37,6 +37,16 @@ if (!COUNTS.routes || !COUNTS.routes.full || COUNTS.routes.full.coreWeeks !== WE
   fail('COUNTS.routes.full.coreWeeks must equal the number of route weeks');
 if (!COUNTS.routes || !COUNTS.routes.experienced || COUNTS.routes.experienced.includesTrackC !== true)
   fail('COUNTS.routes.experienced must say whether it includes Track C (it does: includesTrackC: true)');
+/* Phase 3c and 3.4: the Experienced route is its own list, 16 weeks long, and
+   both routes' hours a week come from their own minutes. */
+if (COUNTS.routes.experienced.weeks !== EXP_WEEKS.length)
+  fail(`COUNTS.routes.experienced.weeks is ${COUNTS.routes.experienced.weeks} but the Experienced route has ${EXP_WEEKS.length} weeks`);
+if (EXP_WEEKS.length !== 16) fail(`the Experienced route must be 16 weeks (decision D3), not ${EXP_WEEKS.length}`);
+for (const [name, ws] of [['full', WEEKS], ['experienced', EXP_WEEKS]]) {
+  const hr = (COUNTS.routes[name] || {}).hours || {}, half = x => Math.round(x / 30) / 2;
+  const avg = half(ws.reduce((a, w) => a + w.mins, 0) / ws.length), max = half(Math.max(...ws.map(w => w.mins)));
+  if (hr.avg !== avg || hr.max !== max) fail(`COUNTS.routes.${name}.hours is ${JSON.stringify(hr)} but its weeks give avg ${avg}, max ${max}`);
+}
 
 /* 2. No hand-typed totals in the pages' sources. Comments are skipped: a
    comment may explain the number; only shown text matters. */

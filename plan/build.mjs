@@ -18,7 +18,7 @@
 import fs from 'node:fs';
 import p from 'node:path';
 import { RESOURCES, MONTHS, WEEKS, GATES, RULES } from './data.mjs';
-import { STEPS, COUNTS } from '../src/data/route.mjs';
+import { STEPS, COUNTS, EXP_WEEKS } from '../src/data/route.mjs';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { loadBook } from '../book/build.mjs';
@@ -529,7 +529,11 @@ export function buildPlan(root, outDir) {
   fs.mkdirSync(outDir, { recursive: true });
   const text = {};
   /* {{weeks}} is the route length from src/data/route.mjs (COUNTS), never typed by hand. */
-  for (const t of TABS) text[t.md] = fs.readFileSync(p.join(src, t.md), 'utf8').replace(/\{\{weeks\}\}/g, String(COUNTS.weeks));
+  /* {{hours}} and the Experienced route's numbers (audit plan, 3.4) come from the same place. */
+  const R_ = COUNTS.routes;
+  for (const t of TABS) text[t.md] = fs.readFileSync(p.join(src, t.md), 'utf8').replace(/\{\{weeks\}\}/g, String(COUNTS.weeks))
+    .replace(/\{\{hours\}\}/g, String(R_.full.hours.avg)).replace(/\{\{hoursMax\}\}/g, String(R_.full.hours.max))
+    .replace(/\{\{xweeks\}\}/g, String(EXP_WEEKS.length)).replace(/\{\{xhours\}\}/g, String(R_.experienced.hours.avg));
 
   /* recipes first: id -> title, and the weeks each recipe says it serves */
   const recipes = new Map(), recipeWeeks = new Map();

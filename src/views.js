@@ -108,6 +108,8 @@ function dashboard(){
      time estimate, and a smaller version of it for an evening with nothing
      left in it. */
   w.appendChild(resumePanel(st, eng));
+  /* which route fits you: the starting check and the picker (Phase 3c) */
+  if(window.ROUTE_PICKER) w.appendChild(window.ROUTE_PICKER());
   /* everything below the next step: open once there is something measured */
   const outer=w;
   const fold=fresh?h('details',{class:'dashfold'},[h('summary',{text:TR('Your skill tracker (it fills in as you answer the questions in the chapters)')})]):null;
