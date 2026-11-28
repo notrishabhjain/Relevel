@@ -1761,6 +1761,35 @@ console.log('\n— Check yourself: pass to mark a basics chapter known —');
   await d.ctx.close();
 }
 
+/* Phase 3b of the audit plan (Nov 2026): refreshers for Tracks A and B. */
+console.log('\n— Refresher: a pass opens the chapter on one page, with what changes when AI is involved —');
+{
+  const d = await newDevice(false);
+  await boot(d.page, '#/ch/a5');
+  const ids = await d.page.evaluate(() => window.CHAPTERS.filter(c => /^[ab]\d+$/.test(c.id) && c.selfcheck && c.selfcheck.kind === 'refresher').map(c => c.id));
+  ok(ids.length === 15, 'every Track A and B product chapter has a refresher', ids.join(','));
+  const go = async (id, wrong) => {
+    await boot(d.page, '#/ch/' + id);
+    await d.page.locator('details.selfcheck > summary').click();
+    const a = await d.page.evaluate(i => window.CHAPTERS.find(c => c.id === i).selfcheck.items.map(x => x.a), id);
+    for (let i = 0; i < a.length; i++) await d.page.locator(`#sc-${id}-${i}-${wrong.includes(i) ? (a[i] + 1) % 4 : a[i]}`).check();
+    await d.page.locator('button.sccheck').click();
+    await d.page.waitForTimeout(150);
+  };
+  await go('a5', []);
+  ok(await d.page.locator('details.selfcheck .scaitag').count() >= 2, 'the quiz flags its questions on what changes with AI');
+  const t = await mainText(d.page);
+  ok(/This chapter on one page/.test(t) && /What changes when AI is involved/.test(t), 'a pass opens the one-page summary with its AI section');
+  await d.page.locator('button.scknown').click();
+  await d.page.waitForTimeout(150);
+  ok(await d.page.evaluate(() => !!window.STORE.S.done.a5 && !!window.STORE.S.known.a5), 'and the chapter can be marked known');
+  ok(/What changes when AI is involved/.test(await mainText(d.page)), 'the summary stays after marking it known');
+  await go('b3', [0, 1]);
+  const t2 = await mainText(d.page);
+  ok(!/This chapter on one page/.test(t2) && /Not yet\. Read these parts/.test(t2), 'four of six (67%) fails, with no summary');
+  await d.ctx.close();
+}
+
 await browser.close();
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');
 process.exit(fail ? 1 : 0);

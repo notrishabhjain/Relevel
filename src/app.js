@@ -780,10 +780,19 @@ function chapterTrail(c){
    name scrolls to that part. Answers are kept, so the result survives a
    reload; nothing here is scored into the question bank. */
 function selfCheck(c){
-  const sc=c.selfcheck, items=sc.items||[], key='self:'+c.id;
+  const sc=c.selfcheck, items=sc.items||[], key='self:'+c.id, refresher=sc.kind==='refresher';
+  /* Refresher (Phase 3b): a Track A or B chapter for someone who has done the
+     job before. Its pass also opens the chapter on one page, which always has
+     a section on what changes when AI is involved, so an experienced PM who
+     passes on old habits still meets the new ones. */
+  const summary=()=>sc.summary?h('div',{class:'scsum'},[
+    h('h4',{text:T('This chapter on one page')}),
+    h('ul',{},(sc.summary.core||[]).map(x=>h('li',{html:T(x)}))),
+    h('h4',{text:T('What changes when AI is involved')}),
+    h('ul',{class:'scai'},(sc.summary.ai||[]).map(x=>h('li',{html:T(x)})))]):null;
   S.known=S.known||{};
   const box=h('details',{class:'selfcheck'});
-  box.appendChild(h('summary',{},[h('span',{text:T('Already know this? Check yourself')}),
+  box.appendChild(h('summary',{},[h('span',{text:T(refresher?'Refresher: already know this chapter?':'Already know this? Check yourself')}),
     h('span',{class:'pill',style:'margin-left:auto',text:items.length+' '+T('questions')})]));
   const body=h('div',{class:'scbody'});
   box.appendChild(body);
@@ -799,12 +808,14 @@ function selfCheck(c){
       body.appendChild(h('div',{class:'scres ok'},[
         h('span',{class:'pill ok',text:T('Known: you passed the check')+' · '+S.known[c.id].score+'/'+items.length}),
         h('button',{class:'sm',onclick:()=>{delete S.known[c.id];S.done[c.id]=false;save();updateProgress();draw();}},T('Unmark'))]));
+      if(refresher) body.appendChild(summary());
       return;
     }
-    body.appendChild(h('p',{class:'dim',text:T('Pass mark 80%. If you pass, you can mark this chapter as known and move on. If not, the check names the parts to read.')}));
+    body.appendChild(h('p',{class:'dim',text:T(refresher?'Pass mark 80%. Some questions ask what changes when AI is involved. If you pass, you get this chapter on one page and can mark it as known.':'Pass mark 80%. If you pass, you can mark this chapter as known and move on. If not, the check names the parts to read.')}));
     const picks=rec&&rec.ans?rec.ans.slice():items.map(()=>-1);
     items.forEach((it,i)=>{
-      const q=h('fieldset',{class:'scq'},[h('legend',{html:(i+1)+'. '+T(it.q)})]);
+      const q=h('fieldset',{class:'scq'},[h('legend',{},[h('span',{html:(i+1)+'. '+T(it.q)}),
+        it.ai?h('span',{class:'scaitag',text:T('What changes with AI')}):null])]);
       it.opts.forEach((o,j)=>{
         const id='sc-'+c.id+'-'+i+'-'+j;
         const inp=h('input',{type:'radio',name:'sc-'+c.id+'-'+i,id,value:String(j)});
@@ -830,6 +841,7 @@ function selfCheck(c){
       h('p',{},[h('b',{text:T('Your score')+': '+rec.score+' / '+items.length})])]);
     if(pass){
       res.appendChild(h('p',{text:T('You passed. This chapter can count as done.')}));
+      if(refresher) res.appendChild(summary());
       res.appendChild(h('button',{class:'sm on scknown',onclick:()=>{
         S.known[c.id]={at:Date.now(),score:rec.score};
         if(!S.done[c.id]){S.done[c.id]=true;S.sittings.push({ch:c.id,at:Date.now()});}
