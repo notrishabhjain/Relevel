@@ -109,7 +109,7 @@ You practise out loud. It is far easier to answer in your head than in words. We
 
 **Done when:** you have spoken at least four answers aloud, written your career stories, and recorded the timed build.
 
-## Retro: review the 28 weeks {#retro}
+## Retro: review the {{weeks}} weeks {#retro}
 
 **Week 28. Ships:** a one-page review and the next learning loop. **Time:** about 90 minutes.
 
@@ -117,7 +117,7 @@ This is the last week. Look back at what you did. Take what worked forward. Deci
 
 1. Read your ship log. Count what shipped, what slipped and what you cut.
 2. Update the portfolio site with any metric that changed.
-3. Write down what worked, and what you would change for the next 28 weeks.
+3. Write down what worked, and what you would change for the next {{weeks}} weeks.
 4. Set the loop for after the route at 3 hours a week: 60 minutes of reading release notes; a monthly session that runs your capstone test set again on a new model and notes the difference; and the second pass on one Track A or Track B “Build it” each month.
 
 **Done when:** the review is written and the next three Sundays are decided.

@@ -13,7 +13,7 @@
 
 window.PART7 = [
 {
-  id:'b1', num:'B1', part:7, curriculumTier:'selective', phase:6, prerequisites:['a4','ch15','ch185'], nextUnits:['b8'], minutes:720, labs:[],
+  id:'b1', num:'B1', part:7, curriculumTier:'selective', phase:6, prerequisites:['a4','ch15','ch185'], nextUnits:[], minutes:720, labs:[],
   title:'Business models, pricing and unit economics',
   concept:'In this chapter you find out who pays for your product and how much to charge. You also check if each customer earns you money or costs you money. You work out the real cost of one AI task, like paying per SMS. Then you compare pricing models (ways to set a price) and write a pricing recommendation that names its risks.',
   takeaway:[
@@ -655,7 +655,7 @@ window.PART7 = [
 },
 
 {
-  id:'b6', num:'B6', part:7, curriculumTier:'selective', phase:6, prerequisites:['b4','b5','ch145'], nextUnits:['b7','b8'], minutes:1080, labs:[],
+  id:'b6', num:'B6', part:7, curriculumTier:'selective', phase:6, prerequisites:['b4','b5','ch145'], nextUnits:['b7'], minutes:1080, labs:[],
   title:'Ship to real users and run the learning loop',
   concept:'Put your capstone (your project) in front of real users, and learn from what they do. You get it ready for production (the live product people use), find people honestly, join what they say with what they do, and ship one improvement based on evidence.',
   takeaway:[
@@ -926,36 +926,6 @@ window.PART7 = [
     ['h','What you have learned'],
     ['p','You now have a way to show your work to an employer. You can pick the roles that fit you. You can write resume lines and case studies that show your decisions. You can answer the four kinds of PM question with a plan. You can also work through an AI system-design question and tell honest stories about your own choices.'],
     ['p','That finishes the learning part of the course. The project itself lives in Chapter 34. If it is not finished yet, go back there.']
-  ]
-},
-
-{
-  id:'b8', num:'B8', part:7, curriculumTier:'core', phase:6, prerequisites:['ch21cap'], nextUnits:[], minutes:8, labs:[],
-  title:'The integrated capstone now lives in Chapter 34',
-  concept:'This chapter used to hold a second capstone (a big final project), like a second exam on the same subject. Not any more. The technical capstone and this chapter’s five gates (discovery, strategy, build, ship and defend) are now one eleven-stage journey in Chapter 34. So you do one project, not two.',
-  takeaway:[
-    'Do the capstone once, in Chapter 34, not twice.',
-    'This page keeps one exercise from the old chapter, like a drawer for an old notebook, so an answer you saved here still has a home.'
-  ],
-  needs:[['The unified capstone (one joined project)','Everything that used to be here is now part of it.',34]],
-  story:[
-    ['c','This chapter moved','This used to be a second, separate capstone. It is not any more. Everything here is now part of one journey in Chapter 34.'],
-    ['p','This page is short. It tells you where the capstone lives now.'],
-    ['p','Earlier, the capstone was split in two, like one project handed in twice. There was a technical capstone, and a second one built around five gates. Doing both felt like doing the same project twice. So the two are now joined into a single journey in Chapter 34. Its eleven stages are the detail inside stage 12 of the project’s thirteen.'],
-    ['p','What if you already have progress on the old five gates? Nothing is lost. Each old gate fits straight onto the new stages, as the table shows, like old keys that open new locks.'],
-    ['tb',['Old gate','New stage(s) in Chapter 34'],[
-      ['Gate 1, Discovery (finding the real problem)','34.1 Discover'],
-      ['Gate 2, Strategy (choosing the plan)','34.3 Design'],
-      ['Gate 3, Build (making it)','34.4 Build – 34.5 Evaluate'],
-      ['Gate 4, Ship (sending it to users)','34.8 Ship'],
-      ['Gate 5, Defend (explaining and standing by your work)','34.9 Measure – 34.11 Defend']
-    ]],
-    ['p','Go to <a href="#/ch/ch21cap">Chapter 34</a> and start from wherever your project is. There is nothing else to do on this page, except the one exercise below. We kept it here so that an answer you already wrote is not lost.'],
-    ['try',{id:'b8-defend',mins:12,min:120,rows:6,
-      task:'Write your answer to the hardest question you expect in the defence (the final round where you explain your work). For example: “Why should we believe this works beyond your ten design partners?”',
-      ph:'What we know… what we do not know yet… what we would do next…',
-      after:'A strong answer keeps what is known apart from what is not, like two piles on a table. For example: <strong>We know</strong> that 8 of 10 design partners used it for four weeks in a row, and that precision held at 86% on their real tickets. <strong>We do not know yet</strong> whether it holds for teams on other helpdesks, or with more than 5,000 tickets a week, because none of our partners had those. <strong>Next,</strong> we would add two partners from each missing group, with the same eval set and thresholds, before any wider launch. The answer admits what it does not know and gives a clear way to find out.'}],
-    ['p','That is all for this page. When you are ready, carry on with your project in Chapter 34.']
   ]
 }
 

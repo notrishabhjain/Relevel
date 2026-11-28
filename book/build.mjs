@@ -249,7 +249,7 @@ const UI = {
     lang: 'en', edition: 'The reading edition', skip: 'Skip to the text', contents: 'Contents', smaller: 'Smaller text', larger: 'Larger text',
     colours: 'Change colours', app: 'Course app', appTitle: 'Open the course app', chapter: 'Chapter', minRead: 'min read',
     begin: 'Begin reading', resume: 'Continue', words: 'Key terms', wordsSub: 'Plain meanings, in the order you meet them.',
-    inapp: 'The same ideas, with the work to do, in the course app', before: 'Before', next: 'Next', search: 'Find a chapter or a word',
+    inapp: 'The same ideas, with the work to do, in the course app', retells: 'Retells app chapter', retellsMany: 'Retells app chapters', and: 'and', before: 'Before', next: 'Next', search: 'Find a chapter or a word',
     searchNone: 'Nothing matches that.', read: 'read', ofN: 'of', chaptersRead: 'chapters read', preface: 'Preface', afterword: 'Afterword',
     glossary: 'Words, in plain language', glossaryDek: n => `Every word the book teaches, in alphabetical order, with the chapter that first explains it. ${n} words.`,
     glossaryShort: 'Every word the book teaches, with the chapter that explains it.', chapterWord: 'Chapter', chapters: 'chapters', approx: 'about', k: 'k words',
@@ -263,7 +263,7 @@ const UI = {
     lang: 'hi', edition: 'Padhne wala edition (Hinglish)', skip: 'Seedhe text par jaaiye', contents: 'Vishay-soochi', smaller: 'Chhota text', larger: 'Bada text',
     colours: 'Rang badliye', app: 'Course app', appTitle: 'Course app kholiye', chapter: 'Chapter', minRead: 'min padhai',
     begin: 'Padhna shuru kariye', resume: 'Wahin se jaari rakhiye', words: 'Mukhya shabd', wordsSub: 'Saral matlab, usi kram mein jis kram mein aap inse milenge.',
-    inapp: 'Yahi ideas, kaam ke saath, course app mein', before: 'Pichhla', next: 'Agla', search: 'Chapter ya shabd dhoondhiye',
+    inapp: 'Yahi ideas, kaam ke saath, course app mein', retells: 'App ka yeh chapter is kahani mein hai:', retellsMany: 'App ke yeh chapters is kahani mein hain:', and: 'aur', before: 'Pichhla', next: 'Agla', search: 'Chapter ya shabd dhoondhiye',
     searchNone: 'Kuch nahi mila.', read: 'padha', ofN: 'mein se', chaptersRead: 'chapter padhe gaye', preface: 'Shuruaat se pehle', afterword: 'Aakhri baat',
     glossary: 'Shabd, saral bhasha mein', glossaryDek: n => `Kitaab mein sikhaaye gaye har shabd ka matlab, alphabet ke kram mein, us chapter ke saath jahan woh pehli baar samjhaya gaya. Kul ${n} shabd.`,
     glossaryShort: 'Kitaab ke har shabd ka saral matlab, chapter ke saath.', chapterWord: 'Chapter', chapters: 'chapter', approx: 'lagbhag', k: ' hazaar shabd',
@@ -406,6 +406,14 @@ ${parts.join('\n')}
     const side = (x, cls, dir) => x ? `<a class="${cls}" href="${href(x.file)}" rel="${cls}"><span class="dir">${dir}</span><span class="nm">${x.n ? `<b>${x.n}</b>` : ''}${esc(x.title)}</span></a>` : '<span></span>';
     return `<nav class="pager" aria-label="${ui.pagerKinds}">${side(prev, 'prev', '← ' + ui.before)}${side(next, 'next', ui.next + ' →')}</nav>`;
   };
+  /* Under the title: which app chapters this book chapter retells, so the
+     47 book chapters and the app's chapters read as one map. */
+  const retellsLine = ids => {
+    if (!ids || !ids.length || !opts.courseNum) return '';
+    const links = ids.map(id => `<a href="${appUrl}#/ch/${id}" title="${esc(opts.courseTitle ? (opts.courseTitle(id) || id) : id)}">${esc(String(opts.courseNum(id) ?? id))}</a>`);
+    const list = links.length === 1 ? links[0] : links.slice(0, -1).join(', ') + ' ' + ui.and + ' ' + links[links.length - 1];
+    return `<p class="retells">${ids.length === 1 ? ui.retells : ui.retellsMany} ${list}</p>`;
+  };
   const courseLine = ids => ids && ids.length
     ? `<aside class="inapp"><span class="lead">${ui.inapp}</span><span class="chips">${ids.map(id => `<a href="${appUrl}#/ch/${id}">${esc(opts.courseTitle ? (opts.courseTitle(id) || id) : id)}<span aria-hidden="true"> →</span></a>`).join('')}</span></aside>` : '';
   const wordsBox = terms => terms.length ? `<aside class="wordsbox" aria-label="${ui.words}"><h2>${ui.words}</h2><p class="sub">${ui.wordsSub}</p><dl>${
@@ -475,6 +483,7 @@ ${parts.join('\n')}
 <p class="eyebrow"><span class="num">${c.n}</span><span>${ui.chapter} ${c.n}${s ? ` <i>·</i> ${esc(s.title)}` : ''}</span></p>
 <h1 data-s="0">${esc(c.title)}</h1><p class="dek">${inline(c.summary)}</p>
 <p class="meta"><span>${mins(c)} ${ui.minRead}</span>${c.terms.length ? `<span>${c.terms.length} ${lang === 'hi' ? 'naye shabd' : 'new words'}</span>` : ''}${listenBtn}</p>
+${retellsLine(c.course)}
 </header>
 ${goalsBox(c.goals)}
 <div class="prose">

@@ -97,6 +97,8 @@ function dashboard(){
       h('p',{class:'dash-sub',html:fresh?TR('One step at a time, in order. Each week reads a chapter of the book and then does the chapter here that practises it. Your skill numbers fill in by themselves as you answer the questions inside the chapters.')
         :window.SKILLS.length+' tracked skills. Mastery moves on measured evidence and decays without practice — so this number is a claim about <em>now</em>, not a record of what you once read.'})]),
     fresh?null:h('div',{class:'bigring'},[ring(ov), h('span',{class:'ringlab',text:'overall mastery'})])]));
+  /* what the course is: product and project, as equal halves */
+  w.appendChild(h('p',{class:'identity',text:TR('Learn AI from both sides: the product (what to build, and why) and the project (how to deliver it safely, on time and within the rules).')}));
 
   /* The one thing to do next, named and timed.
 

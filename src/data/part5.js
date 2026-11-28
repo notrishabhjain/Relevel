@@ -2496,6 +2496,10 @@ window.PART5 = [
        lens:'This is the credential (the proof of skill) you carry into interviews and design reviews.'}
     ],
     ['q','I414'],
+    ['try',{id:'b8-defend',mins:12,min:120,rows:6,
+      task:'Write your answer to the hardest question you expect in the defence (the final round where you explain your work). For example: “Why should we believe this works beyond your ten design partners?”',
+      ph:'What we know… what we do not know yet… what we would do next…',
+      after:'A strong answer keeps what is known apart from what is not, like two piles on a table. For example: <strong>We know</strong> that 8 of 10 design partners used it for four weeks in a row, and that precision held at 86% on their real tickets. <strong>We do not know yet</strong> whether it holds for teams on other helpdesks, or with more than 5,000 tickets a week, because none of our partners had those. <strong>Next,</strong> we would add two partners from each missing group, with the same eval set and thresholds, before any wider launch. The answer admits what it does not know and gives a clear way to find out.'}],
     ['h','When you are done'],
     ['p','How do you know you are finished? Check this list, like a packing list before a trip. You are done when every line is true.'],
     [

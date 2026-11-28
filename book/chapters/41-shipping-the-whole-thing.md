@@ -1,7 +1,7 @@
 ---
 title: Shipping the Whole Thing
 summary: In December Anaya stands before the people who doubted her idea. Think of it as an oral exam at school. She tells them what she built, what broke, who used it, what it costs and what she does not know. The eleven stages she followed are the year she has just lived. You meet SDKs, findings documents, failure classes and evidence packs.
-course: ch21cap b8
+course: ch21cap
 goals:
   - name the eleven stages of a project, from discovery to defence
   - write a findings document sorted by failure class, with the proof, the fix and what is left

@@ -8,6 +8,8 @@ AI product kaise banta hai, yeh seekhne ke do tareeke hain. Pehla tareeka hai kh
 
 Doosra tareeka hai poora subject order se seekhna. Koi aapko ek-ek step samjhata hai. Naye shabd anjaane nahi lagte. Dheere-dheere woh aapke dimaag mein ek tasveer ban jaate hain. Ise ek shehar seekhne jaisa samjhiye. App aapko uski galiyon mein chalata hai. Kitaab aapko naqsha deti hai. Yeh kitaab isi doosre tareeke ke liye hai.
 
+Course AI ko do taraf se dekhta hai, aur dono barabar hain. Product wali taraf poochhti hai ki kya banana hai, aur kyun. Project wali taraf poochhti hai ki use surakshit, samay par aur niyamon ke andar kaise deliver karna hai. Yeh kitaab ek team ke saath dono ko follow karti hai.
+
 Yeh kitaab us insaan ke liye hai jisne technology projects deliver kiye hain. Ab aap ek AI product ke malik banna chahte hain. Aapko code likhna aana zaroori nahi. Statistics aana bhi zaroori nahi. Rhythm yeh hai. Har hafte, chhabbis hafte tak, aap ek chapter padhte hain. Usmein lagbhag das minute lagte hain. Phir aap title ke neeche likha app chapter karte hain.
 
 Anaya ke aas-paas ek team hai. Aapke paas app hai. Jab Imran kuch chalata hai, app aapko uska button deta hai. Jab Lakshmi poochhti hai ki use kaise pata chalega, app aapse wahi sawaal poochhta hai. Yeh check questions hain. Ant tak aap bata paayenge ki aapne kya banaya. Aap bata paayenge ki aapko kaise pata ki woh kaam karta hai. Aap yeh apne numbers ke saath bata paayenge.

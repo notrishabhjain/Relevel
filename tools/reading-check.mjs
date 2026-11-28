@@ -26,7 +26,7 @@ for (const c of chapters) {
   const list = R[c.id];
   if (!list || !list.length) { fail(`${c.id} (${c.num}) has no reading list`); continue; }
   if (!list.some(r => r[0] === 'paper')) fail(`${c.id} has no research paper`);
-  if (!list.some(r => r[0] === 'case') && c.id !== 'b8') fail(`${c.id} has no real-world case`);
+  if (!list.some(r => r[0] === 'case')) fail(`${c.id} has no real-world case`);
   const seen = new Set();
   for (const r of list) {
     rows++;

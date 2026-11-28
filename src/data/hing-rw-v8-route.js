@@ -2,8 +2,7 @@
 Object.assign(window.HING = window.HING || {}, {
   /* the page */
   'Your route': 'Aapka raasta',
-  'Your route: 28 weeks, one order': 'Aapka raasta: 28 hafte, ek hi order',
-  '28 weeks, one order': '28 hafte, ek hi order',
+  'Your route: {weeks} weeks, one order': 'Aapka raasta: {weeks} hafte, ek hi order',
   'steps done': 'steps poore',
   'Every step is done. Well done.': 'Har step poora ho gaya. Shabaash.',
   'This is calendar week {cal}, and you are on week {at}. That is fine: carry on from the first open step, and never miss twice.':

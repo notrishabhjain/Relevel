@@ -1,4 +1,4 @@
-# Applied AI PM: the route, week by week (19 Oct 2026 – 2 May 2027)
+# Applied AI PM: the route, week by week ({{weeks}} weeks, from the day you start)
 
 Start from the [route page in the playbook](../app/#/start). This plan shows the same course with dates, notes and monthly reviews. It has one row for each week. Each row lists the steps in order: a book chapter to read, then the playbook chapter that practises it, sometimes a small try, and a look back on Friday. The same steps, in the same order, close each chapter in the [book](../book/).
 
@@ -8,7 +8,7 @@ Progress is shared too. Mark a chapter complete in the playbook, or read a book 
 
 <!-- sync -->
 
-**North star:** by 2 May 2027, Bharat Privacy Guard is shipped and tested, with a findings document and a demo you can take into an interview. This is the one goal you steer by.
+**North star:** by the end of week {{weeks}}, Bharat Privacy Guard is shipped and tested, with a findings document and a demo you can take into an interview. This is the one goal you steer by.
 
 ## How a week works
 

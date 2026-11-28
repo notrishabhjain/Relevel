@@ -1,7 +1,7 @@
 ---
 title: Poori Cheez Ship Karna
 summary: December mein Anaya un logon ke saamne khadi hoti hai jinhone uske idea par shak kiya tha. Ise school ke oral exam jaisa samajhiye. Woh bataati hai ki usne kya banaya, kya toota, kisne use kiya, kitna kharch aaya, aur use kya nahi pata. Jin gyarah stages ko usne follow kiya, woh wahi saal hai jo woh abhi jee kar aayi hai. Aap SDK, findings document, failure class aur evidence pack se milte hain.
-course: ch21cap b8
+course: ch21cap
 goals:
   - ek project ke gyarah stages ke naam bata paana, discovery se defence tak
   - failure class ke hisaab se findings document likhna, jisme saboot, fix aur jo bacha hai woh ho

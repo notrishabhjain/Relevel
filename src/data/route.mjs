@@ -11,6 +11,27 @@
    in the same week by the course chapter(s) that practise it. */
 
 export const START = '2026-10-19';
+/* Every total any page shows (weeks, steps, chapters, route lengths) comes from
+   here, so the course app, the plan, the worksheet and the book can never
+   disagree. tools/counts-check.mjs fails the build if a page types one by hand.
+   routes: the full route is the core weeks, plus optional Track C when it
+   exists; the experienced route already includes Track C (null until built). */
+export const COUNTS = {
+ "weeks": 28,
+ "steps": 166,
+ "appChapters": 67,
+ "bookChapters": 47,
+ "routes": {
+  "full": {
+   "coreWeeks": 28,
+   "withTrackCWeeks": null
+  },
+  "experienced": {
+   "weeks": null,
+   "includesTrackC": true
+  }
+ }
+};
 export const WEEKS = [
  {
   "n": 1,
@@ -1679,7 +1700,7 @@ export const WEEKS = [
   "light": false,
   "why": "Last week’s version gets measured, shipped and defended. It is the heaviest week on the route. So nothing else is added to it.",
   "job": "Show, do not claim. This week turns the build into a shipped product. It has a number and a demo that a recruiter can open.",
-  "mins": 255,
+  "mins": 245,
   "steps": [
    {
     "id": "c:ch21cap",
@@ -1690,16 +1711,6 @@ export const WEEKS = [
     "mins": 240,
     "firstPass": true,
     "what": "This is the second half of the capstone. Measure the version you built last week. Then ship it and defend it. The chapter allows about thirty hours. The smallest version that works is enough here. Press “Mark chapter complete” when it is shipped."
-   },
-   {
-    "id": "c:b8",
-    "kind": "chapter",
-    "ch": "b8",
-    "num": "B8",
-    "title": "The integrated capstone now lives in Chapter 34",
-    "mins": 10,
-    "firstPass": true,
-    "what": "First pass: read the chapter and answer the boxes. Then press “Mark chapter complete”. The long “Build it” part is optional. Keep it for later."
    },
    {
     "id": "t:review-25",
@@ -2033,7 +2044,25 @@ export function startOf(S) {
   const v = S && S.routeStart;
   return typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) && !isNaN(Date.parse(v + 'T00:00:00Z')) ? v : START;
 }
-/* Week number (1-28) for an India-time date string, 0 before the start, 29 after. */
+/* India-time today, and the Monday of the week holding a date: week 1 of a
+   new learner starts on the Monday of the week they first open the course. */
+export function todayIST() { return new Date(Date.now() + 19800000).toISOString().slice(0, 10); }
+export function mondayOf(date) {
+  const ms = Date.parse(date + 'T00:00:00Z'), back = (new Date(ms).getUTCDay() + 6) % 7;
+  return new Date(ms - back * 864e5).toISOString().slice(0, 10);
+}
+/* A progress record with nothing in it: a first visit. Settings (language,
+   theme) do not count; neither do empty lists or switches left off. */
+export function isFresh(S) {
+  return !Object.keys(S || {}).some(k => {
+    if (k === 'lang' || k === 'theme' || k === 'updatedAt') return false;
+    const v = S[k];
+    if (v == null || v === false || v === '') return false;
+    if (typeof v === 'object') return Object.keys(v).length > 0;
+    return true;
+  });
+}
+/* Week number (1-N) for an India-time date string, 0 before the start, 29 after. */
 export function weekOf(date, start) {
   const d = Math.floor((Date.parse(date + 'T00:00:00Z') - Date.parse((start || START) + 'T00:00:00Z')) / 864e5);
   return d < 0 ? 0 : Math.min(WEEKS.length + 1, Math.floor(d / 7) + 1);

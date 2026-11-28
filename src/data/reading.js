@@ -630,7 +630,6 @@ R.b7 = [DELLACQUA,
     'Open PM roles, AI PM roles and what hiring managers ask for, with charts.',
     'Khuli PM roles, AI PM roles aur hiring managers kya maangte hain, charts ke saath.'),
   YEAR];
-R.b8 = [YEAR, HELM];
 
 window.READING = R;
 })();

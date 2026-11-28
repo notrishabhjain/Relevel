@@ -350,6 +350,5 @@ window.FIGPLACE = Object.assign(window.FIGPLACE || {}, {
   b4: [['toolchain', 'h:1']],
   b5: [['harness', 'h:1']],
   b6: [['learning-loop', 'h:3']],
-  b7: [['pm-objection', 'h:1'], ['three-doors', 'h:2'], ['job-funnel', 'h:4']],
-  b8: [['cap-stages', 'top']]
+  b7: [['pm-objection', 'h:1'], ['three-doors', 'h:2'], ['job-funnel', 'h:4']]
 });

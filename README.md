@@ -1,5 +1,7 @@
 # AI From Zero — 2027 Edition
 
+**Learn AI from both sides: the product (what to build, and why) and the project (how to deliver it safely, on time and within the rules).**
+
 An interactive **skill tracker** for product managers working on AI, delivered as a
 single self-contained web portal. The primary object is a *skill*, not a chapter:
 thirty-two tracked competencies whose mastery is earned by measured evidence, decays
