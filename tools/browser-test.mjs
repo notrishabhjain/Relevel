@@ -1790,6 +1790,57 @@ console.log('\n— Refresher: a pass opens the chapter on one page, with what ch
   await d.ctx.close();
 }
 
+/* Phase 3c and 3.4 of the audit plan (Nov 2026): the starting check and the two routes. */
+console.log('\n— Which route fits you: the starting check, switching, and hours a week —');
+{
+  const d = await newDevice(false);
+  await boot(d.page, '#/');
+  const home = await mainText(d.page);
+  ok(/Full route: 28 weeks, about \d+(\.5)? hours a week/.test(home) && /Experienced route: 16 weeks, about \d+(\.5)? hours a week/.test(home),
+    'the home page shows both routes with their hours a week');
+  const exp = await d.page.evaluate(() => { const R = window.ROUTE; return { n: R.EXP_WEEKS.length, h: R.COUNTS.routes.experienced.hours, f: R.COUNTS.routes.full.hours }; });
+  ok(exp.n === 16 && exp.h.avg > 0 && exp.f.avg > 0, 'the Experienced route is 16 weeks, and both routes carry their hours', JSON.stringify(exp));
+  /* tick something first, so switching can be seen to keep it */
+  await d.page.evaluate(() => { const S = window.STORE.S; S.done.ch1 = true; S.steps['t:setup'] = Date.now(); window.STORE.flush(); });
+  await boot(d.page, '#/');
+  await d.page.locator('details.startcheck > summary').click();
+  const items = await d.page.evaluate(() => {
+    const L = [['a2',1],['a3',0],['a5',0],['a6',1],['a7',1],['b1',0],['b3',1],['a1g',2],['a4s',2],['chpy',1],['ch8f',1],['ch8f',3]];
+    return L.map(([id, i]) => window.CHAPTERS.find(c => c.id === id).selfcheck.items[i].a);
+  });
+  ok(items.length === 12, 'the starting check has twelve questions');
+  for (let i = 0; i < items.length; i++) await d.page.locator(`#stc-${i}-${i < 3 ? (items[i] + 1) % 4 : items[i]}`).check();
+  await d.page.locator('button.stcheck').click();
+  await d.page.waitForTimeout(150);
+  ok(/We suggest the Full route/.test(await mainText(d.page)), '9 of 12 suggests the Full route');
+  await d.page.locator('details.startcheck button.scagain').click();
+  await d.page.waitForTimeout(100);
+  for (let i = 0; i < items.length; i++) await d.page.locator(`#stc-${i}-${i < 2 ? (items[i] + 1) % 4 : items[i]}`).check();
+  await d.page.locator('button.stcheck').click();
+  await d.page.waitForTimeout(150);
+  ok(/We suggest the Experienced route/.test(await mainText(d.page)), '10 of 12 (the 80% pass mark) suggests the Experienced route');
+  await d.page.locator('button.rpuse-experienced').click();
+  await d.page.waitForTimeout(300);
+  const st = await d.page.evaluate(() => ({ route: window.STORE.S.route, weeks: window.ROUTE.WEEKS.length, ch1: !!window.STORE.S.done.ch1, setup: !!window.STORE.S.steps['t:setup'] }));
+  ok(st.route === 'experienced' && st.weeks === 16, 'choosing it puts the learner on the 16-week route', JSON.stringify(st));
+  ok(st.ch1 && st.setup, 'and every tick stays where it was');
+  await boot(d.page, '#/start');
+  const rt = await mainText(d.page);
+  ok(/Experienced route: 16 weeks/.test(rt) && /Capstone, part 2, and the business side in brief/.test(rt), 'the route page shows the Experienced weeks');
+  const nx = await d.page.evaluate(() => { const n = window.ROUTE.nextStep(window.STORE.S); return n && n.id; });
+  ok(nx === 'c:ch0', 'and the next step comes from that route', String(nx));
+  /* a chapter marked known counts on this route too */
+  await d.page.evaluate(() => { const S = window.STORE.S; S.done.ch0 = true; S.known = S.known || {}; S.known.a1 = { at: Date.now(), score: 6 }; S.done.a1 = true; window.STORE.flush(); });
+  await boot(d.page, '#/');
+  const nx2 = await d.page.evaluate(() => window.ROUTE.nextStep(window.STORE.S).id);
+  ok(nx2 === 'c:a1g', 'a known chapter counts as done on the route', nx2);
+  await d.page.locator('button.rpuse-full').click();
+  await d.page.waitForTimeout(300);
+  const back = await d.page.evaluate(() => ({ route: window.STORE.S.route || 'full', weeks: window.ROUTE.WEEKS.length, a1: !!window.STORE.S.done.a1, ch1: !!window.STORE.S.done.ch1 }));
+  ok(back.route === 'full' && back.weeks === 28 && back.a1 && back.ch1, 'switching back keeps everything too', JSON.stringify(back));
+  await d.ctx.close();
+}
+
 await browser.close();
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');
 process.exit(fail ? 1 : 0);

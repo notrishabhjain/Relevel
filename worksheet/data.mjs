@@ -158,6 +158,7 @@ export const UI = {
   en: {
     lang: 'en', title: 'The worksheet', brand: 'AI From Zero worksheet',
     desc: 'The whole course as one path: read, do, check. One step at a time, with your next step always on top.',
+    hours: 'Time: the full route is {weeks} weeks at about {avg} hours a week (the busiest week is about {max}). The Experienced route, for people who have done product work before, is {xweeks} weeks at about {xavg} hours a week. Choose it on the home page of the playbook.',
     lead: 'One step at a time. Press the big button. Do what it says. Then come back. The order is already worked out for you. The route page in the playbook, the plan and this worksheet show the same steps in the same order.',
     how: ['Press the button on the card below. The book chapter or app lesson opens beside this page.', 'Read it or do it. A book chapter ticks itself when you reach the end. In the app, press “Mark chapter complete”.', 'Close the panel. The next step appears. Do it again.'],
     howTitle: 'How this page works', toolsTitle: 'Tools: save as PDF, spreadsheet, open every topic',
@@ -189,6 +190,7 @@ export const UI = {
   hi: {
     lang: 'hi', title: 'Worksheet', brand: 'AI From Zero worksheet',
     desc: 'Poora course ek raaste ki tarah: padhiye, kijiye, parakhiye. Ek samay par ek step, aur aapka agla step hamesha upar.',
+    hours: 'Samay: full route {weeks} hafte ka hai, hafte mein lagbhag {avg} ghante (sabse vyast hafta lagbhag {max}). Experienced route, un logon ke liye jinhone pehle product ka kaam kiya hai, {xweeks} hafte ka hai, hafte mein lagbhag {xavg} ghante. Ise playbook ke home page par chuniye.',
     lead: 'Ek samay par ek step. Bada button dabaiye. Jo likha hai woh kijiye. Phir wapas aaiye. Kram pehle se tay hai. Playbook ka route page, plan aur yeh worksheet wahi steps usi kram mein dikhate hain.',
     how: ['Neeche wale card ka button dabaiye. Kitaab ka chapter ya app ka lesson isi page ke bagal mein khulta hai.', 'Use padhiye ya kijiye. Kitaab ka chapter ant tak pahunchte hi khud tick ho jaata hai. App mein “Mark chapter complete” dabaiye.', 'Panel band kijiye. Agla step dikhega. Phir wahi kijiye.'],
     howTitle: 'Yeh page kaise kaam karta hai', toolsTitle: 'Tools: PDF, spreadsheet, har topic kholna',

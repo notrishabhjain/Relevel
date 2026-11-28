@@ -145,9 +145,10 @@ function planExtras() {
    same functions, copied from the module's source, so "done" and "next" can
    never be decided two different ways. */
 const routeJs = '(function(){\nconst START=' + JSON.stringify(ROUTE.START) + ', COUNTS=' + JSON.stringify(ROUTE.COUNTS) + ', WEEKS=' + JSON.stringify(ROUTE.WEEKS) +
-  ', MONTHS=' + JSON.stringify(ROUTE.MONTHS) + ';\nconst STEPS=WEEKS.flatMap(w=>w.steps.map(s=>Object.assign({week:w.n},s)));\n' +
-  [ROUTE.stepDone, ROUTE.nextStep, ROUTE.stepHref, ROUTE.startOf, ROUTE.weekOf, ROUTE.datesOf, ROUTE.todayIST, ROUTE.mondayOf, ROUTE.isFresh].map(f => f.toString()).join('\n') +
-  '\nwindow.ROUTE={START,COUNTS,WEEKS,MONTHS,STEPS,stepDone,nextStep,stepHref,startOf,weekOf,datesOf,todayIST,mondayOf,isFresh};\n})();';
+  ', MONTHS=' + JSON.stringify(ROUTE.MONTHS) + ', EXP_WEEKS=' + JSON.stringify(ROUTE.EXP_WEEKS) + ', EXP_MONTHS=' + JSON.stringify(ROUTE.EXP_MONTHS) +
+  ';\nconst STEPS=WEEKS.flatMap(w=>w.steps.map(s=>Object.assign({week:w.n},s)));\nconst EXP_STEPS=EXP_WEEKS.flatMap(w=>w.steps.map(s=>Object.assign({week:w.n},s)));\n' +
+  [ROUTE.stepDone, ROUTE.routeOf, ROUTE.nextStep, ROUTE.stepHref, ROUTE.startOf, ROUTE.weekOf, ROUTE.datesOf, ROUTE.todayIST, ROUTE.mondayOf, ROUTE.isFresh].map(f => f.toString()).join('\n') +
+  '\nwindow.ROUTE={START,COUNTS,WEEKS,MONTHS,STEPS,EXP_WEEKS,EXP_MONTHS,EXP_STEPS,stepDone,routeOf,nextStep,stepHref,startOf,weekOf,datesOf,todayIST,mondayOf,isFresh};\n})();';
 const jsSource = js.map(f => f === 'src/app.js' ? bookJs + '\n' + routeJs + '\n' + read(f) : read(f)).join('\n');
 
 const TITLE = 'AI From Zero';

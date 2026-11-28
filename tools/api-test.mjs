@@ -169,6 +169,15 @@ console.log('\n— the calendar restart reaches the check-in summary —');
      'the summary counts weeks from the restart day when there is one, and from 19 Oct otherwise');
 }
 
+console.log('\n— the check-in summary follows the route the person chose (Phase 3c) —');
+{
+  const { status } = await import('../api/_lib/plan.js');
+  const now = Date.parse('2026-11-10T06:00:00Z');
+  const full = status({}, {}, now), exp = status({}, { route: 'experienced', done: { ch0: true } }, now);
+  ok(full.of === WEEKS.length && exp.of === 16, 'the summary counts 16 weeks on the Experienced route', full.of + ' / ' + exp.of);
+  ok(exp.next && exp.next.title === 'Your learning system: role, evidence and a capstone problem' && exp.next.week === 1, 'and names the next step from that route', JSON.stringify(exp.next));
+}
+
 console.log('\n— daily reminder —');
 {
   ok(MESSAGES.length === 30 && MESSAGES.every((m, i) => m.startsWith('Day ' + (i + 1) + '. ')), 'there are thirty messages, numbered in order');

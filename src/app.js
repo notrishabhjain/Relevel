@@ -104,8 +104,20 @@ try{
     localStorage.setItem(KEY,JSON.stringify(Object.assign({},raw0||{},{routeStart:S.routeStart})));
   }
 }catch(e){}
-/* Totals come from the route (COUNTS), never typed by hand. */
-const WK=s=>String(s).replace(/\{weeks\}/g,(window.ROUTE&&window.ROUTE.COUNTS||{}).weeks||'');
+/* Two routes (audit plan, Phase 3c): the full route and the Experienced one.
+   window.ROUTE always shows the one this learner is on, so every page that
+   reads its weeks and steps follows the choice without knowing about it. The
+   ticks are the same either way: switching moves nothing but the list. */
+const ROUTE_BASE=window.ROUTE;
+function applyRoute(){
+  if(!ROUTE_BASE||!ROUTE_BASE.routeOf) return;
+  const r=ROUTE_BASE.routeOf(S);
+  window.ROUTE=Object.assign({},ROUTE_BASE,{name:r.name,WEEKS:r.WEEKS,STEPS:r.STEPS,MONTHS:r.MONTHS,
+    weekOf:(d,st)=>ROUTE_BASE.weekOf(d,st,r.WEEKS.length)});
+}
+applyRoute();
+/* Totals come from the route (COUNTS, or the active route's own length), never typed by hand. */
+const WK=s=>String(s).replace(/\{weeks\}/g,(window.ROUTE&&window.ROUTE.WEEKS||[]).length||'');
 /* Carry older ticks into the route once. The first gentle start (20 Oct 2026)
    kept day ids under S.gentle, and the book kept its own list of chapters read;
    both now live in S.steps and S.read, the ones every page reads. */
@@ -857,6 +869,83 @@ function selfCheck(c){
   draw();
   return box;
 }
+
+/* Which route fits you (audit plan, Phase 3c). A twelve-question starting
+   check, drawn from the chapters' own quizzes: seven on the product side and
+   five on the basics. At 10 of 12 (80%, the course's pass mark everywhere) it
+   suggests the Experienced route; below, the full one. The learner chooses,
+   and can switch at any time: ticks, known chapters and notes never move. */
+const START_CHECK=[['a2',1],['a3',0],['a5',0],['a6',1],['a7',1],['b1',0],['b3',1],
+  ['a1g',2],['a4s',2],['chpy',1],['ch8f',1],['ch8f',3]];
+function routeHours(name){
+  const C0=(ROUTE_BASE&&ROUTE_BASE.COUNTS||{}).routes||{}, r=name==='experienced'?C0.experienced:C0.full;
+  const n=name==='experienced'?(ROUTE_BASE.EXP_WEEKS||[]).length:(ROUTE_BASE.WEEKS||[]).length;
+  return {weeks:n, avg:(r&&r.hours||{}).avg, max:(r&&r.hours||{}).max};
+}
+function routeLine(name){
+  const x=routeHours(name);
+  return T(name==='experienced'?'Experienced route: {n} weeks, about {avg} hours a week (the busiest week is about {max}).':'Full route: {n} weeks, about {avg} hours a week (the busiest week is about {max}).')
+    .replace('{n}',x.weeks).replace('{avg}',x.avg).replace('{max}',x.max);
+}
+function routePicker(){
+  const box=h('section',{class:'routepick'});
+  const key='start-check';
+  let openCheck=false;
+  function setRoute(name){
+    if(name==='experienced') S.route='experienced'; else delete S.route;
+    save(); applyRoute(); updateProgress(); route();
+  }
+  function draw(){
+    box.innerHTML='';
+    const cur=S.route==='experienced'?'experienced':'full';
+    box.appendChild(h('h2',{class:'sec',text:T('Which route fits you?')}));
+    box.appendChild(h('p',{class:'dim',text:T('Both routes end with the same project and the same proof. The Experienced route is for people who have done product work before: the product chapters become short refresher quizzes.')}));
+    box.appendChild(h('div',{class:'rpopts'},['full','experienced'].map(n=>h('div',{class:'rpopt'+(cur===n?' on':'')},[
+      h('p',{class:'rpline',text:routeLine(n)}),
+      cur===n?h('span',{class:'pill ok',text:T('Your route')})
+        :h('button',{class:'sm rpuse rpuse-'+n,onclick:()=>setRoute(n)},T(n==='experienced'?'Use the Experienced route':'Use the Full route'))]))));
+    box.appendChild(h('p',{class:'dim small',text:T('You can switch at any time. Your ticks, known chapters and notes stay as they are.')}));
+    const items=START_CHECK.map(([id,i])=>{const c=byId[id];return c&&c.selfcheck?c.selfcheck.items[i]:null;}).filter(Boolean);
+    const rec=S.cp[key];
+    const det=h('details',{class:'selfcheck startcheck'});
+    if(rec||openCheck) det.open=true;
+    det.addEventListener('toggle',()=>{openCheck=det.open;});
+    det.appendChild(h('summary',{},[h('span',{text:T('Not sure? Take the starting check')}),
+      h('span',{class:'pill',style:'margin-left:auto',text:items.length+' '+T('questions')})]));
+    const body=h('div',{class:'scbody'});
+    det.appendChild(body);
+    const picks=rec?rec.ans.slice():items.map(()=>-1);
+    items.forEach((it,i)=>{
+      const q=h('fieldset',{class:'scq'},[h('legend',{html:(i+1)+'. '+T(it.q)})]);
+      it.opts.forEach((o,j)=>{
+        const id='stc-'+i+'-'+j;
+        const inp=h('input',{type:'radio',name:'stc-'+i,id,value:String(j)});
+        if(picks[i]===j) inp.checked=true;
+        if(rec) inp.disabled=true;
+        inp.addEventListener('change',()=>{picks[i]=j;});
+        q.appendChild(h('label',{for:id,class:'scopt'+(rec?(j===it.a?' right':picks[i]===j?' wrong':''):'')},[inp,h('span',{html:' '+T(o)})]));
+      });
+      body.appendChild(q);
+    });
+    if(!rec){
+      const msg=h('p',{class:'dim scmsg'});
+      body.appendChild(h('div',{class:'scact'},[h('button',{class:'sm on stcheck',onclick:()=>{
+        if(picks.some(x=>x<0)){msg.textContent=T('Answer every question first.');return;}
+        const score=items.filter((it,i)=>picks[i]===it.a).length;
+        S.cp[key]={ans:picks.slice(),score,at:Date.now()};save();draw();}},T('Check my answers')),msg]));
+    } else {
+      const exp=rec.score>=Math.ceil(0.8*items.length-1e-9);
+      body.appendChild(h('div',{class:'scres '+(exp?'ok':'')},[
+        h('p',{},[h('b',{text:T('Your score')+': '+rec.score+' / '+items.length})]),
+        h('p',{class:'stsuggest',text:T(exp?'We suggest the Experienced route. You already know most of the product side and the basics.':'We suggest the Full route. It teaches the product side and the basics properly before the AI half.')}),
+        h('button',{class:'sm scagain',onclick:()=>{delete S.cp[key];save();draw();}},T('Try again'))]));
+    }
+    box.appendChild(det);
+  }
+  draw();
+  return box;
+}
+window.ROUTE_PICKER=routePicker;
 
 function renderChapter(c){
   const w=h('div',{class:'wrap'});
@@ -1739,7 +1828,10 @@ function pageStart(){
     h('div',{class:'eyebrow'},[h('span',{text:T('One view of everything')}),h('span',{class:'dot'}),
       h('span',{text:T('the playbook, the book, the plan and the curriculum, week by week')})]),
     h('h1',{text:T('Your route')}),
-    h('p',{text:T('Each week reads a chapter of the book, the story, and then does the chapter here that practises it, the same day or the next. Month 1 is the product half, with no code and nothing to install. On a day when ten minutes feels like too much, do one page and tick it anyway.')})]));
+    /* which route, and its hours a week (Phase 3c and 3.4); change it on the home page */
+    h('p',{class:'routewhich'},[h('b',{text:routeLine(R.name==='experienced'?'experienced':'full')+' '}),
+      h('a',{href:'#/',text:T('Change route')+' \u2192'})]),
+    R.name==='experienced'?h('p',{text:T('Each week does its chapters in order. The product chapters and the basics are short quizzes: pass one and the chapter counts as known, with the product ones on one page. Every AI chapter is kept whole. The book stays open beside you, but it is not on this route.')}):h('p',{text:T('Each week reads a chapter of the book, the story, and then does the chapter here that practises it, the same day or the next. Month 1 is the product half, with no code and nothing to install. On a day when ten minutes feels like too much, do one page and tick it anyway.')})]));
   /* the three other views, one tap away */
   w.appendChild(h('nav',{class:'hubviews','aria-label':T('The other views')},[
     h('a',{href:bookBaseHere},[h('b',{text:T('The book')}),h('span',{text:T('the same chapters as one story')})]),
@@ -1802,7 +1894,7 @@ function pageStart(){
     note.addEventListener('change',()=>planTouch('weeks',wk.n,{note:note.value.trim().slice(0,500)}));
     const link=h('input',{type:'url',value:pw.link||'',placeholder:'https://…','aria-label':T('Link to what you made')});
     link.addEventListener('change',()=>{const v=link.value.trim(); planTouch('weeks',wk.n,{link:/^https?:\/\//i.test(v)?v.slice(0,500):''});});
-    const further=(X.further[wk.n]||[]).filter(Boolean);
+    const further=(R.name==='experienced'?[]:(X.further[wk.n]||[])).filter(Boolean);
     return h('div',{class:'hubplan'},[
       h('p',{},[h('strong',{text:T('By Sunday')+': '}),h('span',{text:T(wk.ship)})]),
       h('p',{class:'small'},[h('strong',{text:T('How to')+': '})].concat(wk.how.map((id,i)=>[i?h('span',{text:' · '}):null,
@@ -1832,7 +1924,7 @@ function pageStart(){
 
   /* months, with the curriculum's goal and the monthly review */
   R.MONTHS.forEach(m=>{
-    const g=(X.gates||[]).find(x=>x.month===m.n)||null, pg=g?(PL.gates[g.id]||{}):{};
+    const g=R.name==='experienced'?null:(X.gates||[]).find(x=>x.month===m.n)||null, pg=g?(PL.gates[g.id]||{}):{};
     const sec=h('section',{class:'hubmonth',id:'month-'+m.n});
     sec.appendChild(h('h2',{class:'hubmh',text:T(m.name)}));
     const mdates=R.datesOf(m.from,m.to,st,true);
@@ -3083,6 +3175,7 @@ const CRUMB={'':'Home','library':'The course map','start':'Your route','skills':
   'notebook':'My notes','later':'Not yet \u2014 what to ignore for now','progress':'Where you are'};
 
 function route(){
+  applyRoute();
   const hash=location.hash.replace(/^#\/?/,'').split('#')[0];
   const parts=hash.split('/').filter(Boolean);
   const main=$('#main');main.innerHTML='';
