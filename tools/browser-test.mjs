@@ -987,7 +987,7 @@ ok(appx.rows === 19 && appx.boxes === 76,
    'rows=' + appx.rows + ' boxes=' + appx.boxes);
 ok(appx.shortlist === 15, 'the fifteen design-review questions are there', String(appx.shortlist));
 ok(appx.bank === 31, 'and the full question bank behind them', String(appx.bank));
-ok(appx.sources === 16, 'and the research basis is listed', String(appx.sources));
+ok(appx.sources === 32, 'and the research basis is listed', String(appx.sources));
 ok(appx.doors.join() === '#/evidence,#/templates',
    'with the two instruments one tap away', appx.doors.join());
 await v4.page.click('.cmptable tbody tr:first-child input[type=checkbox]');
