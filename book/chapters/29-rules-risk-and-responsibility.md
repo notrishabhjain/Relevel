@@ -120,6 +120,20 @@ Farah raised her hand, a little shyly. Her team pasted customers' Hinglish into 
 
 Anaya said it would take a paste box that was as good. It must also clean the text before it went anywhere. "Then you have your second product," said Lakshmi. For the first time that afternoon, she smiled.
 
+## Dates, standards and guidance
+
+Lakshmi's last page was a list of dates. "Say only what you have checked," she said, "and say when you checked it."
+
+The EU AI Act came into force on 1 August 2024. Its bans began in February 2025, and the rules for general-purpose models in August 2025. The duty to tell people they are talking to an AI applies from 2 August 2026. In July 2026 a new EU law, the Digital Omnibus, moved the high-risk dates. Uses such as hiring and loans now apply from 2 December 2027, and AI built into products from 2 August 2028.
+
+Next came two standards that buyers ask about. ISO/IEC 42001 says how an organisation runs its AI work, and an organisation can be certified against it. ISO/IEC 42005 guides an impact assessment of one system, and it is guidance only.
+
+Last came India's own guidance. In November 2025, MeitY published the India AI Governance Guidelines. They give seven principles, starting with trust and people first. They are not a law, and they favour voluntary steps. The binding duties still come from the DPDP Act and from sector regulators. For a bank, that means the Reserve Bank, whose FREE-AI report uses the same seven principles.
+
+"Voluntary is not the same as optional," Lakshmi said. "The bank's auditors will ask for these anyway."
+
+*Last verified: November 2026. The sources and their dates are listed in the app, in Appendix E of the reference pages.*
+
 ## Summary
 
 Think of the speed limit again. How much a system must show depends on how much harm a wrong answer could do. The use decides that, not the technology. The same tool can be harmless in one use and serious in another. Its tier changes when its use changes.
@@ -129,5 +143,6 @@ Think of the speed limit again. How much a system must show depends on how much 
 - A deletion drill finds the places where a person's data lives that you cannot reach. The forgotten ones are usually copies made for a good reason.
 - Human oversight works only if the reviewer sees the proof and can say no.
 - Where people already use tools nobody approved, the cure is an approved tool that is better.
+- Keep a dated list of the rules, and say when you checked it. EU high-risk duties now start in December 2027. India's AI guidelines are voluntary, but binding duties still come from the DPDP Act and sector regulators.
 
 Next, an email arrives at ten past two in the morning. The model the guard depends on will be retired in thirty days.

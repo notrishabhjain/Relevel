@@ -103,6 +103,18 @@ Phir Anaya ne specification (tool ka likha hua plan) mein ek line jodi. Woh is b
 
 Isliye building ke bahar kisi ko unhe padhne nahi diya ja sakta, jab tak terms likhit mein alag na kahe. Abhi terms aisa nahi kehti thi. Toh judge ek aisa model hona chahiye jo Sahaj khud chalaye. Aise models hain, woh samajhti thi. Aage ke chapters dikhayenge ki woh kaise kaam karta hai.
 
+## Act ke peeche ke Rules
+
+Jaane se pehle Lakshmi ne folder mein ek page joda. "Act batata hai kya. Rules batate hain kaise, aur kab."
+
+DPDP Rules 2025 13 November 2025 ko notify hue. Yeh kadamon mein shuru hote hain. Board pehle aaya. Consent Managers, yaani woh registered companies jo logon ko consent dene aur wapas lene mein madad karti hain, ek saal baad shuru hote hain. Zyadatar duties 13 May 2027 se shuru hoti hain. Yeh hain notice, suraksha, breach report, data mitana, bachchon ka data aur logon ke adhikar.
+
+Unhone guard ke liye teen lines par nishaan lagaya. Breach ki khabar prabhavit logon ko bina der kiye, saral shabdon mein deni hogi. Board ko bhi bina der kiye batana hoga, aur 72 ghante ke andar poori report deni hogi. Bachche ke data ke liye pehle asli maata-pita ka consent chahiye. Aur ek badi sanstha ko Significant Data Fiduciary ghoshit kiya ja sakta hai. Tab us par har saal impact assessment aur audit ki zimmedari hoti hai, aur yeh jaanchne ki ki uske algorithms logon ke adhikaron ko khatre mein na daalein.
+
+"Bank ko aisa ghoshit kiya ja sakta hai," unhone kaha. "Isliye guard ke logs aise likhiye jaise koi auditor unhe padhega. Koi padhega."
+
+*Aakhri baar jaancha gaya: November 2026. Sources aur unki taareekhein app mein, reference pages ke Appendix E mein di gayi hain.*
+
 ## Summary
 
 Text vendor ko bheja ja sakta hai ya nahi, yeh teen sawaalon par aata hai, order mein. Kya yeh kisi insaan ko pehchanta hai? Yeh kiski confidential jaankari hai? Vendor ise ke saath kya karta hai?
@@ -111,5 +123,6 @@ Text vendor ko bheja ja sakta hai ya nahi, yeh teen sawaalon par aata hai, order
 - Jo rule log follow kar sakein woh aam cases saaf shabdon mein tay karta hai. Woh batata hai ki kya kabhi nahi bheja jaata. Woh doubtful cases ke liye saaf raasta deta hai.
 - Retrieval jo kuch dhoondhta hai woh bhej deta hai. Isliye store mein kya jaayega, yeh choice us par poochhe gaye har sawaal ki choice hai.
 - Jo rule logon ke yaad rakhne par nirbhar hai woh sirf ek ichha hai. Jo tool ise lagu karta hai woh ek control hai.
+- DPDP Rules 2025 batate hain kaise aur kab: zyadatar duties 13 May 2027 se shuru hoti hain. Breach ki khabar logon aur Board ko bina der kiye jaati hai, 72 ghante ke andar poori report ke saath.
 
 Agle chapter mein Lakshmi August ki ek lambi dopahar ek rule se shuru karti hai: jo likha nahi gaya, woh hua hi nahi. Woh Anaya se guard ke peeche ka paper maangti hai.

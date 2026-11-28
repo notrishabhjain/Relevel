@@ -101,6 +101,18 @@ Anaya ne board par cycle ek line mein banayi, taaki woh bhoole nahi. Asli messag
 
 Call ke ant mein Meenakshi ne ek baat jodi jo woh aksar kehti hain. Product bahar jaane se pehle poochhiye ki kya woh key paas karta hai. Bahar jaane ke baad poochhiye ki kya logon ka bhala hua. Yeh alag sawaal hain. Pehle mein paas hone se doosra chhua hi nahi jaata. Anaya ne use likh liya. Yeh sawaal uske saath sabse zyada der tak raha.
 
+## Ek baar, ya har baar
+
+Imran ke paas judge ke liye ek aur sawaal tha. Guard har baar ek hi jawaab nahi deta tha. Isliye team har mushkil case ko teen baar chalati thi.
+
+"Teen runs ko score kaise karein?" unhone poochha. Anaya ne do column banaye. Pehla poochhta tha ki kya teen mein se kam se kam ek run sahi tha. Ise **pass@k** kehte hain, jahan k koshishon ki ginti hai. Doosra poochhta tha ki kya teeno sahi the. Ise **pass^k** kehte hain, bola jaata hai "pass hat k".
+
+Unhone ek aise case ka hisaab lagaya jise guard 75% baar sahi karta tha. Teen mein se kam se kam ek sahi, lagbhag 98% aaya. Teeno sahi, 0.75 × 0.75 × 0.75, lagbhag 42% aaya.
+
+"Customer ko ek koshish milti hai," unhone kaha. "Aur hazaar customers ko hazaar koshishein." Demo ke liye pass@k theek tha. Jis guard ko har baar Aadhaar number chhupana ho, uske liye maayne rakhne wala number pass^k tha.
+
+*Aakhri baar jaancha gaya: November 2026. Sources aur unki taareekhein app mein, reference pages ke Appendix E mein di gayi hain.*
+
 ## Summary
 
 Jawaab ko marks dene ke teen tareeke hain. Program lagbhag free hai, isliye jitna ho sake use kijiye. Insaan mehnga hai, aur "sahi" ka matlab tay karta hai. Judge ki tarah kaam karne wali model tez, sasti aur biased hai.
@@ -108,5 +120,6 @@ Jawaab ko marks dene ke teen tareeke hain. Program lagbhag free hai, isliye jitn
 - Judge ko check kijiye: wahi jawaab khud grade kijiye aur ginye ki kitni baar sahmat hain. Asahmati ka pattern number se zyada zaroori hai. Ek jagah jama galtiyan theek ho sakti hain. Bikhri hui galtiyon ka matlab hai ki "sahi" ka matlab saaf nahi hai.
 - Judges lambe jawaab aur do mein se pehle wale ko pasand karte hain. Ilaaj hai ek khaas cheez grade karna, order badalna aur quotation maangna.
 - Error analysis ka matlab hai 100 asli outputs padhna. Categories chunne se pehle apne words mein likhiye ki kya galat hua. Group kijiye aur ginye. Sabse bade groups ko naye test cases banaiye.
+- pass@k poochhta hai ki kya k koshishon mein se ek chali; pass^k poochhta hai ki kya saari chalin. 75% prati koshish par, lagatar teeno koshishein sirf lagbhag 42% baar chalti hain.
 
 Agle chapter mein Anaya finance director ko plan dikhati hai, jo poochhta hai ki guard ko har mahine chalane mein kitna kharch aayega.

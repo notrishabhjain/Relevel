@@ -126,6 +126,16 @@ Imran ne do aur aadatein zaroori maani, dono normal software se udhaar li hui. P
 
 Doosri, badlaav pehle kuch hi users ko dikhana, purana version taiyaar rakhkar. Yeh *canary release* hai. Naam purani khaanon se aaya hai, jahan pehle chidiya andar bheji jaati thi. Imran ne kaha ki ek sawaal ka jawaab hamesha hona chahiye: theek-theek kya badla?
 
+## Jab gate sikhana band kar de
+
+Ab tak golden dataset har badlaav par 99% score karta tha. Lagatar teen releases ka score bhi wahi raha.
+
+"To gate ka kaam ho gaya," kisi ne kaha. Anaya ne sir hilaya. Jis test ko poori class pass kar le, woh ab nahi batata ki kaun behtar hai. Ise eval saturation kehte hain. Golden dataset ab sirf ek baat batata tha: koi purani cheez nahi tooti. Yeh rakhne laayak tha, isliye woh regression suite ban gaya, jahan 100% ke paas ka score hi maqsad hai.
+
+Par woh ab progress nahi dikha sakta tha. Isliye team ne trace records ki taaza failures se naye, mushkil cases likhe. Naya set 60% se shuru hua. Ab uske paas chadhne ki jagah thi, aur har badlaav dikha sakta tha ki usne madad ki ya nahi.
+
+*Aakhri baar jaancha gaya: November 2026. Sources aur unki taareekhein app mein, reference pages ke Appendix E mein di gayi hain.*
+
 ## Saar
 
 Instruction badalna system badalna hai, bhale hi woh deployment jaisa na lage. Ilaaj release gate hai. Woh school ke gate jaisa taala-band darwaaza hai. Woh har badlaav par ek versioned golden dataset chalata hai. Pehle se tay threshold se koi number neeche ho, toh badlaav rok deta hai.
@@ -134,5 +144,6 @@ Instruction badalna system badalna hai, bhale hi woh deployment jaisa na lage. I
 - "Isne aisa kyun kiya?" ka jawaab dene ke liye har request ke raaste ka trace record rakhiye. Jaanne aur andaaza lagane mein yehi farq hai.
 - Average dheemi poonchh chhupa deta hai, isliye p95 naapiye. Cost poore kaam ka ginye, ek call ka nahi.
 - Quality bina code chhue bhi badal sakti hai, kyunki traffic, data aur providers sab hilte rehte hain. Har hisse ko apna version dijiye taaki woh akela rollback ho sake. Badlaav pehle kuch hi users ko dikhaiye.
+- Saturated eval ab progress nahi dikhata. Use regression suite ki tarah rakhiye, aur mushkil cases likhiye taaki capability eval phir neeche se shuru ho.
 
 Agla chapter ek kadam aur aage jaata hai. Woh poochta hai ki jab aapke banaye system par jaan-boojhkar hamla ho, tab kya hota hai.

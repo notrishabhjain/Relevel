@@ -126,6 +126,16 @@ Imran insisted on two more habits, both borrowed from ordinary software. The fir
 
 The second was to show a change to a few users first, with the old version ready. That is a *canary release*. The name comes from old mines, where a bird was sent in first. Imran said one question must always have an answer: what exactly changed?
 
+## When the gate stops teaching
+
+By now, the golden dataset scored 99% on every change. Three releases in a row scored the same.
+
+"Then the gate is finished," someone said. Anaya shook her head. A test the whole class passes no longer tells you who is better. This is called eval saturation. The golden dataset now said only one thing: nothing old had broken. That was worth keeping, so it became the regression suite, where a score near 100% is the point.
+
+But it could no longer show progress. So the team wrote new, harder cases from the latest failures in the trace records. The new set started at 60%. Now it had room to climb, and each change could show whether it helped.
+
+*Last verified: November 2026. The sources and their dates are listed in the app, in Appendix E of the reference pages.*
+
 ## Summary
 
 Changing an instruction changes the system, even if it does not feel like a deployment. The cure is a release gate. It is a locked door, like a school gate. It runs a versioned golden dataset on every change. It blocks the change if any number falls below a threshold set in advance.
@@ -134,5 +144,6 @@ Changing an instruction changes the system, even if it does not feel like a depl
 - To answer "why did it do that?", keep a trace record of each request's path. That is the difference between knowing and guessing.
 - Averages hide the slow tail, so measure p95. Count the cost of the whole task, not of one call.
 - Quality can change without anyone touching the code, because traffic, data and providers all move. Give each part its own version so it can be rolled back alone. Show changes to a few users first.
+- A saturated eval no longer shows progress. Keep it as the regression suite, and write harder cases so the capability eval starts low again.
 
 The next chapter goes one step further. It asks what happens when someone attacks the thing you built on purpose.

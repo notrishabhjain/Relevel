@@ -1690,6 +1690,29 @@ console.log('\n— one route, made-up data only, worked starter sheets —');
   await d.ctx.close();
 }
 
+/* Phase 2 of the audit plan (Nov 2026): dated facts, and the Delivery & Governance terms. */
+console.log('\n— dated facts and the Delivery & Governance glossary —');
+{
+  const d = await newDevice(false);
+  for (const [id, words] of [['ch115', /TTFT \(time to first token\)/], ['ch14', /pass\^k/], ['ch15', /cost per successful answer/],
+    ['ch165', /DPDP Rules 2025/], ['ch17', /2 December 2027/], ['ch16e', /eval saturation/], ['ch18s', /CERT-In 6-hour rule/]]) {
+    await boot(d.page, '#/ch/' + id);
+    const t = await mainText(d.page);
+    ok(words.test(t) && /Last verified: November 2026/.test(t), `${id} teaches its 2026 update and says when it was last checked`);
+  }
+  await boot(d.page, '#/glossary');
+  const all = await d.page.locator('tbody tr').count();
+  await d.page.locator('button.dgonly').click();
+  await d.page.waitForTimeout(200);
+  const dgRows = await d.page.locator('tbody tr').count();
+  const dgN = await d.page.evaluate(() => window.GLOSSARY.filter(g => g[3] === 'dg').length);
+  ok(dgRows === dgN && dgRows >= 20 && dgRows < all, 'the glossary filters to the Delivery & Governance terms', dgRows + ' of ' + all);
+  ok(/OWASP Agentic Top 10/.test(await mainText(d.page)) && !/Mastery gate/.test(await mainText(d.page)), 'and shows only those terms');
+  await boot(d.page, '#/appendix');
+  ok(/Last verified: November 2026/.test(await mainText(d.page)), 'Appendix E dates its sources');
+  await d.ctx.close();
+}
+
 await browser.close();
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');
 process.exit(fail ? 1 : 0);

@@ -97,6 +97,20 @@ Imran wrote the rule in the margin of the PRD (the recipe card for the product).
 
 Neither of them said the question that worried them both. Where would the careful judge run? Suppose the sentence it read was one of the hard ones. It might hold the very thing the guard was built to hide. Could the sentence leave the building? Or must the judge live inside? That was a question for another day. It was nearly a question for Lakshmi.
 
+## Two numbers, not one
+
+Before they left, Imran split the wait into two numbers. He wrote them on the whiteboard.
+
+The first was **TTFT**, the time to first token. It is how long the customer waits before the first word appears. It is like the wait before the chai-wala starts pouring. The model must first read the whole prompt. That reading step is called prefill. So every page added to the prompt adds to this wait.
+
+The second was **TPOT**, the time per output token. It is the gap between one word and the next, once the words begin to flow. It is how fast the chai-wala pours. Some tools call it inter-token latency.
+
+"Customers forgive a fast pour," Imran said. "They do not forgive a long wait at the counter." Last week the team had added the full policy to every prompt. The pour had stayed fast. The start had slowed down.
+
+He added one more line. A busy server can cut a long prompt into pieces, and read them between other people's words. This is called chunked prefill. One reply starts a little later, but no reply freezes.
+
+*Last verified: November 2026. The sources and their dates are listed in the app, in Appendix E of the reference pages.*
+
 ## Summary
 
 A reasoning model works on rough paper before it answers. It is better at problems that must be worked out. It is no better at looking things up, sorting, or reshaping what it was given. You pay for its rough work, in money and in time, on every request.
@@ -105,5 +119,6 @@ A reasoning model works on rough paper before it answers. It is better at proble
 - The user feels latency. Streaming shows an answer early. Saying what is happening makes a wait make sense. A long job can move to the background.
 - A decision cannot be streamed, because half of a decision is a hazard.
 - A sensible design uses the costly machine only on the cases that need it. It never uses it while a customer waits.
+- Measure the wait as two numbers: TTFT (how long before the first word) and TPOT (the gap between words). A longer prompt slows the start, not the pour.
 
 Next, a customer in Nashik is quoted the wrong late fee, and Anaya goes back to search to find out why.

@@ -103,6 +103,18 @@ Then Anaya added a line to the specification (the written plan for the tool). It
 
 So nobody outside the building could be allowed to read them, unless the terms said otherwise in writing. At present they did not. So the judge would have to be a model that Sahaj ran itself. There were such models, she understood. Later chapters would show how that worked.
 
+## The rules behind the Act
+
+Before she left, Lakshmi added a page to the folder. "The Act says what. The Rules say how, and when."
+
+The DPDP Rules 2025 were notified on 13 November 2025. They start in steps. The Board came first. Consent Managers, the registered companies that help people give and take back consent, start a year later. Most of the duties start on 13 May 2027. These are notices, security, breach reports, deleting data, children's data and people's rights.
+
+She marked three lines for the guard. A breach must be told to the affected people without delay, in plain words. The Board must be told without delay too, with a full report within 72 hours. A child's data needs a real parent's consent first. And a large organisation can be named a Significant Data Fiduciary. It then owes a yearly impact assessment and an audit, and a check that its algorithms do not put people's rights at risk.
+
+"The bank may be named one," she said. "So write the guard's logs as if an auditor will read them. One will."
+
+*Last verified: November 2026. The sources and their dates are listed in the app, in Appendix E of the reference pages.*
+
 ## Summary
 
 Whether text may go to a vendor comes down to three questions, asked in order. Does it identify a person? Whose confidential information is it? What does the vendor do with it?
@@ -111,5 +123,6 @@ Whether text may go to a vendor comes down to three questions, asked in order. D
 - A rule people can follow settles the common cases in plain words. It names what is never sent. It gives a clear route for doubtful cases.
 - Retrieval sends whatever it finds. So the choice of what goes into a store is a choice about every question asked of it.
 - A rule that depends on people remembering it is only a wish. A tool that enforces it is a control.
+- The DPDP Rules 2025 say how and when: most duties start on 13 May 2027. A breach goes to the people and the Board without delay, with a full report within 72 hours.
 
 Next, Lakshmi opens a long August afternoon with one rule: what is not written down did not happen. She asks Anaya for the paper behind the guard.

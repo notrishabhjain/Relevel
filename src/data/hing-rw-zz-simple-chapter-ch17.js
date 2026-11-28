@@ -103,10 +103,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Doosri, <strong>use badalne par level badal jaata hai</strong>. Yeh aksar launch ke baad hota hai, aur koi kaagaz update nahi karta.',
   'Two more points on the EU AI Act. The duties differ for whoever <em>provides</em> a system and whoever <em>deploys</em> it (puts it to work), so find out which one you are. Also, chatbots and made-up media have a duty to be open: people must be told they are talking to an AI, and AI-made images and audio must be labelled.':
     'EU AI Act par do baatein aur. Jo system <em>banakar deta hai</em> aur jo use <em>kaam par lagata hai</em>, dono ki duties alag hain, isliye pata kijiye ki aap kaun hain. Saath hi, chatbots aur banaye hue media par khulkar batane ki duty hai: logon ko bataya jaana chahiye ki woh AI se baat kar rahe hain, aur AI se bani images aur audio par label lagna chahiye.',
-  'Dates to check before any interview':
-    'Kisi bhi interview se pehle dekhne wali dates',
-  'Rules and deadlines change, and this course does not keep dates. The plan keeps one dated list of rule milestones on its Curriculum page, with the DPDP and EU dates. Open it before an interview. Check each date against the official source, and say only what you checked.':
-    'Rules aur deadlines badalte hain, aur yeh course dates nahi rakhta. Plan ke Curriculum page par rule milestones ki ek dated list hai, DPDP aur EU dates ke saath. Interview se pehle use kholiye. Har date ko official source se milaiye, aur sirf wahi boliye jo aapne check kiya.',
   'Put your system in a risk tier':
     'Apne system ko ek risk tier mein rakhiye',
   'Take your Chapter 7 RAG system (the one that finds pages first, then answers from them). Place it in a real use in your organisation. Pick a tier and defend it in one sentence. Then change the use, for example from internal FAQ to checking if a customer is eligible, and pick the tier again.':

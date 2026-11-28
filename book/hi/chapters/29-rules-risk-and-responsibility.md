@@ -120,6 +120,20 @@ Farah ne thoda sharmate hue haath uthaya. Uski team customers ka Hinglish ek tra
 
 Anaya ne kaha ki ek aisa paste box chahiye jo utna hi achha ho. Woh text ko kahin jaane se pehle saaf bhi kare. "Toh aapka doosra product mil gaya," Lakshmi ne kaha. Us dopahar mein pehli baar woh muskuraayi.
 
+## Taareekhein, standards aur margdarshan
+
+Lakshmi ka aakhri page taareekhon ki ek list tha. "Sirf wahi kahiye jo aapne jaancha hai," unhone kaha, "aur bataiye ki kab jaancha."
+
+EU AI Act 1 August 2024 ko laagu hua. Iski pabandiyaan February 2025 mein shuru huin, aur general-purpose models ke niyam August 2025 mein. Logon ko yeh batane ki duty ki woh AI se baat kar rahe hain, 2 August 2026 se laagu hai. July 2026 mein ek naye EU kaanoon, Digital Omnibus, ne high-risk ki taareekhein aage kar deen. Hiring aur loans jaise upyog ab 2 December 2027 se laagu hain, aur products mein bana AI 2 August 2028 se.
+
+Phir aaye do standards jinke baare mein khareedne wale poochhte hain. ISO/IEC 42001 batata hai ki ek sanstha apna AI kaam kaise chalaye, aur sanstha iske against certify ho sakti hai. ISO/IEC 42005 ek system ke impact assessment ka margdarshan deta hai, aur yeh sirf margdarshan hai.
+
+Aakhir mein aaya India ka apna margdarshan. November 2025 mein MeitY ne India AI Governance Guidelines prakashit keen. Inmein saat siddhant hain, jo bharose aur logon ko pehle rakhne se shuru hote hain. Yeh kaanoon nahi hain, aur svaichhik kadamon ko badhava dete hain. Zaroori duties ab bhi DPDP Act aur sector regulators se aati hain. Bank ke liye iska matlab hai Reserve Bank, jiski FREE-AI report wahi saat siddhant use karti hai.
+
+"Svaichhik ka matlab vaikalpik nahi hai," Lakshmi ne kaha. "Bank ke auditors phir bhi inhe maangenge."
+
+*Aakhri baar jaancha gaya: November 2026. Sources aur unki taareekhein app mein, reference pages ke Appendix E mein di gayi hain.*
+
 ## Saaraansh
 
 Speed limit wali baat dobara yaad kijiye. Ek system ko kitna dikhana hoga, yeh is par tikta hai ki galat jawaab kitna nuksaan kar sakta hai. Yeh istemaal tay karta hai, technology nahi. Wahi tool ek istemaal mein harmless aur doosre mein gambhir ho sakta hai. Istemaal badalne par uska tier badal jaata hai.
@@ -129,5 +143,6 @@ Speed limit wali baat dobara yaad kijiye. Ek system ko kitna dikhana hoga, yeh i
 - Deletion drill un jagahon ko dhoondhti hai jahan kisi ka data rehta hai aur aap pahunch nahi sakte. Bhooli hui jagahein aksar achhi wajah se bani copies hoti hain.
 - Human oversight tabhi kaam karta hai jab reviewer saboot dekhe aur na keh sake.
 - Jahan log pehle se aise tools chala rahe hain jinhe kisi ne approve nahi kiya, wahan ilaaj ek behtar approved tool hai.
+- Niyamon ki taareekh wali list rakhiye, aur bataiye ki kab jaanchi. EU high-risk duties ab December 2027 se shuru hoti hain. India ki AI guidelines svaichhik hain, par zaroori duties ab bhi DPDP Act aur sector regulators se aati hain.
 
 Aage, raat ko do bajkar das minute par ek email aata hai. Jis model par guard tika hai, woh tees din mein retire hone wala hai.

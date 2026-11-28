@@ -19,8 +19,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Chaaron prompts aur unke chaaron scores ko apni repository mein <code>docs/prompt-and-scores.md</code> ke roop mein save kijiye.',
   'Cost per correct answer':
     'Sahi answer ki cost',
-  'Dates to check before any interview':
-    'Kisi bhi interview se pehle jaanchne wali taarikhein',
   '<strong>Data Fiduciary.</strong> The organisation that decides why and how the data is used. Your company is the Data Fiduciary. A model provider that handles the message for you works on your behalf, so the duty stays with you.':
     '<strong>Data Fiduciary.</strong> Woh sanstha jo tay karti hai ki data kyun aur kaise use hoga. Aapki company Data Fiduciary hai. Jo model provider aapke liye message sambhalta hai woh aapki taraf se kaam karta hai, isliye zimmedari aapki hi rehti hai.',
   'Match each kind of text to a duty':
