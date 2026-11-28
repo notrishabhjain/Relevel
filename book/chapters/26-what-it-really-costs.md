@@ -115,6 +115,18 @@ Three sentences about giving a model work. Put your own numbers where N stands.
 - My cost sum includes retries, loops and hidden thinking: N rupees a month, not the number for one clean call.
 :::
 
+## The price of a good answer
+
+The finance director had one last question. "Some calls fail and run again. Are those in your sum?"
+
+They were not. Anaya added a line: the **cost per successful answer**. It is the cost of one try divided by the share of tries that work. A model at ₹0.40 a try that works 80% of the time costs ₹0.50 for each good answer. A cheaper model at ₹0.25 that works half the time costs the same ₹0.50. It also keeps more customers waiting for the retry.
+
+She added three more lines, because the director would ask. Cache prices had changed in 2026. Writing a prompt to the cache now costs more than plain input, and reading it back costs far less. So she wrote both prices down with the date, not a rule of thumb. The agent loop got a hard cap on steps and on spend. And the budget would grow in three stages: crawl, with a small daily cap and a person reading every bill; walk, with a cap for each feature and an alert at 80%; run, with costs split by feature and checked against value every week.
+
+To split the bill by feature, the finance team already used a shared format for cloud bills, called FOCUS. Its version 1.4 had no special place for tokens yet. Version 1.5, planned for December 2026, is meant to add one. Until then, AI calls would sit on the bill like any other line.
+
+*Last verified: November 2026. The sources and their dates are listed in the app, in Appendix E of the reference pages.*
+
 ## Summary
 
 The simple cost sum is tokens in and out, times their prices. It is correct. But it is usually three to twenty times too low, because it prices one clean call.
@@ -123,5 +135,6 @@ The simple cost sum is tokens in and out, times their prices. It is correct. But
 - A cascade (the clinic order) runs the cheapest step first. Only the failures go to a dearer step. It can be the gap between a tool that costs a lakh and one that costs twenty.
 - Report cost together with speed, and include the slow cases.
 - A cost without the value it protects is only half a sum.
+- Divide by the success rate: the cost per successful answer counts the retries. Write cache prices down with a date, cap every agent loop, and grow the budget in three stages.
 
 Next, Farah puts a photograph of a bank passbook in front of Anaya. The team leaves plain text behind.

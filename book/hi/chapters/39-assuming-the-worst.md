@@ -103,6 +103,18 @@ Har N apne project se bhariye.
 - Gate pass hue bina kuch ship nahi hota. Maine apne product par N tareeko se hamla kiya. Risk register har safeguard ke baju mein ek test rakhta hai.
 :::
 
+## Ek checklist aur ek ghadi
+
+Agli review mein Lakshmi do page laayin.
+
+Pehla tha OWASP Top 10 for Agentic Applications, jo December 2025 mein prakashit hua. Isme AI agents ke das mukhya security khatre hain, ASI01 se ASI10 tak. Team ne list ko risk register se milaya. Agent Goal Hijack, ASI01, document mein chhupa note tha. Tool Misuse, ASI02, koi bhi aisa tool tha jise use karne ke liye guard ko bahlaya ja sake. Identity and Privilege Abuse, ASI03, woh chaabiyan thin jinki use zaroorat nahi thi. Memory and Context Poisoning, ASI06, baad ke liye save hua koi bhi galat note tha. Har ek ko ek control aur ek test mila.
+
+Doosra page ek ghadi tha. April 2022 ke CERT-In directions ke tahat India mein kai sansthaon ko kuch cyber incidents dhyaan mein aane ke 6 ghante ke andar report karne hote hain. Unhe apne system logs 180 din tak, India mein, official time servers se mili ghadiyon ke saath rakhne hote hain. Unhe CERT-In ke liye ek sampark vyakti tay karna hota hai.
+
+"Traces logs hain," Lakshmi ne kaha. "Inhe 180 din tak, sahi samay ke saath rakhiye. Aur 6 ghante wala kadam abhi runbook mein daaliye. Kisi ko bhi Saturday raat ko pehli baar niyam nahi padhne chahiye."
+
+*Aakhri baar jaancha gaya: November 2026. Sources aur unki taareekhein app mein, reference pages ke Appendix E mein di gayi hain.*
+
 ## Saar
 
 Model jo kuch use diya jaata hai, sabko ek jaise bharose se padhta hai. Isliye AI product ki zyadatar security model ke aas-paas ke system mein hoti hai. Attack surface woh har jagah hai jahan koi bahar wala usmein kuch daal sakta hai. Woh har jagah bhi hai jahan bahar wala uska koi kaam chhu sakta hai. Ghar ke darwaaze aur khidkiyan sochiye.
@@ -111,5 +123,6 @@ Model jo kuch use diya jaata hai, sabko ek jaise bharose se padhta hai. Isliye A
 - Model se jo kuch bhi nikle, woh jisko mile uske liye untrusted input hai.
 - Least privilege ka matlab hai system ko sirf utna access dena jitna chahiye. Jo kuch woh kar sakta hai, hamlawar use woh karne ke liye mana sakta hai. Audit trail alag se record rakhta hai ki kisne kya kiya aur kis rule ke tahat.
 - Risk register har safeguard ko uske test ke saath rakhta hai. Woh bacha hua residual risk bhi saath rakhta hai. Tab jis control ke peeche sirf ek likha hua rule hai, woh apne asli roop mein dikh jaata hai.
+- Risk register ko OWASP Top 10 for Agentic Applications se milaiye. India mein CERT-In 6 ghante ke andar report aur 180 din tak rakhe logs maangta hai, isliye traces bhi saboot hain.
 
 Product ab pehle se zyada safe hai. Agla chapter ek naya sawaal poochta hai. Laptop ke demo ko aisa product banane mein kya lagta hai jis par log bharose se tikein?

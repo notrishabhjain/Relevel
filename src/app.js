@@ -2028,10 +2028,11 @@ function pageAppendix(){
   secE.appendChild(sectionHead('E',T('Current reference points')));
   secE.appendChild(h('p',{class:'prose',style:'font-size:1rem',
     html:T('Where the applied chapters came from. Treat this as a living set rather than a bibliography, and use the current official documentation when you run a provider- or protocol-specific lab — model names, pricing, context limits, protocol versions and free-tier terms all move faster than a book does.')}));
-  secE.appendChild(h('div',{class:'marks'},(A.sources||[]).map(([who,what,url])=>
+  secE.appendChild(h('div',{class:'marks'},(A.sources||[]).map(([who,what,url,ver])=>
     h('div',{class:'mark'},[
       h('span',{class:'mt'},[h('strong',{text:T(who)}),
-        h('div',{class:'dim',style:'font-size:.8rem;margin-top:.2rem',text:T(what)})]),
+        h('div',{class:'dim',style:'font-size:.8rem;margin-top:.2rem',text:T(what)}),
+        ver?h('div',{class:'dim verified',style:'font-size:.75rem;margin-top:.15rem',text:T('Last verified')+': '+ver}):null]),
       h('a',{class:'chip',href:url,target:'_blank',rel:'noopener noreferrer',text:'open ↗'})]))));
   secE.appendChild(h('div',{class:'callout',style:'margin-top:1.2rem'},[
     h('span',{class:'lbl',text:T('Before you cite any of this')}),
@@ -2055,11 +2056,18 @@ function pageGlossary(){
   const drill=h('button',{onclick:()=>{mode=mode==='drill'?'list':'drill';
     drill.textContent=mode==='drill'?'Show definitions':'Drill from memory';
     drill.classList.toggle('on',mode==='drill');render();}},'Drill from memory');
+  /* Delivery & Governance: the terms a project or delivery manager is asked
+     about (rules, standards, serving and cost numbers), tagged 'dg' as the
+     glossary's fourth field. The drill can run on these alone. */
+  const isDG=g=>g[3]==='dg'||(Array.isArray(g[3])&&g[3].includes('dg'));
+  let onlyDG=false;
+  const dg=h('button',{type:'button',class:'sm dgonly',onclick:()=>{onlyDG=!onlyDG;dg.classList.toggle('on',onlyDG);render();}},
+    T('Delivery & Governance only')+' ('+window.GLOSSARY.filter(isDG).length+')');
   const body=h('div');
   let mode='list';
   function render(){
     const f=q.value.toLowerCase();
-    const items=window.GLOSSARY.filter(g=>!f||g[0].toLowerCase().includes(f)||g[1].toLowerCase().includes(f));
+    const items=window.GLOSSARY.filter(g=>(!onlyDG||isDG(g))&&(!f||g[0].toLowerCase().includes(f)||g[1].toLowerCase().includes(f)));
     body.innerHTML='';
     if(mode==='drill'){
       const known=Object.values(S.drill).filter(v=>v==='y').length;
@@ -2096,7 +2104,8 @@ function pageGlossary(){
     }
   }
   q.addEventListener('input',render);
-  w.append(h('div',{class:'ctl'},[ctlL('filter',q),h('div',{style:'flex:0'},[h('label',{text:' '}),drill])]),body);
+  w.append(h('div',{class:'ctl'},[ctlL('filter',q),h('div',{style:'flex:0'},[h('label',{text:' '}),drill]),
+    h('div',{style:'flex:0'},[h('label',{text:' '}),dg])]),body);
   render();
   return w;
 }

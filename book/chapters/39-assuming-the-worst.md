@@ -103,6 +103,18 @@ Fill each N from your own project.
 - Nothing ships unless the gate passes. I attacked my own product in N ways. The risk register puts a test beside each safeguard.
 :::
 
+## A checklist and a clock
+
+Lakshmi brought two pages to the next review.
+
+The first was the OWASP Top 10 for Agentic Applications, published in December 2025. It lists the ten main security risks of AI agents, from ASI01 to ASI10. The team went down the list against the risk register. Agent Goal Hijack, ASI01, was the hidden note in a document. Tool Misuse, ASI02, was any tool the guard could be talked into using. Identity and Privilege Abuse, ASI03, was the keys it did not need. Memory and Context Poisoning, ASI06, was any bad note saved for later. Each one got a control and a test.
+
+The second page was a clock. Under CERT-In's directions of April 2022, many organisations in India must report certain cyber incidents within 6 hours of noticing them. They must keep their system logs for 180 days, in India, with clocks set to the official time servers. They must name one contact person for CERT-In.
+
+"The traces are logs," Lakshmi said. "Keep them for 180 days, with the right times. And put the 6-hour step in the runbook now. Nobody should read the rules for the first time on a Saturday night."
+
+*Last verified: November 2026. The sources and their dates are listed in the app, in Appendix E of the reference pages.*
+
 ## Summary
 
 A model reads everything it is given with the same trust. So most of the security of an AI product lies in the system around the model. The attack surface is every place where an outsider can feed it something, or reach something it can do. Think of the doors and windows of a house.
@@ -111,5 +123,6 @@ A model reads everything it is given with the same trust. So most of the securit
 - Everything that comes out of a model is untrusted input to whatever receives it.
 - Least privilege means giving a system only the access it needs. Anything it can do, an attacker can talk it into doing. An audit trail keeps a separate record of who did what under which rule.
 - A risk register puts each safeguard next to its test. It also puts the residual risk next to it. Then a control that rests only on a written rule shows up for what it is.
+- Check the risk register against the OWASP Top 10 for Agentic Applications. In India, CERT-In asks for a report within 6 hours and logs kept for 180 days, so the traces are evidence too.
 
 The product is now safer. The next chapter asks a new question. What does it take to turn a laptop demo into a product people can rely on?

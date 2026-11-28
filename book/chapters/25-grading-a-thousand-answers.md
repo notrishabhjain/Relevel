@@ -101,6 +101,18 @@ Anaya drew the cycle on the board in one line, so she would not forget it. Real 
 
 At the end of the call, Meenakshi added a point she often made. Before a product goes out, ask if it passes the key. After it goes out, ask if people are better off. These are different questions. Passing the first can leave the second untouched. Anaya wrote it down. That question stayed with her longest.
 
+## Once, or every time
+
+Imran had one more question for the judge. The guard did not give the same answer every time. So the team ran each hard case three times.
+
+"How do we score three runs?" he asked. Anaya drew two columns. The first asked whether at least one of the three runs was right. This is called **pass@k**, where k is the number of tries. The second asked whether all three were right. This is called **pass^k**, said "pass hat k".
+
+She did the sum for a case the guard got right 75% of the time. At least one right out of three came to about 98%. All three right came to 0.75 × 0.75 × 0.75, about 42%.
+
+"A customer gets one try," she said. "And a thousand customers get a thousand tries." For a demo, pass@k was fine. For a guard that must hide an Aadhaar number every time, the number that mattered was pass^k.
+
+*Last verified: November 2026. The sources and their dates are listed in the app, in Appendix E of the reference pages.*
+
 ## Summary
 
 There are three ways to mark an answer. A program is nearly free, so use it as much as you can. A person is costly, and defines what "correct" means. A model acting as judge is fast, cheap and biased.
@@ -108,5 +120,6 @@ There are three ways to mark an answer. A program is nearly free, so use it as m
 - Check a judge by grading the same answers yourself and counting how often you agree. The pattern of disagreement matters more than the number. Clustered mistakes can be fixed. Scattered ones mean the meaning of "correct" is unclear.
 - Judges favour long answers and the first of two. The remedies are to grade one specific thing, swap the order and ask for a quotation.
 - Error analysis means reading a hundred real outputs. Write what went wrong in your own words before choosing categories. Group and count. Turn the biggest groups into new test cases.
+- pass@k asks whether one of k tries worked; pass^k asks whether all of them did. At 75% a try, three tries in a row all work only about 42% of the time.
 
 Next, Anaya presents the plan to the finance director, who asks what the guard will cost to run each month.

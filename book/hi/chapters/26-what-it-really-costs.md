@@ -115,6 +115,18 @@ Model ko kaam dene ke baare mein teen sentences. Jahan N likha hai, wahan apna n
 - Mere cost sum mein retries, loops aur hidden thinking shaamil hain: N rupaye mahina, ek saaf call ka number nahi.
 :::
 
+## Achhe jawaab ki keemat
+
+Finance director ka ek aakhri sawaal tha. "Kuch calls fail hokar dobara chalti hain. Kya woh aapke hisaab mein hain?"
+
+Woh nahi thin. Anaya ne ek line jodi: **cost per successful answer**. Yeh ek koshish ka kharcha, bhaag safal koshishon ka hissa hai. ₹0.40 prati koshish wala model jo 80% baar chalta hai, har achhe jawaab ke liye ₹0.50 ka padta hai. ₹0.25 wala sasta model jo aadhi baar chalta hai, utna hi ₹0.50 ka padta hai. Woh zyada customers ko retry ka intezaar bhi karwata hai.
+
+Unhone teen aur lines jodin, kyunki director poochhte. Cache ke daam 2026 mein badal gaye the. Prompt ko cache mein likhna ab saadhe input se mehenga hai, aur wapas padhna bahut sasta. Isliye unhone dono daam taareekh ke saath likhe, koi andaaza niyam nahi. Agent loop ko steps aur kharche ki pakki seema mili. Aur budget teen charanon mein badhta: crawl, chhoti rozana seema aur har bill padhne wala ek insaan; walk, har feature ki seema aur 80% par alert; run, kharcha feature ke hisaab se baanta hua aur har hafte value se milaya hua.
+
+Bill ko feature ke hisaab se baantne ke liye finance team pehle se cloud bills ka ek saajha format use karti thi, jise FOCUS kehte hain. Uske version 1.4 mein tokens ke liye abhi koi khaas jagah nahi thi. Version 1.5, jo December 2026 ke liye planned hai, ise jodne ke liye hai. Tab tak AI calls bill par kisi bhi aur line ki tarah rahengi.
+
+*Aakhri baar jaancha gaya: November 2026. Sources aur unki taareekhein app mein, reference pages ke Appendix E mein di gayi hain.*
+
 ## Summary
 
 Seedha cost ka hisaab hai tokens andar aur bahar, unke prices se guna. Yeh sahi hai. Lekin yeh aksar 3 se 20 guna kam nikalta hai, kyunki yeh ek saaf call ki keemat batata hai.
@@ -123,5 +135,6 @@ Seedha cost ka hisaab hai tokens andar aur bahar, unke prices se guna. Yeh sahi 
 - Cascade (clinic wala order) sabse sasta step pehle chalata hai. Sirf failures mehnge step par jaate hain. Isse woh farq pad sakta hai jo ek lakh ke tool aur bees lakh ke tool ke beech hota hai.
 - Cost ko speed ke saath report kijiye, dheeme cases samet.
 - Jis value ko cost bachati hai uske bina, cost sirf aadha hisaab hai.
+- Success rate se bhaag dijiye: cost per successful answer retries ko bhi ginta hai. Cache ke daam taareekh ke saath likhiye, har agent loop ki seema rakhiye, aur budget teen charanon mein badhaiye.
 
 Agle chapter mein Farah Anaya ke saamne ek bank passbook ki photograph rakhti hai. Team plain text ko peeche chhod deti hai.

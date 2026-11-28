@@ -5149,6 +5149,13 @@ window.PART2 = [
        then:'This is why the schema chapter comes first. A half-finished reply is safe to show only when the part you can see is already final. A <em>decision</em> field shown half-way is a danger, not a decision.'}
     ],
     ['q','I005','I076'],
+    ["h", "Two numbers for the wait: TTFT and TPOT"],
+    ["p", "Streaming splits one wait into two parts, and each part has its own name. Teams that run models measure both."],
+    ["l", ["<strong>TTFT (time to first token).</strong> How long until the first word arrives. The model must first read your whole prompt. This reading step is called <em>prefill</em>. So a longer prompt means a longer TTFT.", "<strong>TPOT (time per output token).</strong> The average gap between one word and the next, once words start to flow. This writing step is called <em>decode</em>. Some tools call the same idea ITL (inter-token latency)."]],
+    ["p", "The total time is TTFT plus the time to write the rest. Say a reply has 300 tokens, a TTFT of 0.8 seconds and a TPOT of 20 milliseconds. It takes about 0.8 + 6 = 6.8 seconds."],
+    ["p", "A busy server also shares its time between many users. A new long prompt can make everyone else’s words pause while it is read. Many servers now cut long prompts into pieces and read them between other people’s words. This is called <em>chunked prefill</em>. Your first word may come a little later, but nobody’s reply freezes."],
+    ["pred", {"id": "ch115-ttft", "short": true, "ph": "Which number, and what you would change", "ask": "Users say your chat “takes ages to start”, but once it starts it reads fast. Last week you added a long policy document to every prompt. Which number got worse, TTFT or TPOT? What would you change first?", "reveal": "TTFT got worse. The model reads the whole policy before it writes the first word, so the longer prompt adds to the start. TPOT barely changes. Send fewer pages, or cache the fixed part of the prompt (prompt caching, Chapter 10). Then measure TTFT again.", "then": "Report both numbers at p50 and p95, not only the total. A fast TPOT cannot rescue a slow start."}],
+    ["c", "Last verified: November 2026", "The names TTFT, TPOT and ITL follow the NVIDIA NIM and vLLM benchmarking guides. Chunked prefill comes from the Sarathi-Serve paper (Agrawal and others, 2024, arXiv:2403.02310). Tools average these numbers in slightly different ways, so read your own tool’s definition."],
     ['h','What you have learned'],
     ['p','Nothing in this chapter made anything faster. It only changed whether nine seconds is acceptable, and that is what your users really care about. Start early. Say what is happening. Move the wait away when it is long. And if a half-finished answer is not safe to act on, do not stream it.'],
     ['p','Next we go back to the quality of what the model finds. In Chapter 12 you will improve your retrieval (finding the right page) step by step. You will check each improvement against the same answer key.']
@@ -5597,6 +5604,13 @@ window.PART3 = [
       ['p','Take one correct, short answer. Write a padded copy that says the same things in three times as many words, with more “maybe” talk and more headings. Let the judge mark both.'],
       ['x','The padded copy often scores as well, and sometimes better, though it has no new correct facts. You have just measured a bias that affects many published test results.']
     ]],
+    ["h", "One try or every try: pass@k and pass^k"],
+    ["p", "A model or an agent does not give the same answer every time. So you often run each test case several times. There are two ways to score those runs, and they answer different questions."],
+    ["l", ["<strong>pass@k.</strong> Did at least one of k tries succeed? Use it when one good answer is enough, for example when a person picks the best of three drafts.", "<strong>pass^k</strong> (say “pass hat k”). Did all k tries succeed? Use it when every user must get it right every time, for example an agent that files a refund."]],
+    ["p", "The two numbers move apart fast. Say one try succeeds 75% of the time, and the tries do not affect each other. Then pass@3 is 1 − 0.25³, about 98%. But pass^3 is 0.75³, about 42%. The same system looks great on one number and shaky on the other."],
+    ["key", "For a feature real users rely on, report pass^k. A demo can live on pass@k. A product cannot."],
+    ["pred", {"id": "ch14-passk", "short": true, "ph": "What you would report", "ask": "Your support agent solves a test case on 80% of tries. A manager wants to say “it works 99% of the time”, because pass@3 is above 99%. What would you report instead, and why?", "reveal": "Report pass^3, which is 0.8³, about 51%. A customer gets one try, not three. pass@3 says the agent <em>can</em> solve the case. pass^3 says how often it solves it every time. Give both numbers, and say which one the customer feels.", "then": "The τ-bench paper (Yao and others, 2024) introduced pass^k to measure this kind of reliability."}],
+    ["c", "Last verified: November 2026", "pass^k comes from the τ-bench paper (arXiv:2406.12045). Anthropic’s engineering guide “Demystifying evals for AI agents” explains when to use each one. The 75% and 80% examples are this course’s own arithmetic."],
     ['h','Summary'],
     ['p','Let us pull the chapter together. There are three kinds of marker: code, a person and an LLM judge. Use free code checks first. Then use a judge for the questions code cannot answer.'],
     ['key','A judge you have checked against your own marks is a real measuring tool. A judge you have not checked tends to agree with the model it is marking, like a student who copies from his neighbour.'],
@@ -5819,6 +5833,16 @@ window.PART3 = [
       ['p','Fill the last column from the others. Cost per correct answer is the cost per query divided by the share of answers that were right. So 6 right out of 9 is a share of 0.67. A cheap setting that is often wrong can cost more per correct answer than a dearer one that is right.'],
       ['x','This table is the main thing you take away from this chapter. It turns an argument about design into a choice based on proof. It fits on one slide.']
     ]],
+    ["h", "Cost per successful answer"],
+    ["p", "Cost per query counts every call. But a call that fails and must run again buys nothing. So also track the <strong>cost per successful answer</strong>: the cost of one try, divided by the share of tries that work."],
+    ["code", "cost per successful answer = cost per try ÷ success rate\n\n₹0.40 per try, 80% succeed  →  ₹0.40 ÷ 0.8 = ₹0.50\n₹0.25 per try, 50% succeed  →  ₹0.25 ÷ 0.5 = ₹0.50"],
+    ["p", "The second model looks cheaper per try. Per good answer, the two cost the same. And the cheaper one makes more users wait for a retry."],
+    ["p", "Cache prices changed in 2026, so check them each time. On Anthropic’s API, writing a prompt to the cache costs more than normal input: 1.25 times for a five-minute cache, or 2 times for a one-hour cache. Reading it back costs a tenth, and less on the newest models. On OpenAI’s API, from GPT-5.6, writing to the cache is charged too. An old rule like “cached input is half price” is now wrong."],
+    ["p", "Agents add one more cost: the loop. An agent that retries a tool again and again can spend a month’s budget in an hour. Give every agent a hard cap on steps and on spend for each task. Stop it when it reaches the cap."],
+    ["p", "Set budgets in three stages, like learning to ride a cycle. <strong>Crawl:</strong> a small daily cap, and a person reads every bill. <strong>Walk:</strong> a cap for each team and each feature, with an alert at 80%. <strong>Run:</strong> costs split by feature and by customer, and checked against value every week."],
+    ["p", "To split costs by feature, many finance teams use one shared format for bills, the <strong>FOCUS billing format</strong> from the FinOps Foundation. Version 1.4 is current. Today AI calls appear in it like any other line on the bill. Version 1.5, planned for December 2026, is meant to add model names and token counts."],
+    ["pred", {"id": "ch15-success", "short": true, "ph": "Your working", "ask": "Model A costs ₹0.30 per try and works 60% of the time. Model B costs ₹0.45 per try and works 90% of the time. Which is cheaper per successful answer?", "reveal": "They cost the same: ₹0.30 ÷ 0.6 = ₹0.50, and ₹0.45 ÷ 0.9 = ₹0.50. So cost does not decide it. Model B wins, because fewer users wait for a retry, and every retry also adds time. Always divide by the success rate before you compare prices.", "then": "Put cost per successful answer next to cost per query in your cost model."}],
+    ["c", "Last verified: November 2026", "Cache prices: Anthropic’s pricing and prompt-caching pages, and OpenAI’s prompt-caching guide. FOCUS: focus.finops.org (version 1.4, ratified on 4 June 2026) and the FOCUS release plan for 1.5. Prices change often, so check the official page on the day you quote one."],
     ['h','The margin question'],
     ['p','There is one more question, and it decides most AI features. It has nothing to do with tokens: <strong>does the feature make money at scale?</strong> Think of a chai stall. If each cup costs more than the price you charge, selling more cups only loses more money.'],
     ['p','Say a query costs three rupees, and the value it protects is two rupees. No amount of fine-tuning the prompt will fix that. So answer this question on day one, before the pilot (the small first trial).'],
@@ -5995,6 +6019,13 @@ window.PART3 = [
     ['p','India’s Digital Personal Data Protection Act, 2023 (the DPDP Act) has a small word list, and interviewers use it. These are the words to know. For the exact duties, read the Act’s own text.'],
     ['l',['<strong>Data Principal.</strong> The person the data is about. A bank customer types a message into your app. That customer is the Data Principal.','<strong>Data Fiduciary.</strong> The organisation that decides why and how the data is used. Your company is the Data Fiduciary. A model provider that handles the message for you works on your behalf, so the duty stays with you.','<strong>Notice and consent.</strong> Tell the person in plain words what you collect and why. Ask them to agree. Use the data only for the reason you gave.','<strong>Erasure.</strong> The person can ask you to wipe their data, and you must be able to do it. That includes any copy an outside provider holds.','<strong>Breach reporting.</strong> If personal data leaks, you must tell the regulator (the official watchdog) and the people affected.','<strong>Sending data abroad.</strong> The Act allows it, except where the government says no. Look up what is true today.']],
     ['p','This is a word list, not legal advice. Check which parts of the Act are in force today. The plan’s dated list of regulatory milestones is the place to look.'],
+    ["h", "The DPDP Rules 2025: how and when"],
+    ["p", "The Act says what you must do. The <strong>DPDP Rules 2025</strong> say how, and when. The government notified them on 13 November 2025. They start in three steps."],
+    ["l", ["<strong>13 November 2025.</strong> Definitions, and the Data Protection Board (the body that hears complaints and can fine).", "<strong>13 November 2026.</strong> Consent Managers: registered companies that help people give, see and take back their consent.", "<strong>13 May 2027.</strong> Most duties: notices, security, breach reporting, keeping and deleting data, children’s data, and people’s rights."]],
+    ["p", "Three rules matter most for an AI tool."],
+    ["l", ["<strong>Report a breach fast.</strong> Tell the affected people without delay, in plain words. Tell the Board without delay too, then send it a full report within 72 hours.", "<strong>Children need a parent’s consent.</strong> Before you use a child’s data, check that a real adult parent or guardian has agreed.", "<strong>Big data handlers have extra duties.</strong> The government can name an organisation a <strong>Significant Data Fiduciary (SDF)</strong>. An SDF must do a data protection impact assessment and an audit every year. It must also check that its algorithms do not put people’s rights at risk."]],
+    ["pred", {"id": "ch165-breach", "short": true, "ph": "Who you tell, and when", "ask": "On a Friday evening, your team finds that the tool’s log lines kept full customer messages, and an outside vendor could read them. The main duties of the Rules are in force. Who must you tell, and how soon?", "reveal": "Tell the affected customers without delay, in plain words: what happened, what it means for them, what you are doing, and whom to contact. Tell the Data Protection Board without delay too. Then send the Board a full report within 72 hours. Do not wait for Monday: the 72 hours start when you learn of the breach. Also tell your security team, because CERT-In, India’s cyber agency, has its own 6-hour reporting rule.", "then": "This is why the log line in the next exercise matters. A leak nobody planned for still has a clock."}],
+    ["c", "Last verified: November 2026", "Dates and duties: PIB’s release on the DPDP Rules 2025 (14 November 2025) and MeitY’s note on the Rules. The 13 May 2027 date may come sooner: in January 2026, MeitY asked for views on a shorter timeline. Check the eGazette before you quote a date."],
     ['do','Match each kind of text to a duty',[['p','Take six texts the tool might send outside. One has no personal detail. One has a name. One has an Aadhaar number. One is cleaned, with tags in place of details. One is a whole chat history. The last is a log line (a saved note in the tool’s record book) that keeps the original message. For each, name the duty it touches: consent, purpose, erasure, breach or sending data abroad.'],['x','Two things usually show. The cleaned sentence touches almost no duty, which is the case for building the tool. The chat history and the log line touch several, and the log line is the one nobody thought of. The capstone asks for the same kind of table.']]],
     ['h','Write a rule people can follow'],
     ['p','Knowing the answers is only half the job. The other half is making sure your colleagues act on them, even when you are not in the room. It is like a sign on the shop wall that works when the owner is out.'],
@@ -6097,12 +6128,20 @@ window.PART3 = [
     ['p','Two things in this table often surprise teams. First, <strong>the use sets the risk level, not the model.</strong> Your Chapter 7 system is minimal risk as an internal FAQ (a list of common questions and answers). The very same system is high risk if it decides who gets a benefit.'],
     ['p','Second, <strong>the level changes when the use changes</strong>. That often happens after launch, and nobody updates the papers.'],
     ['p','Two more points on the EU AI Act. The duties differ for whoever <em>provides</em> a system and whoever <em>deploys</em> it (puts it to work), so find out which one you are. Also, chatbots and made-up media have a duty to be open: people must be told they are talking to an AI, and AI-made images and audio must be labelled.'],
-    ['c','Dates to check before any interview','Rules and deadlines change, and this course does not keep dates. The plan keeps one dated list of rule milestones on its Curriculum page, with the DPDP and EU dates. Open it before an interview. Check each date against the official source, and say only what you checked.'],
+    ["p", "The EU AI Act came into force on 1 August 2024. Bans and a duty to train staff in AI basics began on 2 February 2025. Rules for general-purpose models began on 2 August 2025. Most other parts, including the duty to say “this is AI”, apply from 2 August 2026."],
+    ["p", "In July 2026, a new EU law, the Digital Omnibus, moved some dates. High-risk uses such as hiring and loans now apply from 2 December 2027. High-risk AI built into products, such as machines and medical devices, applies from 2 August 2028. Anything that still says “high risk from August 2026” is out of date."],
+    ["c", "Last verified: November 2026", "EU dates: the EU AI Act Service Desk timeline, and Regulation (EU) 2026/1744 on EUR-Lex. Standards: the iso.org pages for ISO/IEC 42001 and 42005. India: PIB’s release of 5 November 2025 on the guidelines, and RBI’s FREE-AI report of 13 August 2025. Rules change, so check each date against the official source before an interview, and say only what you checked."],
     ['do','Put your system in a risk tier',[
       ['p','Take your Chapter 7 RAG system (the one that finds pages first, then answers from them). Place it in a real use in your organisation. Pick a tier and defend it in one sentence. Then change the use, for example from internal FAQ to checking if a customer is eligible, and pick the tier again.'],
       ['x','The same code moves to a different tier. That is why choosing a risk tier is a product decision, not an engineering one.']
     ]],
     ['q','I091','I092'],
+    ["h", "Standards, and India’s own guidance"],
+    ["p", "Buyers often ask for a standard, not a law. Two ISO standards come up again and again."],
+    ["l", ["<strong>ISO/IEC 42001</strong> (2023), the <strong>AI management system standard (ISO 42001)</strong>. It sets out how an organisation runs its AI work: roles, risks, checks and steady improvement. An organisation can be certified against it, like a quality certificate.", "<strong>ISO/IEC 42005</strong> (2025), the <strong>AI impact assessment standard (ISO 42005)</strong>. It guides you to judge what one AI system could do to people and to society. It is guidance only, so nobody is certified against it."]],
+    ["p", "India has chosen guidance first. In November 2025, MeitY published the <strong>India AI Governance Guidelines</strong>. They set out seven principles, starting with “Trust is the Foundation” and “People First”. They are not a law, and they favour voluntary steps such as standards and audits. Binding duties still come from laws such as the DPDP Act and the IT Act, and from sector regulators."],
+    ["c", "In banking and finance", "The Reserve Bank of India’s FREE-AI report (August 2025) uses the same seven principles, with 26 recommendations for banks and lenders. If you build for a bank, read it before the first meeting."],
+    ["pred", {"id": "ch17-binding", "short": true, "ph": "Your two sentences", "ask": "A client in Pune says: “India has no AI law, so we have no AI duties.” What would you say back, in two sentences?", "reveal": "India has no single AI law yet, but your tool still handles personal data, so the DPDP Act and its Rules apply, and a bank or insurer also answers to its regulator. The MeitY guidelines are voluntary, but buyers and auditors already ask about them, and about standards such as ISO/IEC 42001.", "then": "Keep what is binding apart from what is expected. Both shape the project plan."}],
     ['h','Write a system card'],
     ['p','Once you know the tier, you need a way to show your work, like a student showing steps in a maths answer. That is what a <strong>system card</strong> is for. It is a one-page description of an AI system: what it is for, what data it uses, how it was tested, and what it gets wrong. For anything above minimal risk, you need one.'],
     ['c','You already know this','A system card is the security-audit and sign-off file for one system. The difference is that you write the limits section yourself, with proof, instead of leaving it for the auditor to find.'],
@@ -8239,6 +8278,12 @@ window.PART5 = [
        ph:'We are not shipping because …',
        after:'If your sentence has the word "seems", it will not stop anything. Thresholds stop releases. Impressions do not.'}
     ],
+    ["h", "When the eval stops teaching you"],
+    ["p", "A test the whole class scores full marks on no longer tells you who is better. Evals (your sets of test cases) have the same problem. When your system passes nearly every case, the eval stops giving you new information. This is called <strong>eval saturation</strong>."],
+    ["p", "Do not delete a saturated eval. Move its cases into your regression suite (the checks every release must pass), where a score near 100% is exactly what you want. Then write new, harder cases for the capability eval, so it starts low again and has room to show progress."],
+    ["tb", ["Kind of eval", "Score you want", "What it tells you"], [["Capability eval", "Starts low, then climbs", "Can the system do something new?"], ["Regression suite", "Near 100%", "Did a change break something that worked?"]]],
+    ["pred", {"id": "ch29-saturated", "short": true, "ph": "What you keep, and what you add", "ask": "Your answer key now scores 99% on every release, and the last three changes all scored the same. A teammate says “evals are done”. What do you do with the answer key, and what do you add?", "reveal": "The answer key is saturated, so it can no longer tell a good change from a bad one. Keep it as a regression suite, so a release that drops below about 99% is stopped. Then write new cases from real failures, such as your error-analysis piles from Chapter 14.5, so the capability eval starts low again. Also check pass^k on the hardest cases.", "then": "A flat score is a signal to write harder cases, not a sign that the work is finished."}],
+    ["c", "Last verified: November 2026", "The split between capability evals and regression evals, and the idea of saturation, follow Anthropic’s engineering guide “Demystifying evals for AI agents”."],
     ['h','Summary'],
     ['p','So here is the whole chapter in a few lines. Keep a test set with a version number. Score at several levels, so a good total cannot hide a broken part. Use a model as judge only after you check it against people. Agree the pass mark before you look at the results.'],
     ['p','Next, in Chapter 30, you will see how to keep watching the system once it is live.']
@@ -8592,6 +8637,14 @@ window.PART5 = [
        ph:'The control … the evidence would be … it exists / does not exist because …',
        after:'The gap between what is claimed and the evidence is your real risk. A risk register is there to track that gap.'}
     ],
+    ["h", "A list for agent risks, and a clock for incidents"],
+    ["p", "In December 2025, the OWASP security community published the <strong>OWASP Agentic Top 10</strong>: the ten main security risks of AI agents. Use it as a checklist for your risk register. Five of them matter for almost every agent you will build."],
+    ["l", ["<strong>ASI01 Agent Goal Hijack.</strong> Hidden text changes what the agent is trying to do. It is prompt injection aimed at the goal.", "<strong>ASI02 Tool Misuse and Exploitation.</strong> The agent uses a real tool in a harmful way, such as a refund tool used to send money out.", "<strong>ASI03 Identity and Privilege Abuse.</strong> The agent acts with more keys than the task needs.", "<strong>ASI06 Memory and Context Poisoning.</strong> Bad notes saved in the agent’s memory steer its later tasks.", "<strong>ASI08 Cascading Failures.</strong> One agent’s mistake flows into the next agent, and grows."]],
+    ["p", "The other five are ASI04 Agentic Supply Chain Vulnerabilities, ASI05 Unexpected Code Execution, ASI07 Insecure Inter-Agent Communication, ASI09 Human-Agent Trust Exploitation and ASI10 Rogue Agents."],
+    ["p", "In India, an incident also starts a clock. Under the <strong>CERT-In 6-hour rule</strong> of April 2022, many organisations must report certain cyber incidents to CERT-In, India’s cyber-security agency, within 6 hours of noticing them. They must keep their system logs for 180 days, in India. Their clocks must match the official time servers of NIC or NPL. And they must name one contact person for CERT-In."],
+    ["key", "Your agent’s traces are logs too. If you do not keep them for 180 days, with correct times, you cannot answer CERT-In or your own incident review."],
+    ["pred", {"id": "ch31-clock", "short": true, "ph": "The risk, and the deadline", "ask": "At 10 a.m., your support agent is caught sending customer files to an outside address, after a poisoned web page told it to. Name the OWASP risk, and say what must happen before 4 p.m.", "reveal": "This is ASI01 Agent Goal Hijack, and it led to ASI02 Tool Misuse and Exploitation. If CERT-In lists this kind of incident, report it within 6 hours, so before 4 p.m., through your named contact person. Keep the agent’s traces and logs, with their timestamps. Personal data also leaked, so the DPDP breach duties apply as well.", "then": "Write the 6-hour step into your incident runbook now. Nobody should read the rules for the first time during an incident."}],
+    ["c", "Last verified: November 2026", "OWASP: genai.owasp.org, Top 10 for Agentic Applications (December 2025). CERT-In: Directions No. 20(3)/2022-CERT-In of 28 April 2022, and its FAQs, on cert-in.org.in."],
     ['h','Summary'],
     ['p','To sum up: the model trusts everything it reads, so the system around it has to build the fence. Retrieved content is untrusted input. Give every agent only the tools it needs. And write a test next to every control, so your register holds evidence, not just good intentions.'],
     ['p','Next, in Chapter 32, you will turn this technical system into a product specification, a recipe card for the product.']
@@ -10330,7 +10383,7 @@ window.GLOSSARY = [
   ['System prompt','Think of the standing rules on the shop wall, read before every order. A system prompt is a standing instruction that goes along with every message, out of the user\'s sight. It tells the AI how to behave.',2],
   ['Temperature','Think of how adventurous the model is with its next word. Temperature is a setting that decides whether the AI always picks its most likely next guess (plays safe) or sometimes picks a less likely one (takes chances). A low setting gives repeatable answers. It does not make them true.',2],
   ['Hallucination','Think of confident make-believe: a made-up answer said with a straight face. A hallucination is when the AI gives you something that sounds fluent but is made up, because it had no evidence to go on. This is not a malfunction. It is how a guessing machine normally behaves when it has nothing to go on.',2],
-  ['Guardrail','Think of the railing on a bridge: it stops a fall, it does not drive the car. A guardrail is anything that reduces harmful or wrong outputs. The simplest kind is a single sentence in the system prompt.',2],
+  ['Guardrail','Think of the railing on a bridge: it stops a fall, it does not drive the car. A guardrail is anything that reduces harmful or wrong outputs. The simplest kind is a single sentence in the system prompt.',2,'dg'],
   ['Chunk','Think of one index card cut from a long book. A chunk is one piece of a document after it has been cut up. It is the unit that gets stored, searched and sent to the model.',3],
   ['Chunking','Think of cutting a long book into index cards. Chunking is the cutting itself. It looks like a boring chore, but it is a real design decision.',3],
   ['Fixed-size chunking','Think of cutting a roll of cloth every metre, whatever the pattern. Fixed-size chunking is cutting after every N words, whatever the text means.',3],
@@ -10367,19 +10420,19 @@ window.GLOSSARY = [
   ['Context engineering','Think of packing the model\'s desk: what goes on it, in what order, and what gets pushed off. Context engineering is deciding what goes into the context window (the envelope), in what order, and what gets pushed out. It is about the contents, not about how the prompt is worded.',10],
   ['Context rot','Think of a desk so cluttered that you start missing things you can see. Context rot is when the model uses its context less well as the context grows, long before it hits the limit.',10],
   ['Lost in the middle','Think of remembering the start and the end of a long film but not the middle. Lost in the middle means the model finds material at the start and the end far more reliably than material in the middle.',10],
-  ['Prompt caching','Think of a shopkeeper who already knows your usual order, so he starts at once. Prompt caching means the provider reuses the part at the start of a request that it has already processed. Put the stable parts first and the changing parts last.',10],
+  ['Prompt caching','Think of a shopkeeper who already knows your usual order, so he starts at once. Prompt caching means the provider reuses the part at the start of a request that it has already processed. Put the stable parts first and the changing parts last.',10,'dg'],
   ['Compaction','Think of squeezing the old pages of a notebook into a short summary so there is room to write, while keeping the latest page as it is. Compaction is summarising older context to free up budget, while keeping the most recent part word for word.',10],
   ['Reasoning model','Think of a student who does rough work on paper before writing the final answer. A reasoning model does some working-out of its own before it gives its answer. It is slower, and sometimes better.',11],
   ['Test-time compute','Think of giving the student more time on each question during the exam, instead of more years of school. Test-time compute means paying for more accuracy on each query while the model runs, instead of paying for it during training.',11],
   ['Thinking budget','Think of how many sheets of rough paper the student is allowed. The thinking budget is the setting that controls how much working-out the model is allowed. Setting it is a product decision.',11],
-  ['p50 / p95 latency','Think of waiting for chai: the middle customer\'s wait, and the wait of the unlucky few at the back. p50 latency is the median response time; p95 latency is the response time of the slow tail. Users feel the tail.',11],
+  ['p50 / p95 latency','Think of waiting for chai: the middle customer\'s wait, and the wait of the unlucky few at the back. p50 latency is the median response time; p95 latency is the response time of the slow tail. Users feel the tail.',11,'dg'],
   ['BM25','Think of Ctrl+F that counts rare words as worth more than common ones. BM25 is a statistical way of ranking keyword matches that gives more weight to rare words. It is Chapter 4\'s scoreboard, done properly.',12],
   ['Reciprocal rank fusion','Think of two judges each giving a ranked list, and you add up how well each item did. Reciprocal rank fusion merges ranked lists by adding up 1/(rank) for each item. It is simple, sturdy and hard to beat.',12],
   ['Reranker','Think of a second teacher who reads the question and each answer card together before giving marks. A reranker is a model that scores a (question, chunk) pair by reading both together. You apply it only to a short list.',12],
   ['Contextual retrieval','Think of writing "from Chapter 3 of the leave policy" at the top of every index card. Contextual retrieval means that before embedding each chunk, you add a sentence, written by a model, that says where the chunk comes from. This fixes orphan chunks, the ones that make no sense on their own.',12],
   ['Query rewriting','Think of turning a half-spoken "and the second one?" into a full question you can look up. Query rewriting means turning a half-sentence from a conversation into a complete question that can be searched on its own.',12],
   ['Metadata filter','Think of taking out the wrong drawer of files before you start looking. A metadata filter drops chunks that are out of scope, such as the wrong version, date or department, before any scoring happens.',12],
-  ['Prompt injection','Think of a hidden note inside the homework that says "ignore your teacher". Prompt injection means instructions slipped into a model\'s input that change how it behaves.',13],
+  ['Prompt injection','Think of a hidden note inside the homework that says "ignore your teacher". Prompt injection means instructions slipped into a model\'s input that change how it behaves.',13,'dg'],
   ['Indirect injection','Think of the hidden note being tucked inside a letter that the model opens by itself. Indirect injection is when the attack comes inside content the system reads, such as a document, email, ticket or page.',13],
   ['Lethal trifecta','Think of a house with money inside, a stranger at the door and an open window: all three together are dangerous. The lethal trifecta is private data, untrusted content and a way to communicate outside, all in one system. Any two of the three are safe.',13],
   ['Exfiltration','Think of someone sneaking a diary out of the house through the window. Exfiltration means getting private data out, for example through an email, a webhook, a URL parameter or a rendered image.',13],
@@ -10389,9 +10442,9 @@ window.GLOSSARY = [
   ['Judge agreement','Think of how often the second student gives the same marks as the teacher. Judge agreement is how often the judge agrees with human labels. This number tells you whether the judge is usable.',14],
   ['Error analysis','Think of reading the wrong answers one by one and sorting them into piles, like sorting complaints. Error analysis is reading real outputs and sorting the failures into named groups as you go. It is the most useful single activity in the field.',14.5],
   ['Failure taxonomy','Think of your own labelled piles of complaints, taken from your own shop. A failure taxonomy is your own named categories of failure, taken from your own traffic.',14.5],
-  ['Regression suite','Think of the checklist a pilot runs through before every take-off. A regression suite is the cases that must pass before any release ships.',14.5],
+  ['Regression suite','Think of the checklist a pilot runs through before every take-off. A regression suite is the cases that must pass before any release ships.',14.5,'dg'],
   ['Offline vs online eval','Think of a mock test before the exam versus the marks you get after. Offline vs online eval: offline means testing against an answer key before release. Online means looking at what users get after release.',14],
-  ['Cost per query','Think of paying for every SMS, including the ones you send again. Cost per query is the full cost of one request the user can see, including retries and agent steps.',15],
+  ['Cost per query','Think of paying for every SMS, including the ones you send again. Cost per query is the full cost of one request the user can see, including retries and agent steps.',15,'dg'],
   ['Cascade','Think of asking the junior clerk first, and sending the file up to the senior only if the junior is unsure. A cascade is trying the cheap model first and moving up to a bigger one if a check fails. It is the main pattern for controlling cost in production.',15],
   ['Model routing','Think of a post office sorting each letter to the right van. Model routing means choosing a model for each request, based on how hard that request is.',15],
   ['Unit economics','Think of a tea stall\'s profit on each single cup. Unit economics is the cost and revenue for each unit of use. This number decides whether a feature survives.',15],
@@ -10441,7 +10494,7 @@ window.GLOSSARY = [
   ['Verbosity bias','Think of a teacher who gives higher marks to the longer essay, even if it says nothing extra. Verbosity bias is a grader\'s habit of scoring longer answers higher, even when they say nothing extra.',14],
   ['Position bias','Think of a judge who likes whichever dish was tasted first. Position bias is a grader\'s habit of preferring whichever answer it was shown first.',14],
   ['Blended rate','Think of the average price per cup when some cups are costly tea and some are cheap tea. A blended rate is what you pay per query on average once traffic is spread across several models at different prices.',15],
-  ['Cache hit rate','Think of a shopkeeper charging less because he remembers your usual order. The cache hit rate is the share of your input that the provider recognised from a previous request and charged less for.',15],
+  ['Cache hit rate','Think of a shopkeeper charging less because he remembers your usual order. The cache hit rate is the share of your input that the provider recognised from a previous request and charged less for.',15,'dg'],
   ['Vision model','Think of a parrot that can look at a picture as well as read. A vision model reads pictures as well as text, so you can hand it a page image instead of extracted text.',16],
   ['OCR','Think of a typist who copies the words off a photo of a page but ignores how the page looks. OCR is software that turns a picture of a page into text. It keeps the words and throws away the layout.',16],
   ['Layout','Think of where the rows, columns and boxes sit on a form. Layout is where things sit on a page: rows, columns, boxes. It carries meaning that plain text loses.',16],
@@ -10465,10 +10518,25 @@ window.GLOSSARY = [
   ['Few-shot','Think of showing a new cook two or three finished dishes before asking him to cook. Few-shot means putting two or three worked examples of the task inside the prompt, so the model copies their pattern. Zero-shot means asking with no examples at all.',2.1],
   ['Eval','Think of the teacher\'s answer key: questions you know the right answer to. An eval (short for evaluation) is running a system on cases whose right answers you already know, and counting how many it gets right. The cases together are an eval set.',2.2],
   ['JSON schema','Think of a form with fixed boxes, described in writing. A JSON schema is a written description of the exact shape a piece of JSON must have: which fields, of what type, and which are required. A program checks each answer against it.',8.5],
-  ['DPDP Act','Think of someone\'s diary: the law says how you may use it and when you must give it back or destroy it. The DPDP Act is India\'s Digital Personal Data Protection Act, 2023, with its Rules from 2025. It says what an organisation must do before it collects, uses or shares personal data, such as asking for consent.',16.5],
+  ['DPDP Act','Think of someone\'s diary: the law says how you may use it and when you must give it back or destroy it. The DPDP Act is India\'s Digital Personal Data Protection Act, 2023, with its Rules from 2025. It says what an organisation must do before it collects, uses or shares personal data, such as asking for consent.',16.5,'dg'],
   ['Governance','Think of the house rules, the notice board and the named elder who answers if something goes wrong. Governance is the rules, documents and named people that decide how an AI system may be used, who checks it, and who answers for it when it goes wrong.',17],
   ['Throughput','Think of how many cups of chai a stall serves in an hour. Throughput is how much work a system gets through in a given time, such as requests per minute. Latency is how long one request waits; throughput is how many get done.',30],
-  ['A/B test','Think of giving two groups of customers two different menus on the same day, and counting which sells more. An A/B test shows two versions to two random groups of users at the same time and compares one number between them, so you can tell which version caused the difference.','B3']
+  ['A/B test','Think of giving two groups of customers two different menus on the same day, and counting which sells more. An A/B test shows two versions to two random groups of users at the same time and compares one number between them, so you can tell which version caused the difference.','B3'],
+  /* Delivery & Governance terms (Phase 2, Nov 2026): tagged 'dg' for the glossary filter. */
+  ["TTFT (time to first token)", "Think of the wait before the chai-wala starts pouring. TTFT is how long after you send a request the first word of the answer arrives. It grows with a longer prompt, because the model must read all of it first.", 11.5, "dg"],
+  ["TPOT (time per output token)", "Think of how fast the chai-wala pours once he starts. TPOT is the average time between one word of the answer and the next. Tools also call it inter-token latency (ITL).", 11.5, "dg"],
+  ["pass@k", "Think of a student given three tries at a sum: did any one try get it right? pass@k is the chance that at least one of k attempts succeeds.", 14, "dg"],
+  ["pass^k", "Think of a train that must be on time every day of the week, not just once. pass^k is the chance that all k attempts succeed. A step that works 75% of the time works three times in a row only about 42% of the time.", 14, "dg"],
+  ["Eval saturation", "Think of a test the whole class now scores full marks on: it no longer tells you who is better. Eval saturation is when a system passes nearly every case in an eval, so the eval stops giving you new information. Move such cases into the regression suite and write harder ones.", 29, "dg"],
+  ["Cost per successful answer", "Think of the real cost of a delivery when some parcels come back and must be sent again. Cost per successful answer is the cost of one call times the calls needed per good answer, so retries are counted.", 15, "dg"],
+  ["FOCUS billing format", "Think of one common bill layout that every phone company agrees to use. FOCUS is the FinOps Foundation's open format for cloud and software bills, so costs from different providers can be added up and split by team or feature.", 15, "dg"],
+  ["DPDP Rules 2025", "Think of the detailed rule book that comes after a new law: how to do what the law says. The DPDP Rules 2025 explain how to follow India's DPDP Act: notices, consent, keeping data safe, telling people about a breach, and children's data. Most duties start on 13 May 2027.", 16.5, "dg"],
+  ["Significant Data Fiduciary (SDF)", "Think of a big hospital that the health inspector visits every year, while a small clinic is checked less. An SDF is an organisation the government names as handling a lot of sensitive personal data, so it has extra duties: a yearly impact assessment and audit, and checking that its algorithms do not harm people's rights.", 16.5, "dg"],
+  ["CERT-In 6-hour rule", "Think of a fire alarm that must ring at the fire station within six hours. Under CERT-In's 2022 directions, many organisations in India must report certain cyber incidents within 6 hours, keep system logs for 180 days in India, and sync their clocks.", 31, "dg"],
+  ["AI management system standard (ISO 42001)", "Think of a kitchen hygiene certificate: it checks the kitchen's habits, not one dish. ISO/IEC 42001 is the international standard for how an organisation runs its AI work responsibly, and an organisation can be certified against it.", 17, "dg"],
+  ["AI impact assessment standard (ISO 42005)", "Think of checking who might get hurt before you build a new road. ISO/IEC 42005 gives guidance on how to assess what an AI system could do to people and society, before and after it ships.", 17, "dg"],
+  ["India AI Governance Guidelines", "Think of good-conduct advice from a school, not the law of the land. India's AI Governance Guidelines (MeitY, November 2025) set out seven principles for safe, trusted AI. They are not a law; binding duties still come from laws like the DPDP Act and from sector regulators.", 17, "dg"],
+  ["OWASP Agentic Top 10", "Think of a list of the ten most common ways a helper on errands can be tricked or go wrong. The OWASP Top 10 for Agentic Applications (December 2025) lists the main security risks of AI agents, such as goal hijack and tool misuse, numbered ASI01 to ASI10.", 31, "dg"],
 ];
 
 /* ---------- Vendor Interrogation Deck ---------- */
@@ -10715,7 +10783,24 @@ window.APPENDIX = {
     ['Hiring signals','Applied AI PM and AI engineering roles. These show what the market asks for, not what the standards say','https://aipmframework.com/'],
     ['Anthropic','Building Effective Agents: when to use a workflow and when to use an agent, and how to design tools','https://www.anthropic.com/engineering/building-effective-agents'],
     ['Anthropic','Building Effective AI Agents: the longer write-up','https://resources.anthropic.com/building-effective-ai-agents'],
-    ['OWASP','GenAI / LLM Top 10, 2026 edition','https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/']
+    ['OWASP','GenAI / LLM Top 10, 2026 edition','https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/'],
+    /* Phase 2 (November 2026): fast-moving rules and numbers, each with the month it was last checked. */
+    ["Government of India (PIB)", "DPDP Rules 2025: notified on 13 November 2025, with duties starting in steps up to 13 May 2027", "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2190014", "November 2026"],
+    ["MeitY", "India AI Governance Guidelines (5 November 2025): seven principles, non-binding", "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2186639", "November 2026"],
+    ["Reserve Bank of India", "FREE-AI framework report (13 August 2025): seven principles and 26 recommendations for finance", "https://rbi.org.in/Scripts/PublicationReportDetails.aspx?ID=1306", "November 2026"],
+    ["CERT-In", "Cyber Security Directions of 28 April 2022: 6-hour reporting, 180-day logs, clock sync, a named contact", "https://www.cert-in.org.in/Directions70B.jsp", "November 2026"],
+    ["European Commission", "EU AI Act implementation timeline", "https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act", "November 2026"],
+    ["EUR-Lex", "Regulation (EU) 2026/1744, the Digital Omnibus on AI: the new high-risk dates", "https://eur-lex.europa.eu/eli/reg/2026/1744/oj/eng", "November 2026"],
+    ["ISO", "ISO/IEC 42001:2023, AI management system (certifiable)", "https://www.iso.org/standard/42001", "November 2026"],
+    ["ISO", "ISO/IEC 42005:2025, AI system impact assessment (guidance)", "https://www.iso.org/standard/42005", "November 2026"],
+    ["OWASP", "Top 10 for Agentic Applications (December 2025), ASI01 to ASI10", "https://genai.owasp.org/top-10-for-agentic-applications-2026/", "November 2026"],
+    ["FinOps Foundation", "FOCUS billing specification: version 1.4 is current; 1.5, with AI token support, is planned", "https://focus.finops.org/focus-specification/", "November 2026"],
+    ["Anthropic", "Demystifying evals for AI agents: pass@k, pass^k and saturation", "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents", "November 2026"],
+    ["Yao and others (2024)", "τ-bench, the paper that introduced pass^k", "https://arxiv.org/abs/2406.12045", "November 2026"],
+    ["NVIDIA", "NIM benchmarking metrics: TTFT and inter-token latency", "https://docs.nvidia.com/nim/benchmarking/llm/latest/metrics.html", "November 2026"],
+    ["Agrawal and others (2024)", "Sarathi-Serve, the paper behind chunked prefill", "https://arxiv.org/abs/2403.02310", "November 2026"],
+    ["Anthropic", "Prompt caching prices: cache writes and reads by model", "https://platform.claude.com/docs/en/about-claude/pricing", "November 2026"],
+    ["OpenAI", "Prompt caching guide: write and read prices by model", "https://developers.openai.com/api/docs/guides/prompt-caching", "November 2026"]
   ],
   /* Two labels per column: the full one reads properly on a laptop, the short
      one is what lets all four columns fit on a phone instead of the last one
@@ -16126,8 +16211,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Chaaron prompts aur unke chaaron scores ko apni repository mein <code>docs/prompt-and-scores.md</code> ke roop mein save kijiye.',
   'Cost per correct answer':
     'Sahi answer ki cost',
-  'Dates to check before any interview':
-    'Kisi bhi interview se pehle jaanchne wali taarikhein',
   '<strong>Data Fiduciary.</strong> The organisation that decides why and how the data is used. Your company is the Data Fiduciary. A model provider that handles the message for you works on your behalf, so the duty stays with you.':
     '<strong>Data Fiduciary.</strong> Woh sanstha jo tay karti hai ki data kyun aur kaise use hoga. Aapki company Data Fiduciary hai. Jo model provider aapke liye message sambhalta hai woh aapki taraf se kaam karta hai, isliye zimmedari aapki hi rehti hai.',
   'Match each kind of text to a duty':
@@ -23339,6 +23422,264 @@ Object.assign(window.HING = window.HING || {}, {
     'Shuru hua',
   'Your {weeks} weeks':
     'Aapke {weeks} hafte',
+});
+
+/* Hinglish for the Phase 2 updates (November 2026): latency numbers, pass^k, cost per
+   successful answer, the DPDP Rules 2025, EU dates and standards, OWASP Agentic Top 10, CERT-In.
+   Keyed on the English. */
+Object.assign(window.HING = window.HING || {}, {
+  "Last verified: November 2026":
+    "Aakhri baar jaancha gaya: November 2026",
+  "Two numbers for the wait: TTFT and TPOT":
+    "Intezaar ke do number: TTFT aur TPOT",
+  "Streaming splits one wait into two parts, and each part has its own name. Teams that run models measure both.":
+    "Streaming ek intezaar ko do hisson mein baant deta hai, aur har hisse ka apna naam hai. Models chalane wali teams dono ko naapti hain.",
+  "<strong>TTFT (time to first token).</strong> How long until the first word arrives. The model must first read your whole prompt. This reading step is called <em>prefill</em>. So a longer prompt means a longer TTFT.":
+    "<strong>TTFT (time to first token).</strong> Pehla shabd aane mein kitna samay lagta hai. Model ko pehle aapka poora prompt padhna padta hai. Is padhne wale kadam ko <em>prefill</em> kehte hain. Isliye lamba prompt, lamba TTFT.",
+  "<strong>TPOT (time per output token).</strong> The average gap between one word and the next, once words start to flow. This writing step is called <em>decode</em>. Some tools call the same idea ITL (inter-token latency).":
+    "<strong>TPOT (time per output token).</strong> Shabd aana shuru hone ke baad, ek shabd aur agle shabd ke beech ka ausat faasla. Is likhne wale kadam ko <em>decode</em> kehte hain. Kuch tools isi baat ko ITL (inter-token latency) kehte hain.",
+  "The total time is TTFT plus the time to write the rest. Say a reply has 300 tokens, a TTFT of 0.8 seconds and a TPOT of 20 milliseconds. It takes about 0.8 + 6 = 6.8 seconds.":
+    "Kul samay TTFT plus baaki likhne ka samay hai. Maan lijiye ek jawaab mein 300 tokens hain, TTFT 0.8 second hai aur TPOT 20 millisecond. Use lagbhag 0.8 + 6 = 6.8 second lagenge.",
+  "A busy server also shares its time between many users. A new long prompt can make everyone else’s words pause while it is read. Many servers now cut long prompts into pieces and read them between other people’s words. This is called <em>chunked prefill</em>. Your first word may come a little later, but nobody’s reply freezes.":
+    "Ek vyast server apna samay kai users mein baant’ta hai. Ek naya lamba prompt padhe jaate samay baaki sabke shabd ruk sakte hain. Ab kai servers lambe prompts ko tukdon mein kaat kar doosron ke shabdon ke beech mein padhte hain. Ise <em>chunked prefill</em> kehte hain. Aapka pehla shabd thoda der se aa sakta hai, par kisi ka jawaab atakta nahi.",
+  "Which number, and what you would change":
+    "Kaunsa number, aur aap kya badlenge",
+  "Users say your chat “takes ages to start”, but once it starts it reads fast. Last week you added a long policy document to every prompt. Which number got worse, TTFT or TPOT? What would you change first?":
+    "Users kehte hain ki aapka chat “shuru hone mein bahut der lagata hai”, par shuru hone ke baad tezi se chalta hai. Pichhle hafte aapne har prompt mein ek lamba policy document jod diya. Kaunsa number bigda, TTFT ya TPOT? Aap pehle kya badlenge?",
+  "TTFT got worse. The model reads the whole policy before it writes the first word, so the longer prompt adds to the start. TPOT barely changes. Send fewer pages, or cache the fixed part of the prompt (prompt caching, Chapter 10). Then measure TTFT again.":
+    "TTFT bigda. Model pehla shabd likhne se pehle poori policy padhta hai, isliye lamba prompt shuruaat mein samay jodta hai. TPOT lagbhag nahi badalta. Kam pages bhejiye, ya prompt ke fixed hisse ko cache kijiye (prompt caching, Chapter 10). Phir TTFT dobara naapiye.",
+  "Report both numbers at p50 and p95, not only the total. A fast TPOT cannot rescue a slow start.":
+    "Dono number p50 aur p95 par report kijiye, sirf kul samay nahi. Tez TPOT dheemi shuruaat ko nahi bacha sakta.",
+  "The names TTFT, TPOT and ITL follow the NVIDIA NIM and vLLM benchmarking guides. Chunked prefill comes from the Sarathi-Serve paper (Agrawal and others, 2024, arXiv:2403.02310). Tools average these numbers in slightly different ways, so read your own tool’s definition.":
+    "TTFT, TPOT aur ITL ke naam NVIDIA NIM aur vLLM ki benchmarking guides se liye gaye hain. Chunked prefill Sarathi-Serve paper (Agrawal aur saathi, 2024, arXiv:2403.02310) se aaya hai. Tools in numbers ka ausat thode alag tareeke se nikaalte hain, isliye apne tool ki definition padhiye.",
+  "One try or every try: pass@k and pass^k":
+    "Ek koshish ya har koshish: pass@k aur pass^k",
+  "A model or an agent does not give the same answer every time. So you often run each test case several times. There are two ways to score those runs, and they answer different questions.":
+    "Model ya agent har baar ek hi jawaab nahi deta. Isliye aap aksar har test case kai baar chalate hain. Un runs ko score karne ke do tareeke hain, aur dono alag sawaalon ka jawaab dete hain.",
+  "<strong>pass@k.</strong> Did at least one of k tries succeed? Use it when one good answer is enough, for example when a person picks the best of three drafts.":
+    "<strong>pass@k.</strong> Kya k koshishon mein se kam se kam ek safal hui? Ise tab use kijiye jab ek achha jawaab kaafi ho, jaise jab koi insaan teen drafts mein se sabse achha chunta hai.",
+  "<strong>pass^k</strong> (say “pass hat k”). Did all k tries succeed? Use it when every user must get it right every time, for example an agent that files a refund.":
+    "<strong>pass^k</strong> (boliye “pass hat k”). Kya saari k koshishein safal huin? Ise tab use kijiye jab har user ko har baar sahi milna zaroori ho, jaise refund file karne wala agent.",
+  "The two numbers move apart fast. Say one try succeeds 75% of the time, and the tries do not affect each other. Then pass@3 is 1 − 0.25³, about 98%. But pass^3 is 0.75³, about 42%. The same system looks great on one number and shaky on the other.":
+    "Dono number tezi se alag hote hain. Maan lijiye ek koshish 75% baar safal hoti hai, aur koshishein ek doosre par asar nahi daaltin. Tab pass@3 hai 1 − 0.25³, lagbhag 98%. Par pass^3 hai 0.75³, lagbhag 42%. Wahi system ek number par shandaar dikhta hai aur doosre par kamzor.",
+  "For a feature real users rely on, report pass^k. A demo can live on pass@k. A product cannot.":
+    "Jis feature par asli users bharosa karte hain, uske liye pass^k report kijiye. Demo pass@k par chal sakta hai. Product nahi.",
+  "What you would report":
+    "Aap kya report karenge",
+  "Your support agent solves a test case on 80% of tries. A manager wants to say “it works 99% of the time”, because pass@3 is above 99%. What would you report instead, and why?":
+    "Aapka support agent ek test case 80% koshishon mein hal karta hai. Ek manager kehna chahte hain ki “yeh 99% baar chalta hai”, kyunki pass@3 99% se upar hai. Aap uski jagah kya report karenge, aur kyun?",
+  "Report pass^3, which is 0.8³, about 51%. A customer gets one try, not three. pass@3 says the agent <em>can</em> solve the case. pass^3 says how often it solves it every time. Give both numbers, and say which one the customer feels.":
+    "pass^3 report kijiye, jo 0.8³ hai, lagbhag 51%. Customer ko ek koshish milti hai, teen nahi. pass@3 batata hai ki agent case hal <em>kar sakta</em> hai. pass^3 batata hai ki woh kitni baar har baar hal karta hai. Dono number dijiye, aur bataiye ki customer kaunsa mehsoos karta hai.",
+  "The τ-bench paper (Yao and others, 2024) introduced pass^k to measure this kind of reliability.":
+    "τ-bench paper (Yao aur saathi, 2024) ne is tarah ki bharosemandi naapne ke liye pass^k shuru kiya.",
+  "pass^k comes from the τ-bench paper (arXiv:2406.12045). Anthropic’s engineering guide “Demystifying evals for AI agents” explains when to use each one. The 75% and 80% examples are this course’s own arithmetic.":
+    "pass^k τ-bench paper (arXiv:2406.12045) se aata hai. Anthropic ki engineering guide “Demystifying evals for AI agents” samjhati hai ki kab kaunsa use karein. 75% aur 80% ke udaharan is course ka apna hisaab hain.",
+  "Cost per successful answer":
+    "Cost per successful answer (har safal jawaab ka kharcha)",
+  "Cost per query counts every call. But a call that fails and must run again buys nothing. So also track the <strong>cost per successful answer</strong>: the cost of one try, divided by the share of tries that work.":
+    "Cost per query har call ko ginta hai. Par jo call fail ho aur dobara chalani pade, woh kuch nahi khareedti. Isliye <strong>cost per successful answer</strong> bhi track kijiye: ek koshish ka kharcha, bhaag safal koshishon ka hissa.",
+  "The second model looks cheaper per try. Per good answer, the two cost the same. And the cheaper one makes more users wait for a retry.":
+    "Doosra model har koshish par sasta dikhta hai. Har achhe jawaab par dono ka kharcha barabar hai. Aur sasta wala zyada users ko retry ka intezaar karwata hai.",
+  "Cache prices changed in 2026, so check them each time. On Anthropic’s API, writing a prompt to the cache costs more than normal input: 1.25 times for a five-minute cache, or 2 times for a one-hour cache. Reading it back costs a tenth, and less on the newest models. On OpenAI’s API, from GPT-5.6, writing to the cache is charged too. An old rule like “cached input is half price” is now wrong.":
+    "Cache ke daam 2026 mein badle, isliye har baar jaanchiye. Anthropic ke API par, prompt ko cache mein likhna normal input se mehenga hai: paanch minute ke cache ke liye 1.25 guna, ya ek ghante ke cache ke liye 2 guna. Wapas padhne ka kharcha dasvaan hissa hai, aur naye models par isse bhi kam. OpenAI ke API par, GPT-5.6 se, cache mein likhne ka bhi paisa lagta hai. “Cached input aadhe daam par” jaisa purana niyam ab galat hai.",
+  "Agents add one more cost: the loop. An agent that retries a tool again and again can spend a month’s budget in an hour. Give every agent a hard cap on steps and on spend for each task. Stop it when it reaches the cap.":
+    "Agents ek aur kharcha jodte hain: loop. Jo agent ek tool ko baar baar retry karta hai, woh ek ghante mein mahine ka budget kharch kar sakta hai. Har agent ko har task ke liye steps aur kharche ki pakki seema (cap) dijiye. Seema par pahunchte hi use rok dijiye.",
+  "Set budgets in three stages, like learning to ride a cycle. <strong>Crawl:</strong> a small daily cap, and a person reads every bill. <strong>Walk:</strong> a cap for each team and each feature, with an alert at 80%. <strong>Run:</strong> costs split by feature and by customer, and checked against value every week.":
+    "Budget teen charanon mein tay kijiye, jaise cycle chalana seekhna. <strong>Crawl:</strong> chhoti rozana seema, aur ek insaan har bill padhta hai. <strong>Walk:</strong> har team aur har feature ki seema, 80% par alert ke saath. <strong>Run:</strong> kharcha feature aur customer ke hisaab se baanta hua, aur har hafte value se milaya hua.",
+  "To split costs by feature, many finance teams use one shared format for bills, the <strong>FOCUS billing format</strong> from the FinOps Foundation. Version 1.4 is current. Today AI calls appear in it like any other line on the bill. Version 1.5, planned for December 2026, is meant to add model names and token counts.":
+    "Kharche ko feature ke hisaab se baantne ke liye kai finance teams ek saajha bill dhaancha use karti hain, FinOps Foundation ka <strong>FOCUS billing format</strong>. Version 1.4 abhi ka hai. Aaj AI calls usmein bill ki kisi bhi aur line jaisi dikhti hain. Version 1.5, jo December 2026 ke liye planned hai, model ke naam aur token counts jodne ke liye hai.",
+  "Your working":
+    "Aapka hisaab",
+  "Model A costs ₹0.30 per try and works 60% of the time. Model B costs ₹0.45 per try and works 90% of the time. Which is cheaper per successful answer?":
+    "Model A ki ek koshish ₹0.30 ki hai aur 60% baar chalta hai. Model B ki ek koshish ₹0.45 ki hai aur 90% baar chalta hai. Har safal jawaab par kaunsa sasta hai?",
+  "They cost the same: ₹0.30 ÷ 0.6 = ₹0.50, and ₹0.45 ÷ 0.9 = ₹0.50. So cost does not decide it. Model B wins, because fewer users wait for a retry, and every retry also adds time. Always divide by the success rate before you compare prices.":
+    "Dono ka kharcha barabar hai: ₹0.30 ÷ 0.6 = ₹0.50, aur ₹0.45 ÷ 0.9 = ₹0.50. Isliye kharcha faisla nahi karta. Model B jeet’ta hai, kyunki kam users retry ka intezaar karte hain, aur har retry samay bhi jodta hai. Daam milaane se pehle hamesha success rate se bhaag dijiye.",
+  "Put cost per successful answer next to cost per query in your cost model.":
+    "Apne cost model mein cost per query ke bagal mein cost per successful answer rakhiye.",
+  "Cache prices: Anthropic’s pricing and prompt-caching pages, and OpenAI’s prompt-caching guide. FOCUS: focus.finops.org (version 1.4, ratified on 4 June 2026) and the FOCUS release plan for 1.5. Prices change often, so check the official page on the day you quote one.":
+    "Cache ke daam: Anthropic ke pricing aur prompt-caching pages, aur OpenAI ki prompt-caching guide. FOCUS: focus.finops.org (version 1.4, 4 June 2026 ko manzoor) aur 1.5 ka FOCUS release plan. Daam aksar badalte hain, isliye jis din daam bataayein, us din official page jaanchiye.",
+  "The DPDP Rules 2025: how and when":
+    "DPDP Rules 2025: kaise aur kab",
+  "The Act says what you must do. The <strong>DPDP Rules 2025</strong> say how, and when. The government notified them on 13 November 2025. They start in three steps.":
+    "Act batata hai ki aapko kya karna hai. <strong>DPDP Rules 2025</strong> batate hain kaise, aur kab. Sarkar ne inhe 13 November 2025 ko notify kiya. Yeh teen kadamon mein shuru hote hain.",
+  "<strong>13 November 2025.</strong> Definitions, and the Data Protection Board (the body that hears complaints and can fine).":
+    "<strong>13 November 2025.</strong> Paribhashayein, aur Data Protection Board (woh sanstha jo shikayatein sunti hai aur jurmana laga sakti hai).",
+  "<strong>13 November 2026.</strong> Consent Managers: registered companies that help people give, see and take back their consent.":
+    "<strong>13 November 2026.</strong> Consent Managers: registered companies jo logon ko consent dene, dekhne aur wapas lene mein madad karti hain.",
+  "<strong>13 May 2027.</strong> Most duties: notices, security, breach reporting, keeping and deleting data, children’s data, and people’s rights.":
+    "<strong>13 May 2027.</strong> Zyadatar duties: notice, suraksha, breach reporting, data rakhna aur mitana, bachchon ka data, aur logon ke adhikar.",
+  "Three rules matter most for an AI tool.":
+    "AI tool ke liye teen niyam sabse zyada maayne rakhte hain.",
+  "<strong>Report a breach fast.</strong> Tell the affected people without delay, in plain words. Tell the Board without delay too, then send it a full report within 72 hours.":
+    "<strong>Breach jaldi report kijiye.</strong> Prabhavit logon ko bina der kiye, saral shabdon mein bataiye. Board ko bhi bina der kiye bataiye, phir 72 ghante ke andar use poori report bhejiye.",
+  "<strong>Children need a parent’s consent.</strong> Before you use a child’s data, check that a real adult parent or guardian has agreed.":
+    "<strong>Bachchon ke liye maata-pita ka consent chahiye.</strong> Bachche ka data use karne se pehle jaanchiye ki ek asli vayask maata-pita ya guardian ne haan kahi hai.",
+  "<strong>Big data handlers have extra duties.</strong> The government can name an organisation a <strong>Significant Data Fiduciary (SDF)</strong>. An SDF must do a data protection impact assessment and an audit every year. It must also check that its algorithms do not put people’s rights at risk.":
+    "<strong>Bade data sambhalne walon ki extra duties hain.</strong> Sarkar kisi sanstha ko <strong>Significant Data Fiduciary (SDF)</strong> ghoshit kar sakti hai. SDF ko har saal data protection impact assessment aur audit karna hota hai. Use yeh bhi jaanchna hota hai ki uske algorithms logon ke adhikaron ko khatre mein na daalein.",
+  "Who you tell, and when":
+    "Aap kise batayenge, aur kab",
+  "On a Friday evening, your team finds that the tool’s log lines kept full customer messages, and an outside vendor could read them. The main duties of the Rules are in force. Who must you tell, and how soon?":
+    "Ek Friday shaam aapki team ko pata chalta hai ki tool ki log lines ne customers ke poore messages rakhe, aur ek bahari vendor unhe padh sakta tha. Rules ki mukhya duties laagu hain. Aapko kise batana hai, aur kitni jaldi?",
+  "Tell the affected customers without delay, in plain words: what happened, what it means for them, what you are doing, and whom to contact. Tell the Data Protection Board without delay too. Then send the Board a full report within 72 hours. Do not wait for Monday: the 72 hours start when you learn of the breach. Also tell your security team, because CERT-In, India’s cyber agency, has its own 6-hour reporting rule.":
+    "Prabhavit customers ko bina der kiye, saral shabdon mein bataiye: kya hua, unke liye iska kya matlab hai, aap kya kar rahe hain, aur kisse sampark karein. Data Protection Board ko bhi bina der kiye bataiye. Phir 72 ghante ke andar Board ko poori report bhejiye. Monday ka intezaar mat kijiye: 72 ghante tab se shuru hote hain jab aapko breach ka pata chalta hai. Apni security team ko bhi bataiye, kyunki CERT-In, India ki cyber agency, ka apna 6 ghante ka reporting niyam hai.",
+  "This is why the log line in the next exercise matters. A leak nobody planned for still has a clock.":
+    "Isiliye agle exercise ki log line maayne rakhti hai. Jis leak ki kisi ne planning nahi ki, uski bhi ghadi chalti hai.",
+  "Dates and duties: PIB’s release on the DPDP Rules 2025 (14 November 2025) and MeitY’s note on the Rules. The 13 May 2027 date may come sooner: in January 2026, MeitY asked for views on a shorter timeline. Check the eGazette before you quote a date.":
+    "Taareekhein aur duties: DPDP Rules 2025 par PIB ki release (14 November 2025) aur Rules par MeitY ka note. 13 May 2027 ki taareekh pehle bhi aa sakti hai: January 2026 mein MeitY ne chhoti samay-seema par raay maangi thi. Koi taareekh bataane se pehle eGazette jaanchiye.",
+  "The EU AI Act came into force on 1 August 2024. Bans and a duty to train staff in AI basics began on 2 February 2025. Rules for general-purpose models began on 2 August 2025. Most other parts, including the duty to say “this is AI”, apply from 2 August 2026.":
+    "EU AI Act 1 August 2024 ko laagu hua. Pabandiyaan aur staff ko AI ki buniyadi training dene ki duty 2 February 2025 se shuru huin. General-purpose models ke niyam 2 August 2025 se shuru hue. Baaki zyadatar hisse, jismein “yeh AI hai” batane ki duty bhi hai, 2 August 2026 se laagu hain.",
+  "In July 2026, a new EU law, the Digital Omnibus, moved some dates. High-risk uses such as hiring and loans now apply from 2 December 2027. High-risk AI built into products, such as machines and medical devices, applies from 2 August 2028. Anything that still says “high risk from August 2026” is out of date.":
+    "July 2026 mein ek naye EU kaanoon, Digital Omnibus, ne kuch taareekhein aage kar deen. Hiring aur loans jaise high-risk upyog ab 2 December 2027 se laagu hain. Products mein bane high-risk AI, jaise machines aur medical devices, 2 August 2028 se laagu hain. Jo bhi ab tak “high risk August 2026 se” kehta hai, woh purana hai.",
+  "EU dates: the EU AI Act Service Desk timeline, and Regulation (EU) 2026/1744 on EUR-Lex. Standards: the iso.org pages for ISO/IEC 42001 and 42005. India: PIB’s release of 5 November 2025 on the guidelines, and RBI’s FREE-AI report of 13 August 2025. Rules change, so check each date against the official source before an interview, and say only what you checked.":
+    "EU ki taareekhein: EU AI Act Service Desk ki timeline, aur EUR-Lex par Regulation (EU) 2026/1744. Standards: ISO/IEC 42001 aur 42005 ke iso.org pages. India: guidelines par PIB ki 5 November 2025 ki release, aur RBI ki 13 August 2025 ki FREE-AI report. Niyam badalte hain, isliye interview se pehle har taareekh official source se milaiye, aur sirf wahi kahiye jo aapne jaancha.",
+  "Standards, and India’s own guidance":
+    "Standards, aur India ka apna margdarshan",
+  "Buyers often ask for a standard, not a law. Two ISO standards come up again and again.":
+    "Khareedne wale aksar kaanoon nahi, standard maangte hain. Do ISO standards baar baar saamne aate hain.",
+  "<strong>ISO/IEC 42001</strong> (2023), the <strong>AI management system standard (ISO 42001)</strong>. It sets out how an organisation runs its AI work: roles, risks, checks and steady improvement. An organisation can be certified against it, like a quality certificate.":
+    "<strong>ISO/IEC 42001</strong> (2023), <strong>AI management system standard (ISO 42001)</strong>. Yeh batata hai ki ek sanstha apna AI kaam kaise chalaye: bhoomikayein, khatre, jaanch aur lagatar sudhaar. Sanstha iske against certify ho sakti hai, jaise quality certificate.",
+  "<strong>ISO/IEC 42005</strong> (2025), the <strong>AI impact assessment standard (ISO 42005)</strong>. It guides you to judge what one AI system could do to people and to society. It is guidance only, so nobody is certified against it.":
+    "<strong>ISO/IEC 42005</strong> (2025), <strong>AI impact assessment standard (ISO 42005)</strong>. Yeh margdarshan deta hai ki ek AI system logon aur samaaj par kya asar daal sakta hai, ise kaise aankein. Yeh sirf margdarshan hai, isliye iske against koi certify nahi hota.",
+  "India has chosen guidance first. In November 2025, MeitY published the <strong>India AI Governance Guidelines</strong>. They set out seven principles, starting with “Trust is the Foundation” and “People First”. They are not a law, and they favour voluntary steps such as standards and audits. Binding duties still come from laws such as the DPDP Act and the IT Act, and from sector regulators.":
+    "India ne pehle margdarshan chuna hai. November 2025 mein MeitY ne <strong>India AI Governance Guidelines</strong> prakashit keen. Inmein saat siddhant hain, jo “Trust is the Foundation” aur “People First” se shuru hote hain. Yeh kaanoon nahi hain, aur standards aur audits jaise svaichhik kadamon ko badhava dete hain. Zaroori duties ab bhi DPDP Act aur IT Act jaise kaanoonon se, aur sector regulators se aati hain.",
+  "In banking and finance":
+    "Banking aur finance mein",
+  "The Reserve Bank of India’s FREE-AI report (August 2025) uses the same seven principles, with 26 recommendations for banks and lenders. If you build for a bank, read it before the first meeting.":
+    "Reserve Bank of India ki FREE-AI report (August 2025) wahi saat siddhant use karti hai, banks aur lenders ke liye 26 sifarishon ke saath. Agar aap bank ke liye bana rahe hain, to pehli meeting se pehle ise padhiye.",
+  "Your two sentences":
+    "Aapke do vaakya",
+  "A client in Pune says: “India has no AI law, so we have no AI duties.” What would you say back, in two sentences?":
+    "Pune ke ek client kehte hain: “India mein koi AI kaanoon nahi hai, isliye hamari koi AI duties nahi hain.” Aap do vaakyon mein kya jawaab denge?",
+  "India has no single AI law yet, but your tool still handles personal data, so the DPDP Act and its Rules apply, and a bank or insurer also answers to its regulator. The MeitY guidelines are voluntary, but buyers and auditors already ask about them, and about standards such as ISO/IEC 42001.":
+    "India mein abhi koi ek AI kaanoon nahi hai, par aapka tool phir bhi personal data sambhalta hai, isliye DPDP Act aur uske Rules laagu hain, aur bank ya insurer apne regulator ko bhi jawaabdeh hai. MeitY guidelines svaichhik hain, par khareedne wale aur auditors unke baare mein, aur ISO/IEC 42001 jaise standards ke baare mein, pehle se poochhte hain.",
+  "Keep what is binding apart from what is expected. Both shape the project plan.":
+    "Jo zaroori hai aur jo apeksha hai, unhe alag rakhiye. Dono project plan ko aakaar dete hain.",
+  "When the eval stops teaching you":
+    "Jab eval sikhana band kar de",
+  "A test the whole class scores full marks on no longer tells you who is better. Evals (your sets of test cases) have the same problem. When your system passes nearly every case, the eval stops giving you new information. This is called <strong>eval saturation</strong>.":
+    "Jis test mein poori class ko poore number milte hain, woh ab nahi batata ki kaun behtar hai. Evals (aapke test cases ke set) ki bhi yahi samasya hai. Jab aapka system lagbhag har case pass kar leta hai, eval naya kuch batana band kar deta hai. Ise <strong>eval saturation</strong> kehte hain.",
+  "Do not delete a saturated eval. Move its cases into your regression suite (the checks every release must pass), where a score near 100% is exactly what you want. Then write new, harder cases for the capability eval, so it starts low again and has room to show progress.":
+    "Saturated eval ko mitaiye mat. Uske cases ko apne regression suite (woh checks jo har release ko pass karne hote hain) mein daaliye, jahan 100% ke paas ka score bilkul wahi hai jo aap chahte hain. Phir capability eval ke liye naye, mushkil cases likhiye, taaki woh phir neeche se shuru ho aur progress dikhane ki jagah ho.",
+  "Kind of eval":
+    "Eval ka prakaar",
+  "Score you want":
+    "Aapko kaisa score chahiye",
+  "What it tells you":
+    "Yeh kya batata hai",
+  "Capability eval":
+    "Capability eval",
+  "Starts low, then climbs":
+    "Neeche se shuru, phir upar chadhta hai",
+  "Can the system do something new?":
+    "Kya system kuch naya kar sakta hai?",
+  "Regression suite":
+    "Regression suite",
+  "Near 100%":
+    "100% ke paas",
+  "Did a change break something that worked?":
+    "Kya kisi badlaav ne chalti hui cheez tod di?",
+  "What you keep, and what you add":
+    "Aap kya rakhenge, aur kya jodenge",
+  "Your answer key now scores 99% on every release, and the last three changes all scored the same. A teammate says “evals are done”. What do you do with the answer key, and what do you add?":
+    "Aapki answer key ab har release par 99% score karti hai, aur pichhle teen badlaavon ka score bhi wahi raha. Ek saathi kehte hain “evals ho gaye”. Aap answer key ka kya karenge, aur kya jodenge?",
+  "The answer key is saturated, so it can no longer tell a good change from a bad one. Keep it as a regression suite, so a release that drops below about 99% is stopped. Then write new cases from real failures, such as your error-analysis piles from Chapter 14.5, so the capability eval starts low again. Also check pass^k on the hardest cases.":
+    "Answer key saturated hai, isliye ab woh achhe aur bure badlaav mein farq nahi bata sakti. Ise regression suite ki tarah rakhiye, taaki lagbhag 99% se neeche girne wali release ruk jaaye. Phir asli failures se naye cases likhiye, jaise Chapter 14.5 ke aapke error-analysis ke dher, taaki capability eval phir neeche se shuru ho. Sabse mushkil cases par pass^k bhi jaanchiye.",
+  "A flat score is a signal to write harder cases, not a sign that the work is finished.":
+    "Sapaat score mushkil cases likhne ka sanket hai, kaam khatam hone ka nahi.",
+  "The split between capability evals and regression evals, and the idea of saturation, follow Anthropic’s engineering guide “Demystifying evals for AI agents”.":
+    "Capability evals aur regression evals ka bantwara, aur saturation ka vichaar, Anthropic ki engineering guide “Demystifying evals for AI agents” se liye gaye hain.",
+  "A list for agent risks, and a clock for incidents":
+    "Agent ke khatron ki list, aur incidents ki ghadi",
+  "In December 2025, the OWASP security community published the <strong>OWASP Agentic Top 10</strong>: the ten main security risks of AI agents. Use it as a checklist for your risk register. Five of them matter for almost every agent you will build.":
+    "December 2025 mein OWASP security community ne <strong>OWASP Agentic Top 10</strong> prakashit ki: AI agents ke das mukhya security khatre. Ise apne risk register ki checklist ki tarah use kijiye. Inmein se paanch lagbhag har us agent ke liye maayne rakhte hain jo aap banayenge.",
+  "<strong>ASI01 Agent Goal Hijack.</strong> Hidden text changes what the agent is trying to do. It is prompt injection aimed at the goal.":
+    "<strong>ASI01 Agent Goal Hijack.</strong> Chhupa hua text badal deta hai ki agent kya karne ki koshish kar raha hai. Yeh goal par nishana saadhne wala prompt injection hai.",
+  "<strong>ASI02 Tool Misuse and Exploitation.</strong> The agent uses a real tool in a harmful way, such as a refund tool used to send money out.":
+    "<strong>ASI02 Tool Misuse and Exploitation.</strong> Agent ek asli tool ko nuksaandeh tareeke se use karta hai, jaise refund tool se paisa bahar bhejna.",
+  "<strong>ASI03 Identity and Privilege Abuse.</strong> The agent acts with more keys than the task needs.":
+    "<strong>ASI03 Identity and Privilege Abuse.</strong> Agent task ki zaroorat se zyada chaabiyon ke saath kaam karta hai.",
+  "<strong>ASI06 Memory and Context Poisoning.</strong> Bad notes saved in the agent’s memory steer its later tasks.":
+    "<strong>ASI06 Memory and Context Poisoning.</strong> Agent ki memory mein save hue galat notes uske baad ke tasks ko galat disha dete hain.",
+  "<strong>ASI08 Cascading Failures.</strong> One agent’s mistake flows into the next agent, and grows.":
+    "<strong>ASI08 Cascading Failures.</strong> Ek agent ki galti agle agent tak behti hai, aur badhti jaati hai.",
+  "The other five are ASI04 Agentic Supply Chain Vulnerabilities, ASI05 Unexpected Code Execution, ASI07 Insecure Inter-Agent Communication, ASI09 Human-Agent Trust Exploitation and ASI10 Rogue Agents.":
+    "Baaki paanch hain ASI04 Agentic Supply Chain Vulnerabilities, ASI05 Unexpected Code Execution, ASI07 Insecure Inter-Agent Communication, ASI09 Human-Agent Trust Exploitation aur ASI10 Rogue Agents.",
+  "In India, an incident also starts a clock. Under the <strong>CERT-In 6-hour rule</strong> of April 2022, many organisations must report certain cyber incidents to CERT-In, India’s cyber-security agency, within 6 hours of noticing them. They must keep their system logs for 180 days, in India. Their clocks must match the official time servers of NIC or NPL. And they must name one contact person for CERT-In.":
+    "India mein ek incident ghadi bhi shuru kar deta hai. April 2022 ke <strong>CERT-In 6-hour rule</strong> ke tahat kai sansthaon ko kuch cyber incidents dhyaan mein aane ke 6 ghante ke andar CERT-In, India ki cyber-security agency, ko report karne hote hain. Unhe apne system logs 180 din tak, India mein, rakhne hote hain. Unki ghadiyan NIC ya NPL ke official time servers se milni chahiye. Aur unhe CERT-In ke liye ek sampark vyakti tay karna hota hai.",
+  "Your agent’s traces are logs too. If you do not keep them for 180 days, with correct times, you cannot answer CERT-In or your own incident review.":
+    "Aapke agent ke traces bhi logs hain. Agar aap unhe 180 din tak, sahi samay ke saath, nahi rakhte, to aap CERT-In ko ya apne incident review ko jawaab nahi de sakte.",
+  "The risk, and the deadline":
+    "Khatra, aur deadline",
+  "At 10 a.m., your support agent is caught sending customer files to an outside address, after a poisoned web page told it to. Name the OWASP risk, and say what must happen before 4 p.m.":
+    "Subah 10 baje aapka support agent customer files ek bahari address par bhejte hue pakda jaata hai, ek zehreele web page ke kehne par. OWASP khatre ka naam bataiye, aur bataiye ki shaam 4 baje se pehle kya hona chahiye.",
+  "This is ASI01 Agent Goal Hijack, and it led to ASI02 Tool Misuse and Exploitation. If CERT-In lists this kind of incident, report it within 6 hours, so before 4 p.m., through your named contact person. Keep the agent’s traces and logs, with their timestamps. Personal data also leaked, so the DPDP breach duties apply as well.":
+    "Yeh ASI01 Agent Goal Hijack hai, aur isse ASI02 Tool Misuse and Exploitation hua. Agar CERT-In is tarah ke incident ko list karta hai, to ise 6 ghante ke andar, yaani 4 baje se pehle, apne tay sampark vyakti ke zariye report kijiye. Agent ke traces aur logs unke timestamps ke saath rakhiye. Personal data bhi leak hua, isliye DPDP breach duties bhi laagu hoti hain.",
+  "Write the 6-hour step into your incident runbook now. Nobody should read the rules for the first time during an incident.":
+    "6 ghante wala kadam abhi apni incident runbook mein likhiye. Kisi ko bhi incident ke dauraan pehli baar niyam nahi padhne chahiye.",
+  "OWASP: genai.owasp.org, Top 10 for Agentic Applications (December 2025). CERT-In: Directions No. 20(3)/2022-CERT-In of 28 April 2022, and its FAQs, on cert-in.org.in.":
+    "OWASP: genai.owasp.org, Top 10 for Agentic Applications (December 2025). CERT-In: 28 April 2022 ke Directions No. 20(3)/2022-CERT-In, aur unke FAQs, cert-in.org.in par.",
+  "DPDP Rules 2025: notified on 13 November 2025, with duties starting in steps up to 13 May 2027":
+    "DPDP Rules 2025: 13 November 2025 ko notify hue, duties 13 May 2027 tak kadamon mein shuru hoti hain",
+  "India AI Governance Guidelines (5 November 2025): seven principles, non-binding":
+    "India AI Governance Guidelines (5 November 2025): saat siddhant, kaanooni roop se zaroori nahi",
+  "FREE-AI framework report (13 August 2025): seven principles and 26 recommendations for finance":
+    "FREE-AI framework report (13 August 2025): finance ke liye saat siddhant aur 26 sifarishein",
+  "Cyber Security Directions of 28 April 2022: 6-hour reporting, 180-day logs, clock sync, a named contact":
+    "28 April 2022 ke Cyber Security Directions: 6 ghante mein reporting, 180 din ke logs, ghadi sync, ek tay sampark vyakti",
+  "EU AI Act implementation timeline":
+    "EU AI Act laagu hone ki timeline",
+  "Regulation (EU) 2026/1744, the Digital Omnibus on AI: the new high-risk dates":
+    "Regulation (EU) 2026/1744, AI par Digital Omnibus: high-risk ki nayi taareekhein",
+  "ISO/IEC 42001:2023, AI management system (certifiable)":
+    "ISO/IEC 42001:2023, AI management system (certify ho sakta hai)",
+  "ISO/IEC 42005:2025, AI system impact assessment (guidance)":
+    "ISO/IEC 42005:2025, AI system impact assessment (margdarshan)",
+  "Top 10 for Agentic Applications (December 2025), ASI01 to ASI10":
+    "Top 10 for Agentic Applications (December 2025), ASI01 se ASI10",
+  "FOCUS billing specification: version 1.4 is current; 1.5, with AI token support, is planned":
+    "FOCUS billing specification: version 1.4 abhi ka hai; 1.5, AI token support ke saath, planned hai",
+  "Demystifying evals for AI agents: pass@k, pass^k and saturation":
+    "Demystifying evals for AI agents: pass@k, pass^k aur saturation",
+  "τ-bench, the paper that introduced pass^k":
+    "τ-bench, woh paper jisne pass^k shuru kiya",
+  "NIM benchmarking metrics: TTFT and inter-token latency":
+    "NIM benchmarking metrics: TTFT aur inter-token latency",
+  "Sarathi-Serve, the paper behind chunked prefill":
+    "Sarathi-Serve, chunked prefill ke peeche ka paper",
+  "Prompt caching prices: cache writes and reads by model":
+    "Prompt caching ke daam: model ke hisaab se cache likhna aur padhna",
+  "Prompt caching guide: write and read prices by model":
+    "Prompt caching guide: model ke hisaab se likhne aur padhne ke daam",
+  "Last verified":
+    "Aakhri baar jaancha gaya",
+  "Government of India (PIB)":
+    "Bharat Sarkar (PIB)",
+  "MeitY":
+    "MeitY",
+  "Reserve Bank of India":
+    "Reserve Bank of India",
+  "CERT-In":
+    "CERT-In",
+  "European Commission":
+    "European Commission",
+  "EUR-Lex":
+    "EUR-Lex",
+  "ISO":
+    "ISO",
+  "FinOps Foundation":
+    "FinOps Foundation",
+  "Yao and others (2024)":
+    "Yao aur saathi (2024)",
+  "NVIDIA":
+    "NVIDIA",
+  "Agrawal and others (2024)":
+    "Agrawal aur saathi (2024)",
+  "OpenAI":
+    "OpenAI",
+  "OWASP":
+    "OWASP",
+  "Anthropic":
+    "Anthropic",
 });
 
 /* Hinglish for Your learning system: role, evidence and a capstone problem (chapter:a1), in simple words.
@@ -30595,10 +30936,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Doosri, <strong>use badalne par level badal jaata hai</strong>. Yeh aksar launch ke baad hota hai, aur koi kaagaz update nahi karta.',
   'Two more points on the EU AI Act. The duties differ for whoever <em>provides</em> a system and whoever <em>deploys</em> it (puts it to work), so find out which one you are. Also, chatbots and made-up media have a duty to be open: people must be told they are talking to an AI, and AI-made images and audio must be labelled.':
     'EU AI Act par do baatein aur. Jo system <em>banakar deta hai</em> aur jo use <em>kaam par lagata hai</em>, dono ki duties alag hain, isliye pata kijiye ki aap kaun hain. Saath hi, chatbots aur banaye hue media par khulkar batane ki duty hai: logon ko bataya jaana chahiye ki woh AI se baat kar rahe hain, aur AI se bani images aur audio par label lagna chahiye.',
-  'Dates to check before any interview':
-    'Kisi bhi interview se pehle dekhne wali dates',
-  'Rules and deadlines change, and this course does not keep dates. The plan keeps one dated list of rule milestones on its Curriculum page, with the DPDP and EU dates. Open it before an interview. Check each date against the official source, and say only what you checked.':
-    'Rules aur deadlines badalte hain, aur yeh course dates nahi rakhta. Plan ke Curriculum page par rule milestones ki ek dated list hai, DPDP aur EU dates ke saath. Interview se pehle use kholiye. Har date ko official source se milaiye, aur sirf wahi boliye jo aapne check kiya.',
   'Put your system in a risk tier':
     'Apne system ko ek risk tier mein rakhiye',
   'Take your Chapter 7 RAG system (the one that finds pages first, then answers from them). Place it in a real use in your organisation. Pick a tier and defend it in one sentence. Then change the use, for example from internal FAQ to checking if a customer is eligible, and pick the tier again.':
@@ -35988,6 +36325,34 @@ Object.assign(window.HING = window.HING || {}, {
     'Sochiye ek tapri ghante bhar mein kitne cup chai deti hai. Throughput woh hai ki ek system diye hue samay mein kitna kaam nipta leta hai, jaise requests per minute. Latency ek request ka intezaar hai; throughput yeh hai ki kitne ho gaye.',
   'Think of giving two groups of customers two different menus on the same day, and counting which sells more. An A/B test shows two versions to two random groups of users at the same time and compares one number between them, so you can tell which version caused the difference.':
     'Sochiye do groups ke customers ko ek hi din do alag menu dena, aur ginna ki kaun sa zyaada bikta hai. A/B test do random groups ke users ko ek hi samay par do versions dikhata hai aur dono ke beech ek number ki tulna karta hai, taaki aap bata sakein ki farq kis version ne kiya.',
+  "Think of the wait before the chai-wala starts pouring. TTFT is how long after you send a request the first word of the answer arrives. It grows with a longer prompt, because the model must read all of it first.":
+    "Sochiye, chai-wala ke dhaar shuru karne se pehle ka intezaar. TTFT yeh hai ki request bhejne ke kitni der baad jawaab ka pehla shabd aata hai. Lamba prompt ho to yeh badhta hai, kyunki model ko pehle poora padhna padta hai.",
+  "Think of how fast the chai-wala pours once he starts. TPOT is the average time between one word of the answer and the next. Tools also call it inter-token latency (ITL).":
+    "Sochiye, chai-wala shuru karne ke baad kitni tezi se dhaar daalta hai. TPOT jawaab ke ek shabd aur agle shabd ke beech ka ausat samay hai. Tools ise inter-token latency (ITL) bhi kehte hain.",
+  "Think of a student given three tries at a sum: did any one try get it right? pass@k is the chance that at least one of k attempts succeeds.":
+    "Sochiye, ek student ko ek sawaal ke teen mauke milein: kya kisi ek mauke mein sahi hua? pass@k yeh sambhavna hai ki k koshishon mein se kam se kam ek safal ho.",
+  "Think of a train that must be on time every day of the week, not just once. pass^k is the chance that all k attempts succeed. A step that works 75% of the time works three times in a row only about 42% of the time.":
+    "Sochiye, ek train jise hafte ke har din samay par aana hai, sirf ek din nahi. pass^k yeh sambhavna hai ki saari k koshishein safal hon. Jo kadam 75% baar chalta hai, woh lagatar teen baar sirf lagbhag 42% baar chalta hai.",
+  "Think of a test the whole class now scores full marks on: it no longer tells you who is better. Eval saturation is when a system passes nearly every case in an eval, so the eval stops giving you new information. Move such cases into the regression suite and write harder ones.":
+    "Sochiye, ek test jismein poori class ko poore number milte hain: ab woh nahi batata ki kaun behtar hai. Eval saturation tab hota hai jab system eval ke lagbhag saare cases pass kar leta hai, aur eval naya kuch nahi batata. Aise cases regression suite mein daaliye aur mushkil naye cases likhiye.",
+  "Think of the real cost of a delivery when some parcels come back and must be sent again. Cost per successful answer is the cost of one call times the calls needed per good answer, so retries are counted.":
+    "Sochiye, delivery ka asli kharcha jab kuch parcel wapas aakar dobara bhejne padte hain. Cost per successful answer ek call ka kharcha, guna ek achhe jawaab ke liye lagne wali calls hai, taaki retries bhi gine jaayein.",
+  "Think of one common bill layout that every phone company agrees to use. FOCUS is the FinOps Foundation's open format for cloud and software bills, so costs from different providers can be added up and split by team or feature.":
+    "Sochiye, ek hi bill ka dhaancha jise har phone company maan le. FOCUS FinOps Foundation ka khula format hai cloud aur software ke bills ke liye, taaki alag providers ke kharche jode ja sakein aur team ya feature ke hisaab se baante ja sakein.",
+  "Think of the detailed rule book that comes after a new law: how to do what the law says. The DPDP Rules 2025 explain how to follow India's DPDP Act: notices, consent, keeping data safe, telling people about a breach, and children's data. Most duties start on 13 May 2027.":
+    "Sochiye, naye kaanoon ke baad aane wali vistaar wali niyam-pustika: kaanoon jo kehta hai use kaise karein. DPDP Rules 2025 batate hain ki India ka DPDP Act kaise follow karein: notice, consent, data ki suraksha, breach hone par logon ko batana, aur bachchon ka data. Zyadatar duties 13 May 2027 se shuru hoti hain.",
+  "Think of a big hospital that the health inspector visits every year, while a small clinic is checked less. An SDF is an organisation the government names as handling a lot of sensitive personal data, so it has extra duties: a yearly impact assessment and audit, and checking that its algorithms do not harm people's rights.":
+    "Sochiye, ek bada aspatal jahan health inspector har saal aata hai, jabki chhota clinic kam jaancha jaata hai. SDF woh sanstha hai jise sarkar bahut saara sensitive personal data sambhalne wali maanti hai, isliye uski extra duties hain: har saal impact assessment aur audit, aur yeh jaanchna ki uske algorithms logon ke adhikaron ko nuksaan na pahunchayein.",
+  "Think of a fire alarm that must ring at the fire station within six hours. Under CERT-In's 2022 directions, many organisations in India must report certain cyber incidents within 6 hours, keep system logs for 180 days in India, and sync their clocks.":
+    "Sochiye, ek fire alarm jo chhe ghante ke andar fire station tak bajna chahiye. CERT-In ke 2022 ke directions ke tahat India mein kai sansthaon ko kuch cyber incidents 6 ghante ke andar report karne hote hain, system logs India mein 180 din rakhne hote hain, aur apni ghadiyan sync karni hoti hain.",
+  "Think of a kitchen hygiene certificate: it checks the kitchen's habits, not one dish. ISO/IEC 42001 is the international standard for how an organisation runs its AI work responsibly, and an organisation can be certified against it.":
+    "Sochiye, rasoi ka hygiene certificate: woh rasoi ki aadatein jaanchta hai, ek dish nahi. ISO/IEC 42001 woh antarrashtriya standard hai jo batata hai ki ek sanstha apna AI kaam zimmedari se kaise chalaye, aur sanstha iske against certify ho sakti hai.",
+  "Think of checking who might get hurt before you build a new road. ISO/IEC 42005 gives guidance on how to assess what an AI system could do to people and society, before and after it ships.":
+    "Sochiye, nayi sadak banane se pehle yeh jaanchna ki kisko nuksaan ho sakta hai. ISO/IEC 42005 margdarshan deta hai ki ek AI system logon aur samaaj par kya asar daal sakta hai, ise ship karne se pehle aur baad mein kaise aanka jaaye.",
+  "Think of good-conduct advice from a school, not the law of the land. India's AI Governance Guidelines (MeitY, November 2025) set out seven principles for safe, trusted AI. They are not a law; binding duties still come from laws like the DPDP Act and from sector regulators.":
+    "Sochiye, school ki achhe vyavhaar ki salaah, desh ka kaanoon nahi. India ki AI Governance Guidelines (MeitY, November 2025) surakshit aur bharosemand AI ke liye saat siddhant rakhti hain. Yeh kaanoon nahi hain; zaroori duties ab bhi DPDP Act jaise kaanoonon aur sector regulators se aati hain.",
+  "Think of a list of the ten most common ways a helper on errands can be tricked or go wrong. The OWASP Top 10 for Agentic Applications (December 2025) lists the main security risks of AI agents, such as goal hijack and tool misuse, numbered ASI01 to ASI10.":
+    "Sochiye, errand par gaye helper ko bevakoof banane ya galat hone ke das sabse aam tareekon ki list. OWASP Top 10 for Agentic Applications (December 2025) AI agents ke mukhya security khatre batati hai, jaise goal hijack aur tool misuse, ASI01 se ASI10 tak.",
 });
 
 /* Hinglish for items1 (items:items1), in simple words.
@@ -39283,6 +39648,8 @@ Object.assign(window.HING = window.HING || {}, {
     "AI ko dono taraf se seekhiye: product (kya banana hai, aur kyun) aur project (use surakshit, samay par aur niyamon ke andar kaise deliver karna hai).",
   "This course teaches AI from two sides, and both count the same. The product side: what to build, and why. The project side: how to deliver it safely, on time and within the rules. To add AI to a real product, you need both.":
     "Yeh course AI ko do taraf se sikhata hai, aur dono barabar hain. Product wali taraf: kya banana hai, aur kyun. Project wali taraf: use surakshit, samay par aur niyamon ke andar kaise deliver karna hai. Kisi asli product mein AI jodne ke liye dono chahiye.",
+  "Delivery & Governance only":
+    "Sirf Delivery & Governance",
 });
 
 /* Account-backed storage.
@@ -48985,10 +49352,11 @@ function pageAppendix(){
   secE.appendChild(sectionHead('E',T('Current reference points')));
   secE.appendChild(h('p',{class:'prose',style:'font-size:1rem',
     html:T('Where the applied chapters came from. Treat this as a living set rather than a bibliography, and use the current official documentation when you run a provider- or protocol-specific lab — model names, pricing, context limits, protocol versions and free-tier terms all move faster than a book does.')}));
-  secE.appendChild(h('div',{class:'marks'},(A.sources||[]).map(([who,what,url])=>
+  secE.appendChild(h('div',{class:'marks'},(A.sources||[]).map(([who,what,url,ver])=>
     h('div',{class:'mark'},[
       h('span',{class:'mt'},[h('strong',{text:T(who)}),
-        h('div',{class:'dim',style:'font-size:.8rem;margin-top:.2rem',text:T(what)})]),
+        h('div',{class:'dim',style:'font-size:.8rem;margin-top:.2rem',text:T(what)}),
+        ver?h('div',{class:'dim verified',style:'font-size:.75rem;margin-top:.15rem',text:T('Last verified')+': '+ver}):null]),
       h('a',{class:'chip',href:url,target:'_blank',rel:'noopener noreferrer',text:'open ↗'})]))));
   secE.appendChild(h('div',{class:'callout',style:'margin-top:1.2rem'},[
     h('span',{class:'lbl',text:T('Before you cite any of this')}),
@@ -49012,11 +49380,18 @@ function pageGlossary(){
   const drill=h('button',{onclick:()=>{mode=mode==='drill'?'list':'drill';
     drill.textContent=mode==='drill'?'Show definitions':'Drill from memory';
     drill.classList.toggle('on',mode==='drill');render();}},'Drill from memory');
+  /* Delivery & Governance: the terms a project or delivery manager is asked
+     about (rules, standards, serving and cost numbers), tagged 'dg' as the
+     glossary's fourth field. The drill can run on these alone. */
+  const isDG=g=>g[3]==='dg'||(Array.isArray(g[3])&&g[3].includes('dg'));
+  let onlyDG=false;
+  const dg=h('button',{type:'button',class:'sm dgonly',onclick:()=>{onlyDG=!onlyDG;dg.classList.toggle('on',onlyDG);render();}},
+    T('Delivery & Governance only')+' ('+window.GLOSSARY.filter(isDG).length+')');
   const body=h('div');
   let mode='list';
   function render(){
     const f=q.value.toLowerCase();
-    const items=window.GLOSSARY.filter(g=>!f||g[0].toLowerCase().includes(f)||g[1].toLowerCase().includes(f));
+    const items=window.GLOSSARY.filter(g=>(!onlyDG||isDG(g))&&(!f||g[0].toLowerCase().includes(f)||g[1].toLowerCase().includes(f)));
     body.innerHTML='';
     if(mode==='drill'){
       const known=Object.values(S.drill).filter(v=>v==='y').length;
@@ -49053,7 +49428,8 @@ function pageGlossary(){
     }
   }
   q.addEventListener('input',render);
-  w.append(h('div',{class:'ctl'},[ctlL('filter',q),h('div',{style:'flex:0'},[h('label',{text:' '}),drill])]),body);
+  w.append(h('div',{class:'ctl'},[ctlL('filter',q),h('div',{style:'flex:0'},[h('label',{text:' '}),drill]),
+    h('div',{style:'flex:0'},[h('label',{text:' '}),dg])]),body);
   render();
   return w;
 }

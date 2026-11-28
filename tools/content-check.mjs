@@ -473,6 +473,26 @@ if (tumForm.length)
   fail(`${tumForm.length} Hinglish line(s) say "Socho" to the reader; the course uses "aap": Sochiye` +
        ` — first: "${tumForm[0]}"`);
 
+/* Fast-moving facts carry a date (audit plan, Phase 2). Each chapter that
+   teaches a rule, a standard, a price or a serving number has a callout
+   titled "Last verified: <Month> <Year>", and Appendix E gives every dated
+   source the same kind of month. A reader can then tell how old a fact is. */
+{
+  const DATED = ['ch115', 'ch14', 'ch15', 'ch165', 'ch17', 'ch16e', 'ch18s'];
+  const STAMP = /^Last verified: (January|February|March|April|May|June|July|August|September|October|November|December) 20\d\d$/;
+  for (const id of DATED) {
+    const c = C.chapters.find(x => x.id === id);
+    if (!c) { fail(`${id}: missing, but it should carry a "Last verified" stamp`); continue; }
+    if (!(c.story || []).some(b => Array.isArray(b) && b[0] === 'c' && STAMP.test(b[1])))
+      fail(`${id}: no "Last verified: <Month> <Year>" callout on its dated facts`);
+  }
+  const dated = ((C.reference.APPENDIX || {}).sources || []).filter(s => s.length > 3);
+  if (dated.length < 10) fail(`Appendix E has ${dated.length} dated source(s); the Phase 2 facts need theirs`);
+  for (const s of dated)
+    if (!/^(January|February|March|April|May|June|July|August|September|October|November|December) 20\d\d$/.test(s[3]))
+      fail(`Appendix E: "${s[1]}" has a bad date "${s[3]}"`);
+}
+
 /* The app's own words: every literal T('…') in the interface code needs its
    Hinglish too. Thirty labels and help texts once showed English inside the
    Hinglish view because nothing checked this side. */

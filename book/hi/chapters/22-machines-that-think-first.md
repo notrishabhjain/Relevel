@@ -97,6 +97,20 @@ Imran ne PRD (product ka recipe card) ke margin mein rule likha. Reasoning sirf 
 
 Dono mein se kisi ne woh sawaal nahi bola jo dono ko pareshaan kar raha tha. Dhyaan se judge karne wala kahan chalega? Maan lijiye jo sentence woh padhta hai, woh mushkil wale sentences mein se ek hai. Usme wahi cheez ho sakti hai jise chhupane ke liye guard bana hai. Kya woh sentence building ke bahar ja sakta hai? Ya judge ko andar hi rehna padega? Yeh sawaal kisi aur din ka tha. Yeh lagbhag Lakshmi ka bhi sawaal tha.
 
+## Do number, ek nahi
+
+Jaane se pehle Imran ne intezaar ko do numbers mein baant diya. Unhone unhe whiteboard par likha.
+
+Pehla tha **TTFT**, yaani time to first token. Yeh woh samay hai jab tak customer pehla shabd aane ka intezaar karta hai. Yeh chai-wala ke dhaar shuru karne se pehle ke intezaar jaisa hai. Model ko pehle poora prompt padhna padta hai. Is padhne wale kadam ko prefill kehte hain. Isliye prompt mein juda har page is intezaar ko badhata hai.
+
+Doosra tha **TPOT**, yaani time per output token. Shabd aana shuru hone ke baad, yeh ek shabd aur agle shabd ke beech ka faasla hai. Yeh hai ki chai-wala kitni tezi se dhaar daalta hai. Kuch tools ise inter-token latency kehte hain.
+
+"Customers tez dhaar ko maaf kar dete hain," Imran ne kaha. "Counter par lambe intezaar ko nahi." Pichhle hafte team ne har prompt mein poori policy jod di thi. Dhaar tez rahi thi. Shuruaat dheemi ho gayi thi.
+
+Unhone ek aur line jodi. Ek vyast server lambe prompt ko tukdon mein kaat kar doosron ke shabdon ke beech padh sakta hai. Ise chunked prefill kehte hain. Ek jawaab thoda der se shuru hota hai, par koi jawaab atakta nahi.
+
+*Aakhri baar jaancha gaya: November 2026. Sources aur unki taareekhein app mein, reference pages ke Appendix E mein di gayi hain.*
+
 ## Summary
 
 Reasoning model jawaab dene se pehle kachche kaagaz par kaam karta hai. Woh un problems mein behtar hai jinhe nikaalna padta hai. Jo cheez di gayi hai use dhoondhne, sort karne ya naye roop mein rakhne mein woh behtar nahi hai. Uske kachche kaam ke paise aur time dono har request par lagte hain.
@@ -105,5 +119,6 @@ Reasoning model jawaab dene se pehle kachche kaagaz par kaam karta hai. Woh un p
 - Latency user ko mehsoos hoti hai. Streaming jawaab jaldi dikhata hai. Kya ho raha hai yeh batane se intezaar samajh mein aata hai. Lamba kaam background mein jaa sakta hai.
 - Decision ko stream nahi kar sakte, kyunki decision ka aadha hissa ek khatra hai.
 - Samajhdaar design mehnge machine ko sirf unhi cases par lagata hai jinhe uski zaroorat hai. Customer ke intezaar ke dauran use kabhi nahi lagata.
+- Intezaar ko do numbers mein naapiye: TTFT (pehle shabd se pehle kitna samay) aur TPOT (shabdon ke beech ka faasla). Lamba prompt shuruaat ko dheema karta hai, dhaar ko nahi.
 
 Agle chapter mein Nashik ki ek customer ko late fee galat bataya jaata hai, aur Anaya wajah dhoondhne ke liye search par wapas jaati hai.
